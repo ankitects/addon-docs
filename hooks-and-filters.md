@@ -1,5 +1,4 @@
-Hooks & Filters
-===============
+# Hooks & Filters
 
 Hooks are the way you should connect your add-on code to Anki. If the
 function you want to alter doesn’t already have a hook, please see the
@@ -19,8 +18,7 @@ The distinction is necessary because some data types in Python can be
 modified directly, and others can only be modified by creating a changed
 copy (such as strings).
 
-New Style Hooks
-===============
+## New Style Hooks
 
 This section covers things that are in Anki 2.1.20. If you are using an
 earlier Anki version, please skip this section.
@@ -67,12 +65,31 @@ For some examples of how the new hooks are used, please see
 <https://github.com/ankitects/anki-addons/blob/master/demos/>.
 
 Most of the new style hooks will also call the legacy hooks (described
-below), so old add-ons will continue to work for now, but add-on authors
+further below), so old add-ons will continue to work for now, but add-on authors
 are encouraged to update to the new style as it allows for code
 completion, and better error checking.
 
-Legacy Hook Handling
-====================
+## Notable Hooks
+
+For a full list of hooks, and their documentation, please see
+- [The GUI hooks](https://github.com/ankitects/anki/blob/master/qt/tools/genhooks_gui.py)
+- [The pylib hooks](https://github.com/ankitects/anki/blob/master/pylib/tools/genhooks.py)
+
+### Webview
+
+Many of Anki's screens are built with one or more webviews, and there are
+some hooks you can use to intercept their use.
+
+- `gui_hooks.webview_will_set_content()` allows you to modify the HTML that
+various screens send to the webview. You can use this for adding your own
+HTML/CSS/Javascript to particular screens.
+- `gui_hooks.webview_did_receive_js_message()` allows you to intercept
+messages sent from Javascript. Anki provides a `pycmd(string)` function in
+Javascript which sends a message back to Python, and various screens such as
+reviewer.py respond to the messages. By using this hook, you can respond
+to your own messages as well.
+
+## Legacy Hook Handling
 
 Older versions of Anki used a different hook system, using the functions
 runHook(), addHook() and runFilter().
@@ -194,16 +211,15 @@ def addMyButton(buttons, editor):
 addHook("setupEditorButtons", addMyButton)
 ```
 
-Adding Hooks
-============
+## Adding Hooks
 
 If you want to modify a function that doesn’t already have a hook,
 please submit a pull request that adds the hooks you need. To do this,
 you’ll need to download Anki’s full source code - the type hints covered
 in the IDE section are not enough.
 
-The hook definitions are located in pylib/tools/genhooks.py and
-qt/tools/genhooks.py. When 'make develop' is run, the build scripts will
+The hook definitions are located in `pylib/tools/genhooks.py` and
+`qt/tools/genhooks_gui.py`. When `make develop` is run, the build scripts will
 automatically update the hook files with the definitions listed there.
 
 Please see README.contributing in the source code for more information.
