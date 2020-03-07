@@ -1,4 +1,4 @@
-- [Intro](README.md)
+- [Intro](/)
 - [Getting Started](getting-started.md)
 - [Hooks and Filters](hooks-and-filters.md)
 - [Monkey Patching](monkey-patching.md)
