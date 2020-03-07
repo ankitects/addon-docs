@@ -16,7 +16,7 @@ modifying the UI, and so on.
 
 While it is possible to develop Anki add-ons with just a plain text
 editor, you can make your life easier by using a proper code editor/IDE
-- please see the IDE & Type Hints section below for more information.
+. Please see the IDE & Type Hints section below for more information.
 
 Anki is comprised of two parts:
 
