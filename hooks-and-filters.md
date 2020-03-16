@@ -6,13 +6,13 @@ section below about adding new hooks.
 
 There are two different kinds of "hooks":
 
--   Regular hooks are functions that don’t return anything. They are run
-    for their side effects, and may sometimes alter the objects they
-    have been passed, such as inserting an extra item in a list.
+- Regular hooks are functions that don’t return anything. They are run
+  for their side effects, and may sometimes alter the objects they
+  have been passed, such as inserting an extra item in a list.
 
--   "Filters" are functions that return their first argument, after
-    maybe changing it. An example filter is one that takes the text of a
-    field during card display, and returns an altered version.
+- "Filters" are functions that return their first argument, after
+  maybe changing it. An example filter is one that takes the text of a
+  field during card display, and returns an altered version.
 
 The distinction is necessary because some data types in Python can be
 modified directly, and others can only be modified by creating a changed
@@ -47,7 +47,7 @@ Multiple add-ons can register for the same hook or filter - they will
 all be called in turn.
 
 An easy way to see all hooks at a glance is to look at
-pylib/tools/genhooks.py and qt/tools/genhooks\_gui.py.
+pylib/tools/genhooks.py and qt/tools/genhooks_gui.py.
 
 If you have set up type completion as described in an earlier section,
 you can also see the hooks in your IDE:
@@ -72,6 +72,7 @@ completion, and better error checking.
 ## Notable Hooks
 
 For a full list of hooks, and their documentation, please see
+
 - [The GUI hooks](https://github.com/ankitects/anki/blob/master/qt/tools/genhooks_gui.py)
 - [The pylib hooks](https://github.com/ankitects/anki/blob/master/pylib/tools/genhooks.py)
 
@@ -80,14 +81,16 @@ For a full list of hooks, and their documentation, please see
 Many of Anki's screens are built with one or more webviews, and there are
 some hooks you can use to intercept their use.
 
+From Anki 2.1.22:
+
 - `gui_hooks.webview_will_set_content()` allows you to modify the HTML that
-various screens send to the webview. You can use this for adding your own
-HTML/CSS/Javascript to particular screens.
+  various screens send to the webview. You can use this for adding your own
+  HTML/CSS/Javascript to particular screens.
 - `gui_hooks.webview_did_receive_js_message()` allows you to intercept
-messages sent from Javascript. Anki provides a `pycmd(string)` function in
-Javascript which sends a message back to Python, and various screens such as
-reviewer.py respond to the messages. By using this hook, you can respond
-to your own messages as well.
+  messages sent from Javascript. Anki provides a `pycmd(string)` function in
+  Javascript which sends a message back to Python, and various screens such as
+  reviewer.py respond to the messages. By using this hook, you can respond
+  to your own messages as well.
 
 ## Legacy Hook Handling
 
