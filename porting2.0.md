@@ -41,14 +41,14 @@ Single .py add-ons need their own folder
 
 Each add-on is now stored in its own folder. If your add-on was
 previously called `demo.py`, you’ll need to create a `demo` folder with
-an `init.py` file.
+an `__init__.py` file.
 
 If you don’t care about 2.0 compatibility, you can just rename `demo.py`
-to `demo/init.py`.
+to `demo/__init__.py`.
 
 If you plan to support 2.0 with the same file, you can copy your
 original file into the folder (`demo.py` → `demo/demo.py`), and then
-import it relatively by adding the following to `demo/init.py`:
+import it relatively by adding the following to `demo/__init__.py`:
 
     from . import demo
 
