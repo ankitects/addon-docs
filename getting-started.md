@@ -57,7 +57,7 @@ subprocess.check_call(["pip", "install", "mypy", *glob.glob("*.whl")])
 ```
 
 Once it completes, you should now have code completion. Try it out by
-double clicking on the `init.py` file and typing
+double clicking on the `__init__.py` file and typing
 
 ```python
 from anki import hooks
@@ -119,11 +119,11 @@ you have an "addons" folder, it is because you have previously used Anki
 2.0.x.
 
 Each add-on uses one folder inside the add-on folder. Anki looks for a
-file called `init.py` file inside the folder, eg:
+file called `__init__.py` file inside the folder, eg:
 
     addons21/my_addon/__init__.py
 
-If `init.py` does not exist, Anki will ignore the folder.
+If `__init__.py` does not exist, Anki will ignore the folder.
 
 When choosing a folder name, it is recommended to stick to a-z and 0-9
 characters to avoid problems with Python’s module system.
@@ -148,7 +148,7 @@ add-ons folder.
 
 ## A Simple Add-On
 
-Add the following to `my_first_addon/init.py` in your add-ons folder:
+Add the following to `my_first_addon/__init__.py` in your add-ons folder:
 
 ```python
 # import the main window object (mw) from aqt
