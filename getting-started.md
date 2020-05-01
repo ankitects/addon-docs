@@ -37,27 +37,24 @@ add-on author, you can take advantage of this type hinting as well.
 
 To get started with your first add-on:
 
--   Open PyCharm and create a new project.
+- Open PyCharm and create a new project.
 
--   Right click/ctrl+click on your project on the left and create a new
-    Python package called "myaddon"
+- Right click/ctrl+click on your project on the left and create a new
+  Python package called "myaddon"
 
 Now you’ll need to fetch Anki’s bundled source code so you can get type
-completion. Download the anki-…​whl and aqt-…​whl file corresponding to
-the version you want to target from
-<https://github.com/ankitects/anki-typecheck> and place them in the top
-of your project (in the same folder as the venv and myaddon folders).
-
-Click on Python Console in the bottom left and type the following in:
+completion. As of Anki 2.1.24, these are available on PyPI. To install them via
+PyCharm, click on Python Console in the bottom left and type the following in:
 
 ```python
-import glob, subprocess
+import subprocess
 
-subprocess.check_call(["pip", "install", "mypy", *glob.glob("*.whl")])
+subprocess.check_call(["pip", "install", "mypy", "anki", "ankirspy", "aqt"])
 ```
 
-Once it completes, you should now have code completion. Try it out by
-double clicking on the `__init__.py` file and typing
+Hit enter and wait. Once it completes, you should now have code completion. Try
+it out by double clicking on the `__init__.py` file. If you see a spinner
+down the bottom, wait for it to complete. Then type in:
 
 ```python
 from anki import hooks
