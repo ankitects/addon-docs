@@ -46,6 +46,22 @@ gui_hooks.reviewer_did_show_question.append(myfunc)
 Multiple add-ons can register for the same hook or filter - they will
 all be called in turn.
 
+To remove a hook, use code like:
+
+```
+gui_hooks.reviewer_did_show_question.remove(myfunc)
+```
+
+:warning: Functions you attach to a hook should not modify the hook while they are executing, as it will break things:
+
+```
+def myfunc(card):
+  # DON'T DO THIS!
+  gui_hooks.reviewer_did_show_question.remove(myfunc)
+
+gui_hooks.reviewer_did_show_question.append(myfunc)
+```
+
 An easy way to see all hooks at a glance is to look at
 pylib/tools/genhooks.py and qt/tools/genhooks_gui.py.
 
