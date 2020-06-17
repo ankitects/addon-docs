@@ -2,7 +2,6 @@
 
 ## Support
 
-
 This document contains some hints to get you started, but it is not a
 comprehensive guide. To actually write an add-on, you will need to
 familiarize yourself with Anki’s source code, and the source code of
@@ -43,7 +42,8 @@ To get started with your first add-on:
   Python package called "myaddon"
 
 Now you’ll need to fetch Anki’s bundled source code so you can get type
-completion. As of Anki 2.1.24, these are available on PyPI. To install them via
+completion. As of Anki 2.1.24, these are available on PyPI. You will need
+to be using a 64 bit version of Python, version 3.7 or 3.8. To install Anki via
 PyCharm, click on Python Console in the bottom left and type the following in:
 
 ```python
