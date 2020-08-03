@@ -259,6 +259,7 @@ deck['mid'] = m['id']
 mw.col.decks.save(deck)
 # and puts cards in the last deck used by the note type
 m['did'] = did
+mw.col.models.save(m)
 # import into the collection
 ti = TextImporter(mw.col, file)
 ti.initMapping()
