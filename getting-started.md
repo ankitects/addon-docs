@@ -228,11 +228,13 @@ for id in ids:
 **Adjust due dates of reviews**
 
 ```python
-ids = mw.col.find_cards("is:due is:review")
+from anki.consts import QUEUE_TYPE_REV
+ids = mw.col.find_cards("is:due")
 for id in ids:
     card = mw.col.getCard(id)
-    card.due += 1
-    card.flush()
+    if card.queue == QUEUE_TYPE_REV:
+        card.due += 1
+        card.flush()
 ```
 
 **Reset the scheduler after any DB changes. Note that we call reset() on
