@@ -11,17 +11,13 @@ accomplish.
 Because of our limited resources, **no official support is available for
 add-on writing**. If you have any questions, you will either need to
 find the answers yourself in the source code, or post your questions on
-the [community-supported add-on
-forum](https://anki.tenderapp.com/discussions/add-ons).
+the [development forum](https://forums.ankiweb.net/c/development/12).
 
 You can also use the add-on forum to request someone write an add-on for
 you. You may need to offer some money before anyone becomes interested
 in helping you.
 
 ## IDE & Type Hints
-
-This section covers things that are in Anki 2.1.20. If you are using an
-earlier Anki version, please skip this section.
 
 The free community edition of PyCharm has good out of the box support
 for Python: <https://www.jetbrains.com/pycharm/>. You can also use other
@@ -43,13 +39,14 @@ To get started with your first add-on:
 
 Now you’ll need to fetch Anki’s bundled source code so you can get type
 completion. As of Anki 2.1.24, these are available on PyPI. You will need
-to be using a 64 bit version of Python, version 3.7 or 3.8. To install Anki via
+to be using a 64 bit version of Python, version 3.8 or 3.9. To install Anki via
 PyCharm, click on Python Console in the bottom left and type the following in:
 
 ```python
 import subprocess
 
-subprocess.check_call(["pip3", "install", "mypy", "anki", "ankirspy", "aqt"])
+subprocess.check_call(["pip3", "install", "--upgrade", "pip"])
+subprocess.check_call(["pip3", "install", "mypy", "aqt"])
 ```
 
 Hit enter and wait. Once it completes, you should now have code completion. Try

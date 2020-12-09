@@ -20,8 +20,7 @@ copy (such as strings).
 
 ## New Style Hooks
 
-This section covers things that are in Anki 2.1.20. If you are using an
-earlier Anki version, please skip this section.
+A new style of hook was added in Anki 2.1.20.
 
 Imagine you wish to show a message each time the front side of a card is
 shown in the review screen. You’ve looked at the source code in
@@ -238,7 +237,7 @@ you’ll need to download Anki’s full source code - the type hints covered
 in the IDE section are not enough.
 
 The hook definitions are located in `pylib/tools/genhooks.py` and
-`qt/tools/genhooks_gui.py`. When `make develop` is run, the build scripts will
+`qt/tools/genhooks_gui.py`. When building Anki, the build scripts will
 automatically update the hook files with the definitions listed there.
 
-Please see README.contributing in the source code for more information.
+Please see the docs/ folder in the source tree for more information.

@@ -1,7 +1,6 @@
 # Sharing Add-ons
 
-Sharing via AnkiWeb
--------------------
+## Sharing via AnkiWeb
 
 You can package up an add-on for distribution by zipping it up, and
 giving it a name ending in .ankiaddon.
@@ -35,8 +34,7 @@ AnkiWeb can not accept zip files that contain `pycache` folders.
 Once you’ve created a .ankiaddon file, you can use the Upload button on
 <https://ankiweb.net/shared/addons/> to share the add-on with others.
 
-Sharing outside AnkiWeb
------------------------
+## Sharing outside AnkiWeb
 
 If you wish to distribute .ankiaddon files outside of AnkiWeb, your
 add-on folder needs to contain a 'manifest.json' file. The file should
