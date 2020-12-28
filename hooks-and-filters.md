@@ -100,12 +100,19 @@ From Anki 2.1.22:
 
 - `gui_hooks.webview_will_set_content()` allows you to modify the HTML that
   various screens send to the webview. You can use this for adding your own
-  HTML/CSS/Javascript to particular screens.
+  HTML/CSS/Javascript to particular screens. This will not work for external
+  pages - see the Anki 2.1.36 section below.
 - `gui_hooks.webview_did_receive_js_message()` allows you to intercept
   messages sent from Javascript. Anki provides a `pycmd(string)` function in
   Javascript which sends a message back to Python, and various screens such as
   reviewer.py respond to the messages. By using this hook, you can respond
   to your own messages as well.
+
+From Anki 2.1.36:
+
+- `webview_did_inject_style_into_page()` gives you an opportunity to inject
+  styling or content into external pages like the graphs screen and congratulations
+  page that are loaded with load_ts_page().
 
 ## Legacy Hook Handling
 
