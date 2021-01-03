@@ -239,9 +239,7 @@ addHook("setupEditorButtons", addMyButton)
 ## Adding Hooks
 
 If you want to modify a function that doesn’t already have a hook,
-please submit a pull request that adds the hooks you need. To do this,
-you’ll need to download Anki’s full source code - the type hints covered
-in the IDE section are not enough.
+please submit a pull request that adds the hooks you need.
 
 The hook definitions are located in `pylib/tools/genhooks.py` and
 `qt/tools/genhooks_gui.py`. When building Anki, the build scripts will
