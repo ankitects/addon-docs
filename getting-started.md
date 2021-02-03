@@ -38,9 +38,10 @@ To get started with your first add-on:
   Python package called "myaddon"
 
 Now you’ll need to fetch Anki’s bundled source code so you can get type
-completion. As of Anki 2.1.24, these are available on PyPI. You will need
-to be using a 64 bit version of Python, version 3.8 or 3.9. To install Anki via
-PyCharm, click on Python Console in the bottom left and type the following in:
+completion. As of Anki 2.1.24, these are available on PyPI. **You will need to
+be using a 64 bit version of Python, version 3.8 or 3.9, or the commands below
+will fail**. To install Anki via PyCharm, click on Python Console in the bottom
+left and type the following in:
 
 ```python
 import subprocess
