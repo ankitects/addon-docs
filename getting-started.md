@@ -24,11 +24,10 @@ for Python: <https://www.jetbrains.com/pycharm/>. You can also use other
 editors like Visual Studio Code, but the instructions in this section
 will cover PyCharm.
 
-Anki’s codebase has recently been updated to add type hints to some
-commonly used parts of the code. While the type hinting is not yet
-complete, it is already making development easier by providing better
-code completion, and by catching errors using tools like mypy. As an
-add-on author, you can take advantage of this type hinting as well.
+Over the last year, Anki’s codebase has been updated to add type hints to almost
+all of the code. These type hints make development easier, by providing better
+code completion, and by catching errors using tools like mypy. As an add-on
+author, you can take advantage of this type hinting as well.
 
 To get started with your first add-on:
 
@@ -50,8 +49,12 @@ subprocess.check_call(["pip3", "install", "--upgrade", "pip"])
 subprocess.check_call(["pip3", "install", "mypy", "aqt"])
 ```
 
-Hit enter and wait. Once it completes, you should now have code completion. Try
-it out by double clicking on the `__init__.py` file. If you see a spinner
+Hit enter and wait. Once it completes, you should now have code completion.
+
+If you get an error, you are probably not using a 64 bit version of Python,
+or you Python version is not 3.8 or 3.9.
+
+Try it out by double clicking on the `__init__.py` file. If you see a spinner
 down the bottom, wait for it to complete. Then type in:
 
 ```python
@@ -65,7 +68,7 @@ and you should see completions pop up.
 will get errors.** Add-ons need to be run from within Anki, which is
 covered in the next section.
 
-You can use mypy to type check your code, which will catch some cases
+You can use mypy to type-check your code, which will catch some cases
 where you’ve called Anki functions incorrectly. Click on Terminal in the
 bottom left, and type 'mypy addon'. After some processing, it will show
 a success or tell you any mistakes you’ve made. For example, if you
@@ -74,7 +77,7 @@ specified a hook incorrectly:
 ```python
 from aqt import gui_hooks
 
-def myfunc():
+def myfunc() -> None:
   print("myfunc")
 
 gui_hooks.reviewer_did_show_answer.append(myfunc)
@@ -85,18 +88,28 @@ Then mypy will report:
     myaddon/__init__.py:5: error: Argument 1 to "append" of "list" has incompatible type "Callable[[], Any]"; expected "Callable[[Card], None]"
     Found 1 error in 1 file (checked 1 source file)
 
-Which is telling you that the hook expects a func which takes a card as
+Which is telling you that the hook expects a function which takes a card as
 the first argument, eg
 
 ```python
-def myfunc(card):
+from anki.cards import Card
+
+def myfunc(card: Card) -> None:
+  print("myfunc")
 ```
 
-The bulk of this document was written before type hints were introduced
-to Anki, so they are not shown in the code samples. It is possible to
-use type hints in your add-on code however, and if you are not a
-beginner to programming, they are recommended. Example add-ons that use
-type hints are available here:
+Mypy has a "check_untyped_defs" option that will give you some type checking
+even if your own code lacks type hints, but to get the most out of it, you will
+need to add type hints to your own code. This can take some initial time, but
+pays off in the long term, as it becomes easier to navigate your own code, and
+allows you to catch errors in parts of the code you might not regularly exercise
+yourself. It is also makes it easier to check for any problems caused by updating
+to a newer Anki version.
+
+If you have a large existing add-on, you may wish to look into tools like monkeytype
+to automatically add types to your code.
+
+Here are some example add-ons that use type hints:
 
 <https://github.com/ankitects/anki-addons/blob/master/demos/>
 
@@ -149,14 +162,14 @@ Add the following to `my_first_addon/__init__.py` in your add-ons folder:
 # import the main window object (mw) from aqt
 from aqt import mw
 # import the "show info" tool from utils.py
-from aqt.utils import showInfo
+from aqt.utils import showInfo, qconnect
 # import all of the Qt GUI library
 from aqt.qt import *
 
 # We're going to add a menu item below. First we want to create a function to
 # be called when the menu item is activated.
 
-def testFunction():
+def testFunction() -> None:
     # get the number of cards in the current collection, which is stored in
     # the main window
     cardCount = mw.col.cardCount()
@@ -166,7 +179,7 @@ def testFunction():
 # create a new menu item, "test"
 action = QAction("test", mw)
 # set it to call testFunction when it's clicked
-action.triggered.connect(testFunction)
+qconnect(action.triggered, testFunction)
 # and add it to the tools menu
 mw.form.menuTools.addAction(action)
 ```
