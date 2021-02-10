@@ -109,6 +109,30 @@ to a newer Anki version.
 If you have a large existing add-on, you may wish to look into tools like monkeytype
 to automatically add types to your code.
 
+<details>
+<summary>Monkeytype</summary>
+To use monkeytype with an add-on called 'test', you could do something like the following:
+
+```shell
+% /usr/local/bin/python3.8 -m venv pyenv
+% cd pyenv && . bin/activate
+(pyenv) % pip install aqt monkeytype
+(pyenv) % monkeytype run bin/anki
+```
+
+Then click around in your add-on to gather the runtime type information, and close
+Anki when you're done.
+
+After doing so, you'll need to comment out any top-level actions (such as code modifying
+menus outside of a function), as that will trip up monkeytype. Finally, you can
+generate the modified files with:
+
+```shell
+(pyenv) % PYTHONPATH=~/Library/Application\ Support/Anki2/addons21 monkeytype apply test
+```
+
+</details>
+
 Here are some example add-ons that use type hints:
 
 <https://github.com/ankitects/anki-addons/blob/master/demos/>
