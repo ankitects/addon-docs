@@ -52,10 +52,12 @@ subprocess.check_call(["pip3", "install", "mypy", "aqt"])
 Hit enter and wait. Once it completes, you should now have code completion.
 
 If you get an error, you are probably not using a 64 bit version of Python,
-or your Python version is not 3.8 or 3.9.
+or your Python version is not 3.8 or 3.9. Try running the commands above
+with "-vvv" to get more info.
 
-Try it out by double clicking on the `__init__.py` file. If you see a spinner
-down the bottom, wait for it to complete. Then type in:
+After installing, try out the code completion by double clicking on the
+`__init__.py` file. If you see a spinner down the bottom, wait for it to
+complete. Then type in:
 
 ```python
 from anki import hooks
