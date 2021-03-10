@@ -173,7 +173,7 @@ of the original add-on name, when it was downloaded, and whether it’s
 enabled or not.
 
 You should not store user data in the add-on folder, as it’s [deleted
-when the user upgrades an add-on](#configuration).
+when the user upgrades an add-on](more.md#configuration).
 
 If you followed the steps in the IDE section above, you can either copy
 your myaddon folder into Anki’s add-on folder to test it, or a Mac or
@@ -425,7 +425,7 @@ Add-ons should never modify the schema of existing tables, as that may
 break future versions of Anki.
 
 If you need to store addon-specific data, consider using Anki’s
-[Configuration](#configuration) support.
+[Configuration](more.md#configuration) support.
 
 If you need the data to sync across devices, small options can be stored
 within mw.col.conf. Please don’t store large amounts of data there, as
