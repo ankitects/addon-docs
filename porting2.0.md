@@ -53,13 +53,13 @@ import it relatively by adding the following to `demo/__init__.py`:
     from . import demo
 
 The folder needs to be zipped up when uploading to AnkiWeb. For more
-info, please see [sharing add-ons](#sharing).
+info, please see [sharing add-ons](sharing.md).
 
 Folders are deleted when upgrading
 ----------------------------------
 
 When an add-on is upgraded, all files in the add-on folder are deleted.
-The only exception is the special [user\_files folder](#userfiles). If
+The only exception is the special [user\_files folder](more.md#user-files). If
 your add-on requires more than simple key/value configuration, make sure
 you store the associated files in the user\_files folder, or they will
 be lost on upgrade.
@@ -140,7 +140,7 @@ Add-on Configuration
 Many small 2.0 add-ons relied on users editing the sourcecode to
 customize them. This is no longer a good idea in 2.1, because changes
 made by the user will be overwritten when they check for and download
-updates. 2.1 provides a [Configuration](#configuration) system to work
+updates. 2.1 provides a [Configuration](more.md#configuration) system to work
 around this. If you need to continue supporting 2.0 as well, you could
 use code like the following:
 
