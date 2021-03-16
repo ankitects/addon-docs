@@ -139,10 +139,10 @@ def onLeech(card):
     card.did = mw.col.decks.id("Difficult")
     # if the card was in a cram deck, we have to put back the original due
     # time and original deck
-    card.odid = 0
-    if card.odue:
-        card.due = card.odue
+    if card.odid:
+        card.did = card.odid
         card.odue = 0
+        card.odid = 0
 
 addHook("leech", onLeech)
 ```
