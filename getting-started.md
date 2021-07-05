@@ -72,7 +72,7 @@ covered in the next section.
 
 You can use mypy to type-check your code, which will catch some cases
 where you’ve called Anki functions incorrectly. Click on Terminal in the
-bottom left, and type 'mypy addon'. After some processing, it will show
+bottom left, and type 'mypy myaddon'. After some processing, it will show
 a success or tell you any mistakes you’ve made. For example, if you
 specified a hook incorrectly:
 
