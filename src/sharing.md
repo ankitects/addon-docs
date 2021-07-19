@@ -1,5 +1,7 @@
 # Sharing Add-ons
 
+<!-- toc -->
+
 ## Sharing via AnkiWeb
 
 You can package up an add-on for distribution by zipping it up, and

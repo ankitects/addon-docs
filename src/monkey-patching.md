@@ -1,5 +1,4 @@
-Monkey Patching and Method Wrapping
-===================================
+# Monkey Patching and Method Wrapping
 
 If you want to modify a function that doesn’t already have a hook, it’s
 possible to overwrite that function with a custom version instead. This

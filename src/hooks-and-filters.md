@@ -1,5 +1,7 @@
 # Hooks & Filters
 
+<!-- toc -->
+
 Hooks are the way you should connect your add-on code to Anki. If the
 function you want to alter doesn’t already have a hook, please see the
 section below about adding new hooks.
@@ -68,7 +70,7 @@ If you have set up type completion as described in an earlier section,
 you can also see the hooks in your IDE:
 
 <video controls autoplay loop muted>
- <source src="img/autocomplete.mp4" type="video/mp4">
+ <source src="../img/autocomplete.mp4" type="video/mp4">
 </video>
 
 In the above video, holding the command/ctrl key down while hovering
