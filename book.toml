@@ -1,0 +1,22 @@
+[book]
+authors = ["Ankitects Pty Ltd and contributors"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Writing Anki Add-ons"
+
+[build]
+create-missing = true
+
+[preprocessor.toc]
+command = "mdbook-toc"
+renderer = ["html"]
+
+[output.html]
+git-repository-url = "https://github.com/ankitects/addon-docs/"
+cname = "addon-docs.ankiweb.net"
+
+#[output.linkcheck]
+#optional = true
+#warning-policy = "warn"
+#follow-web-links = true
