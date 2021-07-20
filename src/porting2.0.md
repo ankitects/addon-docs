@@ -127,7 +127,7 @@ Anki’s webviews are now using WebEngine. Of note:
 Anki now fades the previous card out before fading the next card in, so
 the next card won’t be available in the DOM when the showQuestion hook
 fires. There are some new hooks you can use to run Javascript at the
-appropriate time - see [here](#reviewjs) for more.
+appropriate time - see [here](features-and-debugging.md#card-review-javascript) for more.
 
 ## Add-on Configuration
 
