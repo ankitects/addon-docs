@@ -16,7 +16,7 @@ renderer = ["html"]
 git-repository-url = "https://github.com/ankitects/addon-docs/"
 cname = "addon-docs.ankiweb.net"
 
-#[output.linkcheck]
-#optional = true
-#warning-policy = "warn"
-#follow-web-links = true
+[output.linkcheck]
+optional = true
+warning-policy = "warn"
+follow-web-links = true
