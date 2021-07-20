@@ -4,49 +4,30 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Writing Anki Add-ons</title>
-        
         <meta name="robots" content="noindex" />
-        
-        
-
-
         <!-- Custom HTML head -->
         
-
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        
         <link rel="icon" href="favicon.svg">
-        
-        
         <link rel="shortcut icon" href="favicon.png">
-        
         <link rel="stylesheet" href="css/variables.css">
         <link rel="stylesheet" href="css/general.css">
         <link rel="stylesheet" href="css/chrome.css">
-        
         <link rel="stylesheet" href="css/print.css" media="print">
-        
-
         <!-- Fonts -->
         <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        
         <link rel="stylesheet" href="fonts/fonts.css">
-        
-
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
-
-        
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -122,33 +103,26 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
-                        
                     </div>
 
                     <h1 class="menu-title">Writing Anki Add-ons</h1>
 
                     <div class="right-buttons">
-                        
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        
-                        
                         <a href="https://github.com/ankitects/addon-docs/" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        
                     </div>
                 </div>
 
-                
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -156,8 +130,6 @@
                         </ul>
                     </div>
                 </div>
-                
-
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -169,12 +141,12 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#introduction" id="introduction">Introduction</a></h1>
-<h2><a class="header" href="#translations" id="translations">Translations</a></h2>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<h2 id="translations"><a class="header" href="#translations">Translations</a></h2>
 <ul>
 <li>日本語: <a href="http://rs.luminousspice.com/ankiaddons21/">http://rs.luminousspice.com/ankiaddons21/</a></li>
 </ul>
-<h2><a class="header" href="#overview" id="overview">Overview</a></h2>
+<h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
 <p>Anki is primarily written in a user-friendly language called Python. If
 you’re not familiar with Python, please read the <a href="http://docs.python.org/tutorial/">Python
 tutorial</a> before proceeding with the
@@ -200,7 +172,7 @@ depending on the build.</p>
 <p>When Anki starts up, it checks for modules in the add-ons folder, and
 runs each one it finds. When add-ons are run, they typically modify
 existing code or add new menu items to provide a new feature.</p>
-<h1><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h1>
 <ul>
 <li><a href="getting-started.html#support">Support</a></li>
 <li><a href="getting-started.html#ide--type-hints">IDE &amp; Type Hints</a></li>
@@ -210,7 +182,7 @@ existing code or add new menu items to provide a new feature.</p>
 <li><a href="getting-started.html#readingwriting-objects">Reading/Writing Objects</a></li>
 <li><a href="getting-started.html#the-database">The Database</a></li>
 </ul>
-<h2><a class="header" href="#support" id="support">Support</a></h2>
+<h2 id="support"><a class="header" href="#support">Support</a></h2>
 <p>This document contains some hints to get you started, but it is not a
 comprehensive guide. To actually write an add-on, you will need to
 familiarize yourself with Anki’s source code, and the source code of
@@ -223,7 +195,7 @@ the <a href="https://forums.ankiweb.net/c/development/12">development forum</a>.
 <p>You can also use the add-on forum to request someone write an add-on for
 you. You may need to offer some money before anyone becomes interested
 in helping you.</p>
-<h2><a class="header" href="#ide--type-hints" id="ide--type-hints">IDE &amp; Type Hints</a></h2>
+<h2 id="ide--type-hints"><a class="header" href="#ide--type-hints">IDE &amp; Type Hints</a></h2>
 <p>The free community edition of PyCharm has good out of the box support
 for Python: <a href="https://www.jetbrains.com/pycharm/">https://www.jetbrains.com/pycharm/</a>. You can also use other
 editors like Visual Studio Code, but the instructions in this section
@@ -316,7 +288,7 @@ generate the modified files with:</p>
 </details>
 <p>Here are some example add-ons that use type hints:</p>
 <p><a href="https://github.com/ankitects/anki-addons/blob/master/demos/">https://github.com/ankitects/anki-addons/blob/master/demos/</a></p>
-<h2><a class="header" href="#add-on-folders" id="add-on-folders">Add-on folders</a></h2>
+<h2 id="add-on-folders"><a class="header" href="#add-on-folders">Add-on folders</a></h2>
 <p>You can access the top level add-ons folder by going to the
 Tools&gt;Add-ons menu item in the main Anki window. Click on the View
 Files button, and a folder will pop up. If you had no add-ons installed,
@@ -347,7 +319,7 @@ when the user upgrades an add-on</a>.</p>
 your myaddon folder into Anki’s add-on folder to test it, or a Mac or
 Linux, create a symlink from the folder’s original location into your
 add-ons folder.</p>
-<h2><a class="header" href="#a-simple-add-on" id="a-simple-add-on">A Simple Add-On</a></h2>
+<h2 id="a-simple-add-on"><a class="header" href="#a-simple-add-on">A Simple Add-On</a></h2>
 <p>Add the following to <code>my_first_addon/__init__.py</code> in your add-ons folder:</p>
 <pre><code class="language-python"># import the main window object (mw) from aqt
 from aqt import mw
@@ -377,7 +349,7 @@ mw.form.menuTools.addAction(action)
 Running it will display a dialog with the card count.</p>
 <p>If you make a mistake when entering in the plugin, Anki will show an
 error message on startup indicating where the problem is.</p>
-<h2><a class="header" href="#the-collection" id="the-collection">The Collection</a></h2>
+<h2 id="the-collection"><a class="header" href="#the-collection">The Collection</a></h2>
 <p>All operations on a collection file are accessed via mw.col. Some basic
 examples of what you can do follow. Please note that you should put
 these in testFunction() as above. You can’t run them directly in an
@@ -449,7 +421,7 @@ col = Collection(&quot;/path/to/collection.anki2&quot;)
 <p>If you make any modifications to the collection outside of Anki, you
 must make sure to call col.close() when you’re done, or those changes
 will be lost.</p>
-<h2><a class="header" href="#readingwriting-objects" id="readingwriting-objects">Reading/Writing Objects</a></h2>
+<h2 id="readingwriting-objects"><a class="header" href="#readingwriting-objects">Reading/Writing Objects</a></h2>
 <p>Most objects in Anki can be read and written via methods in pylib.</p>
 <pre><code class="language-python">card = col.getCard(card_id)
 card.ivl += 1
@@ -482,7 +454,7 @@ as they take care of marking items as requiring a sync, and they prevent
 some forms of invalid data from being written to the database.</p>
 <p>For locating specific cards and notes, col.find_cards() and
 col.find_notes() is useful.</p>
-<h2><a class="header" href="#the-database" id="the-database">The Database</a></h2>
+<h2 id="the-database"><a class="header" href="#the-database">The Database</a></h2>
 <p>:warning: You can easily cause problems by writing directly to the database.
 Where possible, please use the methods mentioned above instead.</p>
 <p>Anki’s DB object supports the following functions:</p>
@@ -521,7 +493,7 @@ break future versions of Anki.</p>
 <p>If you need the data to sync across devices, small options can be stored
 within mw.col.conf. Please don’t store large amounts of data there, as
 it’s currently sent on every sync.</p>
-<h1><a class="header" href="#hooks--filters" id="hooks--filters">Hooks &amp; Filters</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hooks--filters"><a class="header" href="#hooks--filters">Hooks &amp; Filters</a></h1>
 <ul>
 <li><a href="hooks-and-filters.html#new-style-hooks">New Style Hooks</a></li>
 <li><a href="hooks-and-filters.html#notable-hooks">Notable Hooks</a>
@@ -551,7 +523,7 @@ field during card display, and returns an altered version.</p>
 <p>The distinction is necessary because some data types in Python can be
 modified directly, and others can only be modified by creating a changed
 copy (such as strings).</p>
-<h2><a class="header" href="#new-style-hooks" id="new-style-hooks">New Style Hooks</a></h2>
+<h2 id="new-style-hooks"><a class="header" href="#new-style-hooks">New Style Hooks</a></h2>
 <p>A new style of hook was added in Anki 2.1.20.</p>
 <p>Imagine you wish to show a message each time the front side of a card is
 shown in the review screen. You’ve looked at the source code in
@@ -596,13 +568,13 @@ line.</p>
 further below), so old add-ons will continue to work for now, but add-on authors
 are encouraged to update to the new style as it allows for code
 completion, and better error checking.</p>
-<h2><a class="header" href="#notable-hooks" id="notable-hooks">Notable Hooks</a></h2>
+<h2 id="notable-hooks"><a class="header" href="#notable-hooks">Notable Hooks</a></h2>
 <p>For a full list of hooks, and their documentation, please see</p>
 <ul>
 <li><a href="https://github.com/ankitects/anki/blob/master/qt/tools/genhooks_gui.py">The GUI hooks</a></li>
 <li><a href="https://github.com/ankitects/anki/blob/master/pylib/tools/genhooks.py">The pylib hooks</a></li>
 </ul>
-<h3><a class="header" href="#webview" id="webview">Webview</a></h3>
+<h3 id="webview"><a class="header" href="#webview">Webview</a></h3>
 <p>Many of Anki's screens are built with one or more webviews, and there are
 some hooks you can use to intercept their use.</p>
 <p>From Anki 2.1.22:</p>
@@ -623,7 +595,7 @@ to your own messages as well.</li>
 styling or content into external pages like the graphs screen and congratulations
 page that are loaded with load_ts_page().</li>
 </ul>
-<h2><a class="header" href="#legacy-hook-handling" id="legacy-hook-handling">Legacy Hook Handling</a></h2>
+<h2 id="legacy-hook-handling"><a class="header" href="#legacy-hook-handling">Legacy Hook Handling</a></h2>
 <p>Older versions of Anki used a different hook system, using the functions
 runHook(), addHook() and runFilter().</p>
 <p>For example, when the scheduler (anki/sched.py) discovers a leech, it
@@ -726,14 +698,14 @@ def addMyButton(buttons, editor):
 
 addHook(&quot;setupEditorButtons&quot;, addMyButton)
 </code></pre>
-<h2><a class="header" href="#adding-hooks" id="adding-hooks">Adding Hooks</a></h2>
+<h2 id="adding-hooks"><a class="header" href="#adding-hooks">Adding Hooks</a></h2>
 <p>If you want to modify a function that doesn’t already have a hook,
 please submit a pull request that adds the hooks you need.</p>
 <p>The hook definitions are located in <code>pylib/tools/genhooks.py</code> and
 <code>qt/tools/genhooks_gui.py</code>. When building Anki, the build scripts will
 automatically update the hook files with the definitions listed there.</p>
 <p>Please see the docs/ folder in the source tree for more information.</p>
-<h1><a class="header" href="#monkey-patching-and-method-wrapping" id="monkey-patching-and-method-wrapping">Monkey Patching and Method Wrapping</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="monkey-patching-and-method-wrapping"><a class="header" href="#monkey-patching-and-method-wrapping">Monkey Patching and Method Wrapping</a></h1>
 <p>If you want to modify a function that doesn’t already have a hook, it’s
 possible to overwrite that function with a custom version instead. This
 is sometimes referred to as 'monkey patching'.</p>
@@ -809,7 +781,7 @@ def mySetupButtons(self, _old):
 
 Editor.setupButtons = wrap(Editor.setupButtons, mySetupButtons, &quot;around&quot;)
 </code></pre>
-<h1><a class="header" href="#features-and-debugging" id="features-and-debugging">Features and Debugging</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="features-and-debugging"><a class="header" href="#features-and-debugging">Features and Debugging</a></h1>
 <ul>
 <li><a href="features-and-debugging.html#qt">Qt</a></li>
 <li><a href="features-and-debugging.html#standard-modules">Standard Modules</a></li>
@@ -819,7 +791,7 @@ Editor.setupButtons = wrap(Editor.setupButtons, mySetupButtons, &quot;around&quo
 <li><a href="features-and-debugging.html#debugging">Debugging</a></li>
 <li><a href="features-and-debugging.html#learning-more">Learning More</a></li>
 </ul>
-<h2><a class="header" href="#qt" id="qt">Qt</a></h2>
+<h2 id="qt"><a class="header" href="#qt">Qt</a></h2>
 <p>As mentioned in the overview, the Qt documentation is invaluable for
 learning how to display different GUI widgets.</p>
 <p>One particular thing to bear in mind is that objects are garbage
@@ -837,7 +809,7 @@ prevent this, assign top level widgets to an existing object, like:</p>
 <p>This is often not required when you create a Qt object and give it an
 existing object as the parent, as the parent will keep a reference to
 the object.</p>
-<h2><a class="header" href="#standard-modules" id="standard-modules">Standard Modules</a></h2>
+<h2 id="standard-modules"><a class="header" href="#standard-modules">Standard Modules</a></h2>
 <p>Anki ships with only the standard modules necessary to run the program -
 a full copy of Python is not included. For that reason, if you need to
 use a standard module that is not included with Anki, you’ll need to
@@ -847,7 +819,7 @@ extensions such as numpy are much more difficult to package, as you
 would need to compile them for each of the operating systems Anki
 supports. If you’re doing something sophisticated, it would be easier to
 get your users to install a standalone copy of Python instead.</p>
-<h2><a class="header" href="#configuration" id="configuration">Configuration</a></h2>
+<h2 id="configuration"><a class="header" href="#configuration">Configuration</a></h2>
 <p>If you include a config.json file with a JSON dictionary in it, Anki
 will allow users to edit it from the add-on manager.</p>
 <p>A simple example: in config.json:</p>
@@ -878,7 +850,7 @@ when the config button is clicked:</p>
 </code></pre>
 <p>Avoid key names starting with an underscore - they are reserved for
 future use by Anki.</p>
-<h2><a class="header" href="#user-files" id="user-files">User Files</a></h2>
+<h2 id="user-files"><a class="header" href="#user-files">User Files</a></h2>
 <p>When your add-on needs configuration data other than simple keys and
 values, it can use a special folder called user_files in the root of
 your add-on’s folder. Any files placed in this folder will be preserved
@@ -888,7 +860,7 @@ removed on upgrade.</p>
 README.txt or similar file inside it before zipping up your add-on.</p>
 <p>When Anki upgrades an add-on, it will ignore any files in the .zip that
 already exist in the user_files folder.</p>
-<h2><a class="header" href="#card-review-javascript" id="card-review-javascript">Card Review Javascript</a></h2>
+<h2 id="card-review-javascript"><a class="header" href="#card-review-javascript">Card Review Javascript</a></h2>
 <p>For a general solution not specific to card review, see
 <a href="hooks-and-filters.html#webview">the webview section</a>.</p>
 <p>Anki provides a hook to modify the question and answer HTML before it is
@@ -937,7 +909,7 @@ but before it is shown.</p>
 </li>
 </ul>
 <p>The hooks are reset each time the question or answer is shown.</p>
-<h2><a class="header" href="#debugging" id="debugging">Debugging</a></h2>
+<h2 id="debugging"><a class="header" href="#debugging">Debugging</a></h2>
 <p>If your code throws an exception, it will be caught by Anki’s standard
 exception handler (which catches anything written to stderr). If you
 need to print information for debugging purposes, you can use
@@ -1005,7 +977,7 @@ debugger in the terminal:</p>
 </code></pre>
 <p>Alternatively you can export DEBUG=1 in your shell and it will kick into
 the debugger on an uncaught exception.</p>
-<h2><a class="header" href="#learning-more" id="learning-more">Learning More</a></h2>
+<h2 id="learning-more"><a class="header" href="#learning-more">Learning More</a></h2>
 <p>Anki’s source code is available at <a href="http://github.com/ankitects/anki/">http://github.com/ankitects/anki/</a>. The
 colllection object is defined in anki’s collection.py. Other useful
 files to check out are cards.py, notes.py, sched.py, models.py and
@@ -1017,12 +989,12 @@ Designer program to open the .ui files and browse the GUI in a
 convenient way.</p>
 <p>And finally, it can also be extremely helpful to browse other add-ons to
 see how they accomplish something.</p>
-<h1><a class="header" href="#sharing-add-ons" id="sharing-add-ons">Sharing Add-ons</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sharing-add-ons"><a class="header" href="#sharing-add-ons">Sharing Add-ons</a></h1>
 <ul>
 <li><a href="sharing.html#sharing-via-ankiweb">Sharing via AnkiWeb</a></li>
 <li><a href="sharing.html#sharing-outside-ankiweb">Sharing outside AnkiWeb</a></li>
 </ul>
-<h2><a class="header" href="#sharing-via-ankiweb" id="sharing-via-ankiweb">Sharing via AnkiWeb</a></h2>
+<h2 id="sharing-via-ankiweb"><a class="header" href="#sharing-via-ankiweb">Sharing via AnkiWeb</a></h2>
 <p>You can package up an add-on for distribution by zipping it up, and
 giving it a name ending in .ankiaddon.</p>
 <p>The top level folder should not be included in the zip file. For
@@ -1048,7 +1020,7 @@ Please make sure you delete these prior to creating the zip file, as
 AnkiWeb can not accept zip files that contain <code>pycache</code> folders.</p>
 <p>Once you’ve created a .ankiaddon file, you can use the Upload button on
 <a href="https://ankiweb.net/shared/addons/">https://ankiweb.net/shared/addons/</a> to share the add-on with others.</p>
-<h2><a class="header" href="#sharing-outside-ankiweb" id="sharing-outside-ankiweb">Sharing outside AnkiWeb</a></h2>
+<h2 id="sharing-outside-ankiweb"><a class="header" href="#sharing-outside-ankiweb">Sharing outside AnkiWeb</a></h2>
 <p>If you wish to distribute .ankiaddon files outside of AnkiWeb, your
 add-on folder needs to contain a 'manifest.json' file. The file should
 contain at least two keys: 'package' specifies the folder name the
@@ -1058,7 +1030,7 @@ a list of other packages that conflict with the add-on, and a 'mod' key
 which specifies when the add-on was updated.</p>
 <p>When Anki downloads add-ons from AnkiWeb, only the conflicts key is used
 from the manifest.</p>
-<h1><a class="header" href="#porting-anki-20-add-ons" id="porting-anki-20-add-ons">Porting Anki 2.0 add-ons</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="porting-anki-20-add-ons"><a class="header" href="#porting-anki-20-add-ons">Porting Anki 2.0 add-ons</a></h1>
 <ul>
 <li><a href="porting2.0.html#python-3">Python 3</a></li>
 <li><a href="porting2.0.html#qt5--pyqt5">Qt5 / PyQt5</a></li>
@@ -1069,7 +1041,7 @@ from the manifest.</p>
 <li><a href="porting2.0.html#reviewer-changes">Reviewer Changes</a></li>
 <li><a href="porting2.0.html#add-on-configuration">Add-on Configuration</a></li>
 </ul>
-<h2><a class="header" href="#python-3" id="python-3">Python 3</a></h2>
+<h2 id="python-3"><a class="header" href="#python-3">Python 3</a></h2>
 <p>Anki 2.1 requires Python 3.8 or later. After installing Python 3 on your
 machine, you can use the 2to3 tool to automatically convert your
 existing scripts to Python 3 code on a folder by folder basis, like:</p>
@@ -1079,7 +1051,7 @@ mv aqt3 aqt
 </code></pre>
 <p>Most simple code can be converted automatically, but there may be parts
 of the code that you need to manually modify.</p>
-<h2><a class="header" href="#qt5--pyqt5" id="qt5--pyqt5">Qt5 / PyQt5</a></h2>
+<h2 id="qt5--pyqt5"><a class="header" href="#qt5--pyqt5">Qt5 / PyQt5</a></h2>
 <p>The syntax for connecting signals and slots has changed in PyQt5. Recent
 PyQt4 versions support the new syntax as well, so the same syntax can be
 used for both Anki 2.0 and 2.1 add-ons.</p>
@@ -1094,7 +1066,7 @@ conditional import, but an easier way is to import from aqt.qt - eg</p>
 </code></pre>
 <p>That will import all the Qt objects like QDialog without having to
 specify the Qt version.</p>
-<h2><a class="header" href="#single-py-add-ons-need-their-own-folder" id="single-py-add-ons-need-their-own-folder">Single .py add-ons need their own folder</a></h2>
+<h2 id="single-py-add-ons-need-their-own-folder"><a class="header" href="#single-py-add-ons-need-their-own-folder">Single .py add-ons need their own folder</a></h2>
 <p>Each add-on is now stored in its own folder. If your add-on was
 previously called <code>demo.py</code>, you’ll need to create a <code>demo</code> folder with
 an <code>__init__.py</code> file.</p>
@@ -1107,13 +1079,13 @@ import it relatively by adding the following to <code>demo/__init__.py</code>:</
 </code></pre>
 <p>The folder needs to be zipped up when uploading to AnkiWeb. For more
 info, please see <a href="sharing.html">sharing add-ons</a>.</p>
-<h2><a class="header" href="#folders-are-deleted-when-upgrading" id="folders-are-deleted-when-upgrading">Folders are deleted when upgrading</a></h2>
+<h2 id="folders-are-deleted-when-upgrading"><a class="header" href="#folders-are-deleted-when-upgrading">Folders are deleted when upgrading</a></h2>
 <p>When an add-on is upgraded, all files in the add-on folder are deleted.
 The only exception is the special <a href="features-and-debugging.html#user-files">user_files folder</a>. If
 your add-on requires more than simple key/value configuration, make sure
 you store the associated files in the user_files folder, or they will
 be lost on upgrade.</p>
-<h2><a class="header" href="#supporting-both-20-and-21-in-one-codebase" id="supporting-both-20-and-21-in-one-codebase">Supporting both 2.0 and 2.1 in one codebase</a></h2>
+<h2 id="supporting-both-20-and-21-in-one-codebase"><a class="header" href="#supporting-both-20-and-21-in-one-codebase">Supporting both 2.0 and 2.1 in one codebase</a></h2>
 <p>Most Python 3 code will run on Python 2 as well, so it is possible to
 update your add-ons in such a way that they run on both Anki 2.0 and
 2.1. Whether this is worth it depends on the changes you need to make.</p>
@@ -1130,7 +1102,7 @@ code and upload the same file for both 2.0.x and 2.1.x.</p>
 <p>If your add-on requires more significant changes, you may find it easier
 to stop providing updates for 2.0.x, or to maintain separate files for
 the two Anki versions.</p>
-<h2><a class="header" href="#webview-changes" id="webview-changes">Webview Changes</a></h2>
+<h2 id="webview-changes"><a class="header" href="#webview-changes">Webview Changes</a></h2>
 <p>Qt 5 has dropped WebKit in favour of the Chromium-based WebEngine, so
 Anki’s webviews are now using WebEngine. Of note:</p>
 <ul>
@@ -1174,12 +1146,12 @@ to be changed. setStateShortcuts() fires a hook that can be used to
 adjust the shortcuts for a given state.</p>
 </li>
 </ul>
-<h2><a class="header" href="#reviewer-changes" id="reviewer-changes">Reviewer Changes</a></h2>
+<h2 id="reviewer-changes"><a class="header" href="#reviewer-changes">Reviewer Changes</a></h2>
 <p>Anki now fades the previous card out before fading the next card in, so
 the next card won’t be available in the DOM when the showQuestion hook
 fires. There are some new hooks you can use to run Javascript at the
-appropriate time - see <a href="porting2.0.html#reviewjs">here</a> for more.</p>
-<h2><a class="header" href="#add-on-configuration" id="add-on-configuration">Add-on Configuration</a></h2>
+appropriate time - see <a href="features-and-debugging.html#card-review-javascript">here</a> for more.</p>
+<h2 id="add-on-configuration"><a class="header" href="#add-on-configuration">Add-on Configuration</a></h2>
 <p>Many small 2.0 add-ons relied on users editing the sourcecode to
 customize them. This is no longer a good idea in 2.1, because changes
 made by the user will be overwritten when they check for and download
@@ -1196,59 +1168,31 @@ else:
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
-
-                        
-
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
-
-                
             </nav>
 
         </div>
 
-        
-
-        
-
-        
-
-        
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>
-        
-
-        
-
-        
         <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        
-
         <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        
-
-        
-        
         <script type="text/javascript">
         window.addEventListener('load', function() {
             window.setTimeout(window.print, 100);
         });
         </script>
-        
-        
-
     </body>
 </html>

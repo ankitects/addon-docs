@@ -4,47 +4,29 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Porting 2.0 Add-ons - Writing Anki Add-ons</title>
-        
-        
-
-
         <!-- Custom HTML head -->
         
-
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        
         <link rel="icon" href="favicon.svg">
-        
-        
         <link rel="shortcut icon" href="favicon.png">
-        
         <link rel="stylesheet" href="css/variables.css">
         <link rel="stylesheet" href="css/general.css">
         <link rel="stylesheet" href="css/chrome.css">
-        
         <link rel="stylesheet" href="css/print.css" media="print">
-        
-
         <!-- Fonts -->
         <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        
         <link rel="stylesheet" href="fonts/fonts.css">
-        
-
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
-
-        
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -120,33 +102,26 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
-                        
                     </div>
 
                     <h1 class="menu-title">Writing Anki Add-ons</h1>
 
                     <div class="right-buttons">
-                        
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        
-                        
                         <a href="https://github.com/ankitects/addon-docs/" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        
                     </div>
                 </div>
 
-                
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -154,8 +129,6 @@
                         </ul>
                     </div>
                 </div>
-                
-
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -167,7 +140,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#porting-anki-20-add-ons" id="porting-anki-20-add-ons">Porting Anki 2.0 add-ons</a></h1>
+                        <h1 id="porting-anki-20-add-ons"><a class="header" href="#porting-anki-20-add-ons">Porting Anki 2.0 add-ons</a></h1>
 <ul>
 <li><a href="#python-3">Python 3</a></li>
 <li><a href="#qt5--pyqt5">Qt5 / PyQt5</a></li>
@@ -178,7 +151,7 @@
 <li><a href="#reviewer-changes">Reviewer Changes</a></li>
 <li><a href="#add-on-configuration">Add-on Configuration</a></li>
 </ul>
-<h2><a class="header" href="#python-3" id="python-3">Python 3</a></h2>
+<h2 id="python-3"><a class="header" href="#python-3">Python 3</a></h2>
 <p>Anki 2.1 requires Python 3.8 or later. After installing Python 3 on your
 machine, you can use the 2to3 tool to automatically convert your
 existing scripts to Python 3 code on a folder by folder basis, like:</p>
@@ -188,7 +161,7 @@ mv aqt3 aqt
 </code></pre>
 <p>Most simple code can be converted automatically, but there may be parts
 of the code that you need to manually modify.</p>
-<h2><a class="header" href="#qt5--pyqt5" id="qt5--pyqt5">Qt5 / PyQt5</a></h2>
+<h2 id="qt5--pyqt5"><a class="header" href="#qt5--pyqt5">Qt5 / PyQt5</a></h2>
 <p>The syntax for connecting signals and slots has changed in PyQt5. Recent
 PyQt4 versions support the new syntax as well, so the same syntax can be
 used for both Anki 2.0 and 2.1 add-ons.</p>
@@ -203,7 +176,7 @@ conditional import, but an easier way is to import from aqt.qt - eg</p>
 </code></pre>
 <p>That will import all the Qt objects like QDialog without having to
 specify the Qt version.</p>
-<h2><a class="header" href="#single-py-add-ons-need-their-own-folder" id="single-py-add-ons-need-their-own-folder">Single .py add-ons need their own folder</a></h2>
+<h2 id="single-py-add-ons-need-their-own-folder"><a class="header" href="#single-py-add-ons-need-their-own-folder">Single .py add-ons need their own folder</a></h2>
 <p>Each add-on is now stored in its own folder. If your add-on was
 previously called <code>demo.py</code>, you’ll need to create a <code>demo</code> folder with
 an <code>__init__.py</code> file.</p>
@@ -216,13 +189,13 @@ import it relatively by adding the following to <code>demo/__init__.py</code>:</
 </code></pre>
 <p>The folder needs to be zipped up when uploading to AnkiWeb. For more
 info, please see <a href="sharing.html">sharing add-ons</a>.</p>
-<h2><a class="header" href="#folders-are-deleted-when-upgrading" id="folders-are-deleted-when-upgrading">Folders are deleted when upgrading</a></h2>
+<h2 id="folders-are-deleted-when-upgrading"><a class="header" href="#folders-are-deleted-when-upgrading">Folders are deleted when upgrading</a></h2>
 <p>When an add-on is upgraded, all files in the add-on folder are deleted.
 The only exception is the special <a href="features-and-debugging.html#user-files">user_files folder</a>. If
 your add-on requires more than simple key/value configuration, make sure
 you store the associated files in the user_files folder, or they will
 be lost on upgrade.</p>
-<h2><a class="header" href="#supporting-both-20-and-21-in-one-codebase" id="supporting-both-20-and-21-in-one-codebase">Supporting both 2.0 and 2.1 in one codebase</a></h2>
+<h2 id="supporting-both-20-and-21-in-one-codebase"><a class="header" href="#supporting-both-20-and-21-in-one-codebase">Supporting both 2.0 and 2.1 in one codebase</a></h2>
 <p>Most Python 3 code will run on Python 2 as well, so it is possible to
 update your add-ons in such a way that they run on both Anki 2.0 and
 2.1. Whether this is worth it depends on the changes you need to make.</p>
@@ -239,7 +212,7 @@ code and upload the same file for both 2.0.x and 2.1.x.</p>
 <p>If your add-on requires more significant changes, you may find it easier
 to stop providing updates for 2.0.x, or to maintain separate files for
 the two Anki versions.</p>
-<h2><a class="header" href="#webview-changes" id="webview-changes">Webview Changes</a></h2>
+<h2 id="webview-changes"><a class="header" href="#webview-changes">Webview Changes</a></h2>
 <p>Qt 5 has dropped WebKit in favour of the Chromium-based WebEngine, so
 Anki’s webviews are now using WebEngine. Of note:</p>
 <ul>
@@ -283,12 +256,12 @@ to be changed. setStateShortcuts() fires a hook that can be used to
 adjust the shortcuts for a given state.</p>
 </li>
 </ul>
-<h2><a class="header" href="#reviewer-changes" id="reviewer-changes">Reviewer Changes</a></h2>
+<h2 id="reviewer-changes"><a class="header" href="#reviewer-changes">Reviewer Changes</a></h2>
 <p>Anki now fades the previous card out before fading the next card in, so
 the next card won’t be available in the DOM when the showQuestion hook
 fires. There are some new hooks you can use to run Javascript at the
-appropriate time - see <a href="#reviewjs">here</a> for more.</p>
-<h2><a class="header" href="#add-on-configuration" id="add-on-configuration">Add-on Configuration</a></h2>
+appropriate time - see <a href="features-and-debugging.html#card-review-javascript">here</a> for more.</p>
+<h2 id="add-on-configuration"><a class="header" href="#add-on-configuration">Add-on Configuration</a></h2>
 <p>Many small 2.0 add-ons relied on users editing the sourcecode to
 customize them. This is no longer a good idea in 2.1, because changes
 made by the user will be overwritten when they check for and download
@@ -305,59 +278,32 @@ else:
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="sharing.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
-
-                        
-
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
                     <a rel="prev" href="sharing.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
-
-                
             </nav>
 
         </div>
 
-        
-
-        
-
-        
-
-        
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>
-        
-
-        
-
-        
         <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        
-
         <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        
-
-        
-
     </body>
 </html>

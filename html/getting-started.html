@@ -4,47 +4,29 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Getting Started - Writing Anki Add-ons</title>
-        
-        
-
-
         <!-- Custom HTML head -->
         
-
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        
         <link rel="icon" href="favicon.svg">
-        
-        
         <link rel="shortcut icon" href="favicon.png">
-        
         <link rel="stylesheet" href="css/variables.css">
         <link rel="stylesheet" href="css/general.css">
         <link rel="stylesheet" href="css/chrome.css">
-        
         <link rel="stylesheet" href="css/print.css" media="print">
-        
-
         <!-- Fonts -->
         <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        
         <link rel="stylesheet" href="fonts/fonts.css">
-        
-
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
-
-        
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -120,33 +102,26 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
-                        
                     </div>
 
                     <h1 class="menu-title">Writing Anki Add-ons</h1>
 
                     <div class="right-buttons">
-                        
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        
-                        
                         <a href="https://github.com/ankitects/addon-docs/" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        
                     </div>
                 </div>
 
-                
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -154,8 +129,6 @@
                         </ul>
                     </div>
                 </div>
-                
-
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -167,7 +140,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h1>
+                        <h1 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h1>
 <ul>
 <li><a href="#support">Support</a></li>
 <li><a href="#ide--type-hints">IDE &amp; Type Hints</a></li>
@@ -177,7 +150,7 @@
 <li><a href="#readingwriting-objects">Reading/Writing Objects</a></li>
 <li><a href="#the-database">The Database</a></li>
 </ul>
-<h2><a class="header" href="#support" id="support">Support</a></h2>
+<h2 id="support"><a class="header" href="#support">Support</a></h2>
 <p>This document contains some hints to get you started, but it is not a
 comprehensive guide. To actually write an add-on, you will need to
 familiarize yourself with Anki’s source code, and the source code of
@@ -190,7 +163,7 @@ the <a href="https://forums.ankiweb.net/c/development/12">development forum</a>.
 <p>You can also use the add-on forum to request someone write an add-on for
 you. You may need to offer some money before anyone becomes interested
 in helping you.</p>
-<h2><a class="header" href="#ide--type-hints" id="ide--type-hints">IDE &amp; Type Hints</a></h2>
+<h2 id="ide--type-hints"><a class="header" href="#ide--type-hints">IDE &amp; Type Hints</a></h2>
 <p>The free community edition of PyCharm has good out of the box support
 for Python: <a href="https://www.jetbrains.com/pycharm/">https://www.jetbrains.com/pycharm/</a>. You can also use other
 editors like Visual Studio Code, but the instructions in this section
@@ -283,7 +256,7 @@ generate the modified files with:</p>
 </details>
 <p>Here are some example add-ons that use type hints:</p>
 <p><a href="https://github.com/ankitects/anki-addons/blob/master/demos/">https://github.com/ankitects/anki-addons/blob/master/demos/</a></p>
-<h2><a class="header" href="#add-on-folders" id="add-on-folders">Add-on folders</a></h2>
+<h2 id="add-on-folders"><a class="header" href="#add-on-folders">Add-on folders</a></h2>
 <p>You can access the top level add-ons folder by going to the
 Tools&gt;Add-ons menu item in the main Anki window. Click on the View
 Files button, and a folder will pop up. If you had no add-ons installed,
@@ -314,7 +287,7 @@ when the user upgrades an add-on</a>.</p>
 your myaddon folder into Anki’s add-on folder to test it, or a Mac or
 Linux, create a symlink from the folder’s original location into your
 add-ons folder.</p>
-<h2><a class="header" href="#a-simple-add-on" id="a-simple-add-on">A Simple Add-On</a></h2>
+<h2 id="a-simple-add-on"><a class="header" href="#a-simple-add-on">A Simple Add-On</a></h2>
 <p>Add the following to <code>my_first_addon/__init__.py</code> in your add-ons folder:</p>
 <pre><code class="language-python"># import the main window object (mw) from aqt
 from aqt import mw
@@ -344,7 +317,7 @@ mw.form.menuTools.addAction(action)
 Running it will display a dialog with the card count.</p>
 <p>If you make a mistake when entering in the plugin, Anki will show an
 error message on startup indicating where the problem is.</p>
-<h2><a class="header" href="#the-collection" id="the-collection">The Collection</a></h2>
+<h2 id="the-collection"><a class="header" href="#the-collection">The Collection</a></h2>
 <p>All operations on a collection file are accessed via mw.col. Some basic
 examples of what you can do follow. Please note that you should put
 these in testFunction() as above. You can’t run them directly in an
@@ -416,7 +389,7 @@ col = Collection(&quot;/path/to/collection.anki2&quot;)
 <p>If you make any modifications to the collection outside of Anki, you
 must make sure to call col.close() when you’re done, or those changes
 will be lost.</p>
-<h2><a class="header" href="#readingwriting-objects" id="readingwriting-objects">Reading/Writing Objects</a></h2>
+<h2 id="readingwriting-objects"><a class="header" href="#readingwriting-objects">Reading/Writing Objects</a></h2>
 <p>Most objects in Anki can be read and written via methods in pylib.</p>
 <pre><code class="language-python">card = col.getCard(card_id)
 card.ivl += 1
@@ -449,7 +422,7 @@ as they take care of marking items as requiring a sync, and they prevent
 some forms of invalid data from being written to the database.</p>
 <p>For locating specific cards and notes, col.find_cards() and
 col.find_notes() is useful.</p>
-<h2><a class="header" href="#the-database" id="the-database">The Database</a></h2>
+<h2 id="the-database"><a class="header" href="#the-database">The Database</a></h2>
 <p>:warning: You can easily cause problems by writing directly to the database.
 Where possible, please use the methods mentioned above instead.</p>
 <p>Anki’s DB object supports the following functions:</p>
@@ -493,67 +466,38 @@ it’s currently sent on every sync.</p>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="intro.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
-
-                        
                             <a rel="next" href="hooks-and-filters.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
-
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
                     <a rel="prev" href="intro.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
-
-                
                     <a rel="next" href="hooks-and-filters.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
-        
-
-        
-
-        
-
-        
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>
-        
-
-        
-
-        
         <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        
-
         <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        
-
-        
-
     </body>
 </html>

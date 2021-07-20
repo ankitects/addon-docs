@@ -4,47 +4,29 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Features and Debugging - Writing Anki Add-ons</title>
-        
-        
-
-
         <!-- Custom HTML head -->
         
-
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        
         <link rel="icon" href="favicon.svg">
-        
-        
         <link rel="shortcut icon" href="favicon.png">
-        
         <link rel="stylesheet" href="css/variables.css">
         <link rel="stylesheet" href="css/general.css">
         <link rel="stylesheet" href="css/chrome.css">
-        
         <link rel="stylesheet" href="css/print.css" media="print">
-        
-
         <!-- Fonts -->
         <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        
         <link rel="stylesheet" href="fonts/fonts.css">
-        
-
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
-
-        
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -120,33 +102,26 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
-                        
                     </div>
 
                     <h1 class="menu-title">Writing Anki Add-ons</h1>
 
                     <div class="right-buttons">
-                        
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        
-                        
                         <a href="https://github.com/ankitects/addon-docs/" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        
                     </div>
                 </div>
 
-                
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -154,8 +129,6 @@
                         </ul>
                     </div>
                 </div>
-                
-
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -167,7 +140,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#features-and-debugging" id="features-and-debugging">Features and Debugging</a></h1>
+                        <h1 id="features-and-debugging"><a class="header" href="#features-and-debugging">Features and Debugging</a></h1>
 <ul>
 <li><a href="#qt">Qt</a></li>
 <li><a href="#standard-modules">Standard Modules</a></li>
@@ -177,7 +150,7 @@
 <li><a href="#debugging">Debugging</a></li>
 <li><a href="#learning-more">Learning More</a></li>
 </ul>
-<h2><a class="header" href="#qt" id="qt">Qt</a></h2>
+<h2 id="qt"><a class="header" href="#qt">Qt</a></h2>
 <p>As mentioned in the overview, the Qt documentation is invaluable for
 learning how to display different GUI widgets.</p>
 <p>One particular thing to bear in mind is that objects are garbage
@@ -195,7 +168,7 @@ prevent this, assign top level widgets to an existing object, like:</p>
 <p>This is often not required when you create a Qt object and give it an
 existing object as the parent, as the parent will keep a reference to
 the object.</p>
-<h2><a class="header" href="#standard-modules" id="standard-modules">Standard Modules</a></h2>
+<h2 id="standard-modules"><a class="header" href="#standard-modules">Standard Modules</a></h2>
 <p>Anki ships with only the standard modules necessary to run the program -
 a full copy of Python is not included. For that reason, if you need to
 use a standard module that is not included with Anki, you’ll need to
@@ -205,7 +178,7 @@ extensions such as numpy are much more difficult to package, as you
 would need to compile them for each of the operating systems Anki
 supports. If you’re doing something sophisticated, it would be easier to
 get your users to install a standalone copy of Python instead.</p>
-<h2><a class="header" href="#configuration" id="configuration">Configuration</a></h2>
+<h2 id="configuration"><a class="header" href="#configuration">Configuration</a></h2>
 <p>If you include a config.json file with a JSON dictionary in it, Anki
 will allow users to edit it from the add-on manager.</p>
 <p>A simple example: in config.json:</p>
@@ -236,7 +209,7 @@ when the config button is clicked:</p>
 </code></pre>
 <p>Avoid key names starting with an underscore - they are reserved for
 future use by Anki.</p>
-<h2><a class="header" href="#user-files" id="user-files">User Files</a></h2>
+<h2 id="user-files"><a class="header" href="#user-files">User Files</a></h2>
 <p>When your add-on needs configuration data other than simple keys and
 values, it can use a special folder called user_files in the root of
 your add-on’s folder. Any files placed in this folder will be preserved
@@ -246,7 +219,7 @@ removed on upgrade.</p>
 README.txt or similar file inside it before zipping up your add-on.</p>
 <p>When Anki upgrades an add-on, it will ignore any files in the .zip that
 already exist in the user_files folder.</p>
-<h2><a class="header" href="#card-review-javascript" id="card-review-javascript">Card Review Javascript</a></h2>
+<h2 id="card-review-javascript"><a class="header" href="#card-review-javascript">Card Review Javascript</a></h2>
 <p>For a general solution not specific to card review, see
 <a href="hooks-and-filters.html#webview">the webview section</a>.</p>
 <p>Anki provides a hook to modify the question and answer HTML before it is
@@ -295,7 +268,7 @@ but before it is shown.</p>
 </li>
 </ul>
 <p>The hooks are reset each time the question or answer is shown.</p>
-<h2><a class="header" href="#debugging" id="debugging">Debugging</a></h2>
+<h2 id="debugging"><a class="header" href="#debugging">Debugging</a></h2>
 <p>If your code throws an exception, it will be caught by Anki’s standard
 exception handler (which catches anything written to stderr). If you
 need to print information for debugging purposes, you can use
@@ -363,7 +336,7 @@ debugger in the terminal:</p>
 </code></pre>
 <p>Alternatively you can export DEBUG=1 in your shell and it will kick into
 the debugger on an uncaught exception.</p>
-<h2><a class="header" href="#learning-more" id="learning-more">Learning More</a></h2>
+<h2 id="learning-more"><a class="header" href="#learning-more">Learning More</a></h2>
 <p>Anki’s source code is available at <a href="http://github.com/ankitects/anki/">http://github.com/ankitects/anki/</a>. The
 colllection object is defined in anki’s collection.py. Other useful
 files to check out are cards.py, notes.py, sched.py, models.py and
@@ -380,67 +353,38 @@ see how they accomplish something.</p>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="monkey-patching.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
-
-                        
                             <a rel="next" href="sharing.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
-
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
                     <a rel="prev" href="monkey-patching.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
-
-                
                     <a rel="next" href="sharing.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
-        
-
-        
-
-        
-
-        
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>
-        
-
-        
-
-        
         <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        
-
         <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        
-
-        
-
     </body>
 </html>
