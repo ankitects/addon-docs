@@ -6,35 +6,23 @@
 
 ## Overview
 
-Anki is primarily written in a user-friendly language called Python. If
-you’re not familiar with Python, please read the [Python
-tutorial](http://docs.python.org/tutorial/) before proceeding with the
-rest of this document.
+Anki's UI is primarily written in Python/PyQt. A number of screens, such as the review
+screen and editor, also make use of TypeScript and Svelte. To write add-ons, you will
+need some basic programming experience, and some familiarity with Python. The [Python
+tutorial](http://docs.python.org/tutorial/) is a good place to start.
 
-Because Python is a dynamic language, add-ons are extremely powerful in
-Anki - not only can they extend the program, but they can also modify
-arbitrary aspects of it, such as altering the way scheduling works,
-modifying the UI, and so on.
+Add-ons in Anki are implemented as Python modules, which Anki loads at startup.
+They can register themselves to be notified when certain actions take place (eg,
+a hook that runs when the browse screen is loaded), and can make changes to the
+UI (eg adding a new menu item) when those actions take place.
 
-While it is possible to develop Anki add-ons with just a plain text
-editor, you can make your life easier by using a proper code editor/IDE
-. Please see the IDE & Type Hints section below for more information.
+There is a [brief overview of Anki's
+architecture](https://github.com/ankitects/anki/blob/main/docs/architecture.md)
+available.
 
-Anki is comprised of two parts:
+While it is possible to develop Anki add-ons with just a plain text editor, you
+can make your life much easier by using a proper code editor/IDE. Please see the IDE
+& Type Hints section below for more information.
 
-'anki' in the pylib folder contains most of the "backend" code - opening
-collections, fetching and answering cards, and so on. It is used by
-Anki’s GUI, and can also be included in command line programs to access
-Anki decks without the GUI.
-
-'aqt' in the qt folder contains the UI part of Anki. Anki’s UI is built
-upon PyQt, Python bindings for the cross-platform GUI toolkit Qt. PyQt
-follows Qt’s API very closely, so the documentation can be very useful
-when you want to know how to use a particular GUI component.
-
-Anki 2.1.x uses [Qt 5.9/5.12/5.14](http://doc.qt.io/qt-5/index.html)
-depending on the build.
-
-When Anki starts up, it checks for modules in the add-ons folder, and
-runs each one it finds. When add-ons are run, they typically modify
-existing code or add new menu items to provide a new feature.
+At the time of writing, Anki depends on Qt 5.14 or 5.15. You may find
+[Qt's documentation](http://doc.qt.io/qt-5/index.html) useful.
