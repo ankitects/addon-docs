@@ -6,6 +6,14 @@ need to print information for debugging purposes, you can use
 aqt.utils.showInfo, or write it to stderr with
 sys.stderr.write("text\\n").
 
+
+## Webviews
+
+If you set the env var QTWEBENGINE_REMOTE_DEBUGGING to 8080 prior to starting Anki,
+you can surf to http://localhost:8080 in Chrome to debug the visible webpages.
+
+## Debug Console
+
 Anki also includes a REPL. From within the program, press the [shortcut
 key](https://docs.ankiweb.net/misc.html#debug-console) and a
 window will open up. You can enter expressions or statements into the
@@ -61,6 +69,7 @@ what it evaluates to. Anki exports pp() (pretty print) in the scope to
 make it easier to quickly dump the details of objects, and the shortcut
 ctrl+shift+return will wrap the current text in the upper area with pp()
 and execute the result.
+## PDB
 
 If you’re on Linux or are running Anki from source, it’s also possible
 to debug your script with pdb. Place the following line somewhere in

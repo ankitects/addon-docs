@@ -23,6 +23,3 @@ available.
 While it is possible to develop Anki add-ons with just a plain text editor, you
 can make your life much easier by using a proper code editor/IDE. Please see the IDE
 & Type Hints section below for more information.
-
-At the time of writing, Anki depends on Qt 5.14 or 5.15. You may find
-[Qt's documentation](http://doc.qt.io/qt-5/index.html) useful.

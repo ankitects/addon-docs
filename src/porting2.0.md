@@ -4,7 +4,7 @@
 
 ## Python 3
 
-Anki 2.1 requires Python 3.8 or later. After installing Python 3 on your
+Anki 2.1 requires Python 3 or later. After installing Python 3 on your
 machine, you can use the 2to3 tool to automatically convert your
 existing scripts to Python 3 code on a folder by folder basis, like:
 

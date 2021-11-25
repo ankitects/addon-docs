@@ -1,8 +1,12 @@
 # Summary
 
-[Introduction](intro.md)
-
-- [Getting Started](getting-started.md)
+- [Introduction](intro.md)
+- [Support](support.md)
+- [Editor Setup](editor-setup.md)
+- [MyPy](mypy.md)
+- [Add-on Folders](addon-folders.md)
+- [A Basic Add-on](a-basic-addon.md)
+- [The 'anki' Module](the-anki-module.md)
 - [Hooks and Filters](hooks-and-filters.md)
 - [Qt and PyQt](qt.md)
 - [Python Modules](python-modules.md)
