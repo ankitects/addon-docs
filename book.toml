@@ -20,3 +20,4 @@ cname = "addon-docs.ankiweb.net"
 optional = true
 warning-policy = "warn"
 follow-web-links = true
+exclude = [ 'forums.ankiweb.net' ]

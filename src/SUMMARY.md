@@ -8,6 +8,7 @@
 - [A Basic Add-on](a-basic-addon.md)
 - [The 'anki' Module](the-anki-module.md)
 - [Hooks and Filters](hooks-and-filters.md)
+- [Background Operations](background-ops.md)
 - [Qt and PyQt](qt.md)
 - [Python Modules](python-modules.md)
 - [Add-on Config](addon-config.md)
