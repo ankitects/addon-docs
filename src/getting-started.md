@@ -175,7 +175,7 @@ of the original add-on name, when it was downloaded, and whether it’s
 enabled or not.
 
 You should not store user data in the add-on folder, as it’s [deleted
-when the user upgrades an add-on](features-and-debugging.md#configuration).
+when the user upgrades an add-on](addon-config.md#config-json).
 
 If you followed the steps in the IDE section above, you can either copy
 your myaddon folder into Anki’s add-on folder to test it, or a Mac or
@@ -297,6 +297,10 @@ deck = mw.col.decks.get(did)
 deck['mid'] = m['id']
 mw.col.decks.save(deck)
 # and puts cards in the last deck used by the note type
+mw.col.set_aux_notetype_config(
+    self.importer.model["id"], "lastDeck", self.deck.selected_deck_id
+)
+
 m['did'] = did
 mw.col.models.save(m)
 # import into the collection
@@ -427,7 +431,7 @@ Add-ons should never modify the schema of existing tables, as that may
 break future versions of Anki.
 
 If you need to store addon-specific data, consider using Anki’s
-[Configuration](features-and-debugging.md#configuration) support.
+[Configuration](addon-config.md#config-json) support.
 
 If you need the data to sync across devices, small options can be stored
 within mw.col.conf. Please don’t store large amounts of data there, as

@@ -57,7 +57,7 @@ info, please see [sharing add-ons](sharing.md).
 ## Folders are deleted when upgrading
 
 When an add-on is upgraded, all files in the add-on folder are deleted.
-The only exception is the special [user\_files folder](features-and-debugging.md#user-files). If
+The only exception is the special [user\_files folder](addon-config.md#user-files). If
 your add-on requires more than simple key/value configuration, make sure
 you store the associated files in the user\_files folder, or they will
 be lost on upgrade.
@@ -127,14 +127,14 @@ Anki’s webviews are now using WebEngine. Of note:
 Anki now fades the previous card out before fading the next card in, so
 the next card won’t be available in the DOM when the showQuestion hook
 fires. There are some new hooks you can use to run Javascript at the
-appropriate time - see [here](features-and-debugging.md#card-review-javascript) for more.
+appropriate time - see [here](reviewer-javascript.md) for more.
 
 ## Add-on Configuration
 
 Many small 2.0 add-ons relied on users editing the sourcecode to
 customize them. This is no longer a good idea in 2.1, because changes
 made by the user will be overwritten when they check for and download
-updates. 2.1 provides a [Configuration](features-and-debugging.md#configuration) system to work
+updates. 2.1 provides a [Configuration](addon-config.md#config-json) system to work
 around this. If you need to continue supporting 2.0 as well, you could
 use code like the following:
 
