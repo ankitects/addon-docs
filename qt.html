@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Sharing Add-ons - Writing Anki Add-ons</title>
+        <title>Qt and PyQt - Writing Anki Add-ons</title>
         <!-- Custom HTML head -->
         
 
@@ -77,7 +77,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="support.html"><strong aria-hidden="true">2.</strong> Support</a></li><li class="chapter-item expanded "><a href="editor-setup.html"><strong aria-hidden="true">3.</strong> Editor Setup</a></li><li class="chapter-item expanded "><a href="mypy.html"><strong aria-hidden="true">4.</strong> MyPy</a></li><li class="chapter-item expanded "><a href="addon-folders.html"><strong aria-hidden="true">5.</strong> Add-on Folders</a></li><li class="chapter-item expanded "><a href="a-basic-addon.html"><strong aria-hidden="true">6.</strong> A Basic Add-on</a></li><li class="chapter-item expanded "><a href="the-anki-module.html"><strong aria-hidden="true">7.</strong> The 'anki' Module</a></li><li class="chapter-item expanded "><a href="hooks-and-filters.html"><strong aria-hidden="true">8.</strong> Hooks and Filters</a></li><li class="chapter-item expanded "><a href="background-ops.html"><strong aria-hidden="true">9.</strong> Background Operations</a></li><li class="chapter-item expanded "><a href="qt.html"><strong aria-hidden="true">10.</strong> Qt and PyQt</a></li><li class="chapter-item expanded "><a href="python-modules.html"><strong aria-hidden="true">11.</strong> Python Modules</a></li><li class="chapter-item expanded "><a href="addon-config.html"><strong aria-hidden="true">12.</strong> Add-on Config</a></li><li class="chapter-item expanded "><a href="reviewer-javascript.html"><strong aria-hidden="true">13.</strong> Reviewer Javascript</a></li><li class="chapter-item expanded "><a href="debugging.html"><strong aria-hidden="true">14.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="monkey-patching.html"><strong aria-hidden="true">15.</strong> Monkey Patching</a></li><li class="chapter-item expanded "><a href="sharing.html" class="active"><strong aria-hidden="true">16.</strong> Sharing Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.0.html"><strong aria-hidden="true">17.</strong> Porting 2.0 Add-ons</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="support.html"><strong aria-hidden="true">2.</strong> Support</a></li><li class="chapter-item expanded "><a href="editor-setup.html"><strong aria-hidden="true">3.</strong> Editor Setup</a></li><li class="chapter-item expanded "><a href="mypy.html"><strong aria-hidden="true">4.</strong> MyPy</a></li><li class="chapter-item expanded "><a href="addon-folders.html"><strong aria-hidden="true">5.</strong> Add-on Folders</a></li><li class="chapter-item expanded "><a href="a-basic-addon.html"><strong aria-hidden="true">6.</strong> A Basic Add-on</a></li><li class="chapter-item expanded "><a href="the-anki-module.html"><strong aria-hidden="true">7.</strong> The 'anki' Module</a></li><li class="chapter-item expanded "><a href="hooks-and-filters.html"><strong aria-hidden="true">8.</strong> Hooks and Filters</a></li><li class="chapter-item expanded "><a href="background-ops.html"><strong aria-hidden="true">9.</strong> Background Operations</a></li><li class="chapter-item expanded "><a href="qt.html" class="active"><strong aria-hidden="true">10.</strong> Qt and PyQt</a></li><li class="chapter-item expanded "><a href="python-modules.html"><strong aria-hidden="true">11.</strong> Python Modules</a></li><li class="chapter-item expanded "><a href="addon-config.html"><strong aria-hidden="true">12.</strong> Add-on Config</a></li><li class="chapter-item expanded "><a href="reviewer-javascript.html"><strong aria-hidden="true">13.</strong> Reviewer Javascript</a></li><li class="chapter-item expanded "><a href="debugging.html"><strong aria-hidden="true">14.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="monkey-patching.html"><strong aria-hidden="true">15.</strong> Monkey Patching</a></li><li class="chapter-item expanded "><a href="sharing.html"><strong aria-hidden="true">16.</strong> Sharing Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.0.html"><strong aria-hidden="true">17.</strong> Porting 2.0 Add-ons</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -140,56 +140,52 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="sharing-add-ons"><a class="header" href="#sharing-add-ons">Sharing Add-ons</a></h1>
-<ul>
-<li><a href="#sharing-via-ankiweb">Sharing via AnkiWeb</a></li>
-<li><a href="#sharing-outside-ankiweb">Sharing outside AnkiWeb</a></li>
-</ul>
-<h2 id="sharing-via-ankiweb"><a class="header" href="#sharing-via-ankiweb">Sharing via AnkiWeb</a></h2>
-<p>You can package up an add-on for distribution by zipping it up, and
-giving it a name ending in .ankiaddon.</p>
-<p>The top level folder should not be included in the zip file. For
-example, if you have a module like the following:</p>
-<pre><code>addons21/myaddon/__init__.py
-addons21/myaddon/my.data
+                        <h1 id="qt-and-pyqt"><a class="header" href="#qt-and-pyqt">Qt and PyQt</a></h1>
+<p>As mentioned in the overview, Anki uses PyQt for a lot of its UI, and the Qt
+documentation and <a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/sip-classes.html">PyQt
+documentation</a>
+are invaluable for learning how to display different GUI widgets.</p>
+<h2 id="qt-versions"><a class="header" href="#qt-versions">Qt Versions</a></h2>
+<p>From Anki 2.1.50, separate builds are provided for PyQt5 and PyQt6. Generally
+speaking, if you write code that works in Qt6, and make sure to import any Qt
+classes from aqt.qt instead of directly from PyQt6, your code should also work
+in Qt5.</p>
+<h2 id="designer-files"><a class="header" href="#designer-files">Designer Files</a></h2>
+<p>Parts of Anki's UI are defined in .ui files, located in <code>qt/aqt/forms</code>. Anki's
+build process converts them into .py files. If you wish to build your add-on's
+UI in a similar way, you will need to install Python, and install a program
+called Qt Designer (Designer.app on macOS). On Linux, it may be available in
+your distro's packages; on Windows and Mac, you'll need to install it as part of
+a <a href="https://download.qt.io/">Qt install</a>. Once installed, you will need to use a
+program provided in the pyqt6 pip package to compile the .ui files.</p>
+<p>Generated Python files for PyQt6 won't work with PyQt5 and vice versa, so if you
+wish to support both versions, you will need to build the .ui files twice, once
+with pyuic5, and once with pyuic6.</p>
+<h2 id="garbage-collection"><a class="header" href="#garbage-collection">Garbage Collection</a></h2>
+<p>One particular thing to bear in mind is that objects are garbage
+collected in Python, so if you do something like:</p>
+<pre><code class="language-python">def myfunc():
+    widget = QWidget()
+    widget.show()
 </code></pre>
-<p>Then the zip file contents should be:</p>
-<pre><code>__init__.py
-my.data
+<p>…​then the widget will disappear as soon as the function exits. To
+prevent this, assign top level widgets to an existing object, like:</p>
+<pre><code class="language-python">def myfunc():
+    mw.myWidget = widget = QWidget()
+    widget.show()
 </code></pre>
-<p>If you include the folder name in the zip like the following, AnkiWeb
-will not accept the zip file:</p>
-<pre><code>myaddon/__init__.py
-myaddon/my.data
-</code></pre>
-<p>On Unix-based machines, you can create a properly-formed file with the
-following command:</p>
-<pre><code>$ cd myaddon &amp;&amp; zip -r ../myaddon.ankiaddon *
-</code></pre>
-<p>Python automatically creates <code>pycache</code> folders when your add-on is run.
-Please make sure you delete these prior to creating the zip file, as
-AnkiWeb can not accept zip files that contain <code>pycache</code> folders.</p>
-<p>Once you’ve created a .ankiaddon file, you can use the Upload button on
-<a href="https://ankiweb.net/shared/addons/">https://ankiweb.net/shared/addons/</a> to share the add-on with others.</p>
-<h2 id="sharing-outside-ankiweb"><a class="header" href="#sharing-outside-ankiweb">Sharing outside AnkiWeb</a></h2>
-<p>If you wish to distribute .ankiaddon files outside of AnkiWeb, your
-add-on folder needs to contain a 'manifest.json' file. The file should
-contain at least two keys: 'package' specifies the folder name the
-add-on will be stored in, and 'name' specifies the name that will be
-shown to the user. You can optionally include a 'conflicts' key which is
-a list of other packages that conflict with the add-on, and a 'mod' key
-which specifies when the add-on was updated.</p>
-<p>When Anki downloads add-ons from AnkiWeb, only the conflicts key is used
-from the manifest.</p>
+<p>This is often not required when you create a Qt object and give it an
+existing object as the parent, as the parent will keep a reference to
+the object.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="monkey-patching.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="background-ops.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="porting2.0.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="python-modules.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -198,10 +194,10 @@ from the manifest.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="monkey-patching.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="background-ops.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="porting2.0.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="python-modules.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

@@ -77,7 +77,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="hooks-and-filters.html"><strong aria-hidden="true">2.</strong> Hooks and Filters</a></li><li class="chapter-item expanded "><a href="monkey-patching.html"><strong aria-hidden="true">3.</strong> Monkey Patching</a></li><li class="chapter-item expanded "><a href="features-and-debugging.html"><strong aria-hidden="true">4.</strong> Features and Debugging</a></li><li class="chapter-item expanded "><a href="sharing.html"><strong aria-hidden="true">5.</strong> Sharing Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.0.html" class="active"><strong aria-hidden="true">6.</strong> Porting 2.0 Add-ons</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="support.html"><strong aria-hidden="true">2.</strong> Support</a></li><li class="chapter-item expanded "><a href="editor-setup.html"><strong aria-hidden="true">3.</strong> Editor Setup</a></li><li class="chapter-item expanded "><a href="mypy.html"><strong aria-hidden="true">4.</strong> MyPy</a></li><li class="chapter-item expanded "><a href="addon-folders.html"><strong aria-hidden="true">5.</strong> Add-on Folders</a></li><li class="chapter-item expanded "><a href="a-basic-addon.html"><strong aria-hidden="true">6.</strong> A Basic Add-on</a></li><li class="chapter-item expanded "><a href="the-anki-module.html"><strong aria-hidden="true">7.</strong> The 'anki' Module</a></li><li class="chapter-item expanded "><a href="hooks-and-filters.html"><strong aria-hidden="true">8.</strong> Hooks and Filters</a></li><li class="chapter-item expanded "><a href="background-ops.html"><strong aria-hidden="true">9.</strong> Background Operations</a></li><li class="chapter-item expanded "><a href="qt.html"><strong aria-hidden="true">10.</strong> Qt and PyQt</a></li><li class="chapter-item expanded "><a href="python-modules.html"><strong aria-hidden="true">11.</strong> Python Modules</a></li><li class="chapter-item expanded "><a href="addon-config.html"><strong aria-hidden="true">12.</strong> Add-on Config</a></li><li class="chapter-item expanded "><a href="reviewer-javascript.html"><strong aria-hidden="true">13.</strong> Reviewer Javascript</a></li><li class="chapter-item expanded "><a href="debugging.html"><strong aria-hidden="true">14.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="monkey-patching.html"><strong aria-hidden="true">15.</strong> Monkey Patching</a></li><li class="chapter-item expanded "><a href="sharing.html"><strong aria-hidden="true">16.</strong> Sharing Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.0.html" class="active"><strong aria-hidden="true">17.</strong> Porting 2.0 Add-ons</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -152,7 +152,7 @@
 <li><a href="#add-on-configuration">Add-on Configuration</a></li>
 </ul>
 <h2 id="python-3"><a class="header" href="#python-3">Python 3</a></h2>
-<p>Anki 2.1 requires Python 3.8 or later. After installing Python 3 on your
+<p>Anki 2.1 requires Python 3 or later. After installing Python 3 on your
 machine, you can use the 2to3 tool to automatically convert your
 existing scripts to Python 3 code on a folder by folder basis, like:</p>
 <pre><code>2to3-3.8 --output-dir=aqt3 -W -n aqt
@@ -191,7 +191,7 @@ import it relatively by adding the following to <code>demo/__init__.py</code>:</
 info, please see <a href="sharing.html">sharing add-ons</a>.</p>
 <h2 id="folders-are-deleted-when-upgrading"><a class="header" href="#folders-are-deleted-when-upgrading">Folders are deleted when upgrading</a></h2>
 <p>When an add-on is upgraded, all files in the add-on folder are deleted.
-The only exception is the special <a href="features-and-debugging.html#user-files">user_files folder</a>. If
+The only exception is the special <a href="addon-config.html#user-files">user_files folder</a>. If
 your add-on requires more than simple key/value configuration, make sure
 you store the associated files in the user_files folder, or they will
 be lost on upgrade.</p>
@@ -260,12 +260,12 @@ adjust the shortcuts for a given state.</p>
 <p>Anki now fades the previous card out before fading the next card in, so
 the next card won’t be available in the DOM when the showQuestion hook
 fires. There are some new hooks you can use to run Javascript at the
-appropriate time - see <a href="features-and-debugging.html#card-review-javascript">here</a> for more.</p>
+appropriate time - see <a href="reviewer-javascript.html">here</a> for more.</p>
 <h2 id="add-on-configuration"><a class="header" href="#add-on-configuration">Add-on Configuration</a></h2>
 <p>Many small 2.0 add-ons relied on users editing the sourcecode to
 customize them. This is no longer a good idea in 2.1, because changes
 made by the user will be overwritten when they check for and download
-updates. 2.1 provides a <a href="features-and-debugging.html#configuration">Configuration</a> system to work
+updates. 2.1 provides a <a href="addon-config.html#config-json">Configuration</a> system to work
 around this. If you need to continue supporting 2.0 as well, you could
 use code like the following:</p>
 <pre><code class="language-python">if getattr(getattr(mw, &quot;addonManager&quot;, None), &quot;getConfig&quot;, None):

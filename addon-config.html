@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Sharing Add-ons - Writing Anki Add-ons</title>
+        <title>Add-on Config - Writing Anki Add-ons</title>
         <!-- Custom HTML head -->
         
 
@@ -77,7 +77,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="support.html"><strong aria-hidden="true">2.</strong> Support</a></li><li class="chapter-item expanded "><a href="editor-setup.html"><strong aria-hidden="true">3.</strong> Editor Setup</a></li><li class="chapter-item expanded "><a href="mypy.html"><strong aria-hidden="true">4.</strong> MyPy</a></li><li class="chapter-item expanded "><a href="addon-folders.html"><strong aria-hidden="true">5.</strong> Add-on Folders</a></li><li class="chapter-item expanded "><a href="a-basic-addon.html"><strong aria-hidden="true">6.</strong> A Basic Add-on</a></li><li class="chapter-item expanded "><a href="the-anki-module.html"><strong aria-hidden="true">7.</strong> The 'anki' Module</a></li><li class="chapter-item expanded "><a href="hooks-and-filters.html"><strong aria-hidden="true">8.</strong> Hooks and Filters</a></li><li class="chapter-item expanded "><a href="background-ops.html"><strong aria-hidden="true">9.</strong> Background Operations</a></li><li class="chapter-item expanded "><a href="qt.html"><strong aria-hidden="true">10.</strong> Qt and PyQt</a></li><li class="chapter-item expanded "><a href="python-modules.html"><strong aria-hidden="true">11.</strong> Python Modules</a></li><li class="chapter-item expanded "><a href="addon-config.html"><strong aria-hidden="true">12.</strong> Add-on Config</a></li><li class="chapter-item expanded "><a href="reviewer-javascript.html"><strong aria-hidden="true">13.</strong> Reviewer Javascript</a></li><li class="chapter-item expanded "><a href="debugging.html"><strong aria-hidden="true">14.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="monkey-patching.html"><strong aria-hidden="true">15.</strong> Monkey Patching</a></li><li class="chapter-item expanded "><a href="sharing.html" class="active"><strong aria-hidden="true">16.</strong> Sharing Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.0.html"><strong aria-hidden="true">17.</strong> Porting 2.0 Add-ons</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="support.html"><strong aria-hidden="true">2.</strong> Support</a></li><li class="chapter-item expanded "><a href="editor-setup.html"><strong aria-hidden="true">3.</strong> Editor Setup</a></li><li class="chapter-item expanded "><a href="mypy.html"><strong aria-hidden="true">4.</strong> MyPy</a></li><li class="chapter-item expanded "><a href="addon-folders.html"><strong aria-hidden="true">5.</strong> Add-on Folders</a></li><li class="chapter-item expanded "><a href="a-basic-addon.html"><strong aria-hidden="true">6.</strong> A Basic Add-on</a></li><li class="chapter-item expanded "><a href="the-anki-module.html"><strong aria-hidden="true">7.</strong> The 'anki' Module</a></li><li class="chapter-item expanded "><a href="hooks-and-filters.html"><strong aria-hidden="true">8.</strong> Hooks and Filters</a></li><li class="chapter-item expanded "><a href="background-ops.html"><strong aria-hidden="true">9.</strong> Background Operations</a></li><li class="chapter-item expanded "><a href="qt.html"><strong aria-hidden="true">10.</strong> Qt and PyQt</a></li><li class="chapter-item expanded "><a href="python-modules.html"><strong aria-hidden="true">11.</strong> Python Modules</a></li><li class="chapter-item expanded "><a href="addon-config.html" class="active"><strong aria-hidden="true">12.</strong> Add-on Config</a></li><li class="chapter-item expanded "><a href="reviewer-javascript.html"><strong aria-hidden="true">13.</strong> Reviewer Javascript</a></li><li class="chapter-item expanded "><a href="debugging.html"><strong aria-hidden="true">14.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="monkey-patching.html"><strong aria-hidden="true">15.</strong> Monkey Patching</a></li><li class="chapter-item expanded "><a href="sharing.html"><strong aria-hidden="true">16.</strong> Sharing Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.0.html"><strong aria-hidden="true">17.</strong> Porting 2.0 Add-ons</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -140,56 +140,57 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="sharing-add-ons"><a class="header" href="#sharing-add-ons">Sharing Add-ons</a></h1>
-<ul>
-<li><a href="#sharing-via-ankiweb">Sharing via AnkiWeb</a></li>
-<li><a href="#sharing-outside-ankiweb">Sharing outside AnkiWeb</a></li>
-</ul>
-<h2 id="sharing-via-ankiweb"><a class="header" href="#sharing-via-ankiweb">Sharing via AnkiWeb</a></h2>
-<p>You can package up an add-on for distribution by zipping it up, and
-giving it a name ending in .ankiaddon.</p>
-<p>The top level folder should not be included in the zip file. For
-example, if you have a module like the following:</p>
-<pre><code>addons21/myaddon/__init__.py
-addons21/myaddon/my.data
+                        <h1 id="add-on-config"><a class="header" href="#add-on-config">Add-on Config</a></h1>
+<h2 id="config-json"><a class="header" href="#config-json">Config JSON</a></h2>
+<p>If you include a config.json file with a JSON dictionary in it, Anki
+will allow users to edit it from the add-on manager.</p>
+<p>A simple example: in config.json:</p>
+<pre><code>{&quot;myvar&quot;: 5}
 </code></pre>
-<p>Then the zip file contents should be:</p>
-<pre><code>__init__.py
-my.data
+<p>In config.md:</p>
+<pre><code>This is documentation for this add-on's configuration, in *markdown* format.
 </code></pre>
-<p>If you include the folder name in the zip like the following, AnkiWeb
-will not accept the zip file:</p>
-<pre><code>myaddon/__init__.py
-myaddon/my.data
+<p>In your add-on’s code:</p>
+<pre><code class="language-python">from aqt import mw
+config = mw.addonManager.getConfig(__name__)
+print(&quot;var is&quot;, config['myvar'])
 </code></pre>
-<p>On Unix-based machines, you can create a properly-formed file with the
-following command:</p>
-<pre><code>$ cd myaddon &amp;&amp; zip -r ../myaddon.ankiaddon *
+<p>When updating your add-on, you can make changes to config.json. Any
+newly added keys will be merged with the existing configuration.</p>
+<p>If you change the value of existing keys in config.json, users who have
+customized their configuration will continue to see the old values
+unless they use the &quot;restore defaults&quot; button.</p>
+<p>If you need to programmatically modify the config, you can save your
+changes with:</p>
+<pre><code class="language-python">mw.addonManager.writeConfig(__name__, config)
 </code></pre>
-<p>Python automatically creates <code>pycache</code> folders when your add-on is run.
-Please make sure you delete these prior to creating the zip file, as
-AnkiWeb can not accept zip files that contain <code>pycache</code> folders.</p>
-<p>Once you’ve created a .ankiaddon file, you can use the Upload button on
-<a href="https://ankiweb.net/shared/addons/">https://ankiweb.net/shared/addons/</a> to share the add-on with others.</p>
-<h2 id="sharing-outside-ankiweb"><a class="header" href="#sharing-outside-ankiweb">Sharing outside AnkiWeb</a></h2>
-<p>If you wish to distribute .ankiaddon files outside of AnkiWeb, your
-add-on folder needs to contain a 'manifest.json' file. The file should
-contain at least two keys: 'package' specifies the folder name the
-add-on will be stored in, and 'name' specifies the name that will be
-shown to the user. You can optionally include a 'conflicts' key which is
-a list of other packages that conflict with the add-on, and a 'mod' key
-which specifies when the add-on was updated.</p>
-<p>When Anki downloads add-ons from AnkiWeb, only the conflicts key is used
-from the manifest.</p>
+<p>If no config.json file exists, getConfig() will return None - even if
+you have called writeConfig().</p>
+<p>Add-ons that manage options in their own GUI can have that GUI displayed
+when the config button is clicked:</p>
+<pre><code class="language-python">mw.addonManager.setConfigAction(__name__, myOptionsFunc)
+</code></pre>
+<p>Avoid key names starting with an underscore - they are reserved for
+future use by Anki.</p>
+<h2 id="user-files"><a class="header" href="#user-files">User Files</a></h2>
+<p>When your add-on needs configuration data other than simple keys and
+values, it can use a special folder called user_files in the root of
+your add-on’s folder. Any files placed in this folder will be preserved
+when the add-on is upgraded. All other files in the add-on folder are
+removed on upgrade.</p>
+<p>To ensure the user_files folder is created for the user, you can put a
+README.txt or similar file inside it before zipping up your add-on.</p>
+<p>When Anki upgrades an add-on, it will ignore any files in the .zip that
+already exist in the user_files folder.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="monkey-patching.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="python-modules.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="porting2.0.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="reviewer-javascript.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -198,10 +199,10 @@ from the manifest.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="monkey-patching.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="python-modules.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="porting2.0.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="reviewer-javascript.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

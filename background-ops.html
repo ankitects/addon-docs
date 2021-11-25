@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Sharing Add-ons - Writing Anki Add-ons</title>
+        <title>Background Operations - Writing Anki Add-ons</title>
         <!-- Custom HTML head -->
         
 
@@ -77,7 +77,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="support.html"><strong aria-hidden="true">2.</strong> Support</a></li><li class="chapter-item expanded "><a href="editor-setup.html"><strong aria-hidden="true">3.</strong> Editor Setup</a></li><li class="chapter-item expanded "><a href="mypy.html"><strong aria-hidden="true">4.</strong> MyPy</a></li><li class="chapter-item expanded "><a href="addon-folders.html"><strong aria-hidden="true">5.</strong> Add-on Folders</a></li><li class="chapter-item expanded "><a href="a-basic-addon.html"><strong aria-hidden="true">6.</strong> A Basic Add-on</a></li><li class="chapter-item expanded "><a href="the-anki-module.html"><strong aria-hidden="true">7.</strong> The 'anki' Module</a></li><li class="chapter-item expanded "><a href="hooks-and-filters.html"><strong aria-hidden="true">8.</strong> Hooks and Filters</a></li><li class="chapter-item expanded "><a href="background-ops.html"><strong aria-hidden="true">9.</strong> Background Operations</a></li><li class="chapter-item expanded "><a href="qt.html"><strong aria-hidden="true">10.</strong> Qt and PyQt</a></li><li class="chapter-item expanded "><a href="python-modules.html"><strong aria-hidden="true">11.</strong> Python Modules</a></li><li class="chapter-item expanded "><a href="addon-config.html"><strong aria-hidden="true">12.</strong> Add-on Config</a></li><li class="chapter-item expanded "><a href="reviewer-javascript.html"><strong aria-hidden="true">13.</strong> Reviewer Javascript</a></li><li class="chapter-item expanded "><a href="debugging.html"><strong aria-hidden="true">14.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="monkey-patching.html"><strong aria-hidden="true">15.</strong> Monkey Patching</a></li><li class="chapter-item expanded "><a href="sharing.html" class="active"><strong aria-hidden="true">16.</strong> Sharing Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.0.html"><strong aria-hidden="true">17.</strong> Porting 2.0 Add-ons</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="support.html"><strong aria-hidden="true">2.</strong> Support</a></li><li class="chapter-item expanded "><a href="editor-setup.html"><strong aria-hidden="true">3.</strong> Editor Setup</a></li><li class="chapter-item expanded "><a href="mypy.html"><strong aria-hidden="true">4.</strong> MyPy</a></li><li class="chapter-item expanded "><a href="addon-folders.html"><strong aria-hidden="true">5.</strong> Add-on Folders</a></li><li class="chapter-item expanded "><a href="a-basic-addon.html"><strong aria-hidden="true">6.</strong> A Basic Add-on</a></li><li class="chapter-item expanded "><a href="the-anki-module.html"><strong aria-hidden="true">7.</strong> The 'anki' Module</a></li><li class="chapter-item expanded "><a href="hooks-and-filters.html"><strong aria-hidden="true">8.</strong> Hooks and Filters</a></li><li class="chapter-item expanded "><a href="background-ops.html" class="active"><strong aria-hidden="true">9.</strong> Background Operations</a></li><li class="chapter-item expanded "><a href="qt.html"><strong aria-hidden="true">10.</strong> Qt and PyQt</a></li><li class="chapter-item expanded "><a href="python-modules.html"><strong aria-hidden="true">11.</strong> Python Modules</a></li><li class="chapter-item expanded "><a href="addon-config.html"><strong aria-hidden="true">12.</strong> Add-on Config</a></li><li class="chapter-item expanded "><a href="reviewer-javascript.html"><strong aria-hidden="true">13.</strong> Reviewer Javascript</a></li><li class="chapter-item expanded "><a href="debugging.html"><strong aria-hidden="true">14.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="monkey-patching.html"><strong aria-hidden="true">15.</strong> Monkey Patching</a></li><li class="chapter-item expanded "><a href="sharing.html"><strong aria-hidden="true">16.</strong> Sharing Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.0.html"><strong aria-hidden="true">17.</strong> Porting 2.0 Add-ons</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -140,56 +140,86 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="sharing-add-ons"><a class="header" href="#sharing-add-ons">Sharing Add-ons</a></h1>
-<ul>
-<li><a href="#sharing-via-ankiweb">Sharing via AnkiWeb</a></li>
-<li><a href="#sharing-outside-ankiweb">Sharing outside AnkiWeb</a></li>
-</ul>
-<h2 id="sharing-via-ankiweb"><a class="header" href="#sharing-via-ankiweb">Sharing via AnkiWeb</a></h2>
-<p>You can package up an add-on for distribution by zipping it up, and
-giving it a name ending in .ankiaddon.</p>
-<p>The top level folder should not be included in the zip file. For
-example, if you have a module like the following:</p>
-<pre><code>addons21/myaddon/__init__.py
-addons21/myaddon/my.data
+                        <h1 id="background-operations"><a class="header" href="#background-operations">Background Operations</a></h1>
+<p>If your add-on performs a long-running operation directly, the user interface will freeze
+until the operation completes - no progress window will be shown, and the app will look as
+if it's stuck. This is annoying for users, so care should be taken to avoid it happening.</p>
+<p>The reason it happens is because the user interface runs on the &quot;main thread&quot;. When your add-on
+performs a long-running operation directly, it also runs on the main thread, and it prevents
+the UI code from running again until your operation completes. The solution is to run your add-on
+code in a background thread, so that the UI can continue to function.</p>
+<p>A complicating factor is that any code you write that interacts with the UI also needs to be
+run on the main thread. If your add-on only ran in the background, and it attempted to access the
+UI, it would cause Anki to crash. So selectivity is required - UI operations should be run on
+the main thread, and long-running operations like collection and network access should be run in
+the background. Anki provides some tools to make this easier.</p>
+<h2 id="read-only-operations"><a class="header" href="#read-only-operations">Read-Only Operations</a></h2>
+<p>For long-running operations like gathering a group of notes, or things like network access, 
+<code>QueryOp</code> is recommended.</p>
+<p>In the following example, my_ui_action() will return quickly, and the operation
+will continue to run in the background until it completes. If it finishes
+successfully, on_success will be called.</p>
+<pre><code class="language-python">from anki.collection import Collection
+from aqt.operations import QueryOp
+from aqt.utils import showInfo
+from aqt import mw
+
+def my_background_op(col: Collection, note_ids: list[int]) -&gt; int:
+    # some long-running op, eg
+    for id in note_ids:
+        note = col.get_note(note_id)
+        # ...
+
+    return 123
+
+def on_success(count: int) -&gt; None:
+    showInfo(f&quot;my_background_op() returned {count}&quot;)
+
+def my_ui_action(note_ids: list[int]):
+    op = QueryOp(
+        # the active window (main window in this case)
+        parent=mw,
+        # the operation is passed the collection for convenience; you can
+        # ignore it if you wish
+        op=lambda col: my_background_operation(col, note_ids),
+        # this function will be called if op completes successfully,
+        # and it is given the return value of the op
+        success=on_success,
+    )
+
+    # if with_progress() is not called, no progress window will be shown
+    op.with_progress(&quot;Processing...&quot;).run_in_background()
 </code></pre>
-<p>Then the zip file contents should be:</p>
-<pre><code>__init__.py
-my.data
+<p><strong>Be careful not to call any Qt/UI routines inside the background operation!</strong> If
+you need to modify the UI after an operation completes, you should do it from the
+success function. If you need to gather data from the UI (eg from a combo box), that
+data should be gathered prior to executing the operation.</p>
+<h2 id="collection-operations"><a class="header" href="#collection-operations">Collection Operations</a></h2>
+<p>A separate <code>CollectionOp</code> is provided for undoable operations that modify
+the collection. It functions similarly to QueryOp, but will also update the
+UI as changes are made (eg refresh the Browse screen if any notes are changed).</p>
+<p>Many undoable ops already have a <code>CollectionOp</code> defined in aqt/operations/*.py.
+You can often use one of them directly rather than having to create your own.
+For example:</p>
+<pre><code class="language-python">from aqt.operations.note import remove_notes
+
+def my_ui_action(note_ids: list[int]) -&gt; None:
+    remove_notes(parent=mw, note_ids=note_ids).run_in_background()
 </code></pre>
-<p>If you include the folder name in the zip like the following, AnkiWeb
-will not accept the zip file:</p>
-<pre><code>myaddon/__init__.py
-myaddon/my.data
-</code></pre>
-<p>On Unix-based machines, you can create a properly-formed file with the
-following command:</p>
-<pre><code>$ cd myaddon &amp;&amp; zip -r ../myaddon.ankiaddon *
-</code></pre>
-<p>Python automatically creates <code>pycache</code> folders when your add-on is run.
-Please make sure you delete these prior to creating the zip file, as
-AnkiWeb can not accept zip files that contain <code>pycache</code> folders.</p>
-<p>Once you’ve created a .ankiaddon file, you can use the Upload button on
-<a href="https://ankiweb.net/shared/addons/">https://ankiweb.net/shared/addons/</a> to share the add-on with others.</p>
-<h2 id="sharing-outside-ankiweb"><a class="header" href="#sharing-outside-ankiweb">Sharing outside AnkiWeb</a></h2>
-<p>If you wish to distribute .ankiaddon files outside of AnkiWeb, your
-add-on folder needs to contain a 'manifest.json' file. The file should
-contain at least two keys: 'package' specifies the folder name the
-add-on will be stored in, and 'name' specifies the name that will be
-shown to the user. You can optionally include a 'conflicts' key which is
-a list of other packages that conflict with the add-on, and a 'mod' key
-which specifies when the add-on was updated.</p>
-<p>When Anki downloads add-ons from AnkiWeb, only the conflicts key is used
-from the manifest.</p>
+<p>By default that routine will show a tooltip on success. You can call .success()
+or .failure() on it to provide an alternative routine.</p>
+<p>For more information on undo handling, including combining multiple operations
+into a single undo step, please see <a href="https://forums.ankiweb.net/t/add-on-porting-notes-for-anki-2-1-45/11212#undoredo-4">this forum
+page</a>.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="monkey-patching.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="hooks-and-filters.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="porting2.0.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="qt.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -198,10 +228,10 @@ from the manifest.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="monkey-patching.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="hooks-and-filters.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="porting2.0.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="qt.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

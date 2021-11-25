@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Features and Debugging - Writing Anki Add-ons</title>
+        <title>Debugging - Writing Anki Add-ons</title>
         <!-- Custom HTML head -->
         
 
@@ -77,7 +77,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="hooks-and-filters.html"><strong aria-hidden="true">2.</strong> Hooks and Filters</a></li><li class="chapter-item expanded "><a href="monkey-patching.html"><strong aria-hidden="true">3.</strong> Monkey Patching</a></li><li class="chapter-item expanded "><a href="features-and-debugging.html" class="active"><strong aria-hidden="true">4.</strong> Features and Debugging</a></li><li class="chapter-item expanded "><a href="sharing.html"><strong aria-hidden="true">5.</strong> Sharing Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.0.html"><strong aria-hidden="true">6.</strong> Porting 2.0 Add-ons</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="support.html"><strong aria-hidden="true">2.</strong> Support</a></li><li class="chapter-item expanded "><a href="editor-setup.html"><strong aria-hidden="true">3.</strong> Editor Setup</a></li><li class="chapter-item expanded "><a href="mypy.html"><strong aria-hidden="true">4.</strong> MyPy</a></li><li class="chapter-item expanded "><a href="addon-folders.html"><strong aria-hidden="true">5.</strong> Add-on Folders</a></li><li class="chapter-item expanded "><a href="a-basic-addon.html"><strong aria-hidden="true">6.</strong> A Basic Add-on</a></li><li class="chapter-item expanded "><a href="the-anki-module.html"><strong aria-hidden="true">7.</strong> The 'anki' Module</a></li><li class="chapter-item expanded "><a href="hooks-and-filters.html"><strong aria-hidden="true">8.</strong> Hooks and Filters</a></li><li class="chapter-item expanded "><a href="background-ops.html"><strong aria-hidden="true">9.</strong> Background Operations</a></li><li class="chapter-item expanded "><a href="qt.html"><strong aria-hidden="true">10.</strong> Qt and PyQt</a></li><li class="chapter-item expanded "><a href="python-modules.html"><strong aria-hidden="true">11.</strong> Python Modules</a></li><li class="chapter-item expanded "><a href="addon-config.html"><strong aria-hidden="true">12.</strong> Add-on Config</a></li><li class="chapter-item expanded "><a href="reviewer-javascript.html"><strong aria-hidden="true">13.</strong> Reviewer Javascript</a></li><li class="chapter-item expanded "><a href="debugging.html" class="active"><strong aria-hidden="true">14.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="monkey-patching.html"><strong aria-hidden="true">15.</strong> Monkey Patching</a></li><li class="chapter-item expanded "><a href="sharing.html"><strong aria-hidden="true">16.</strong> Sharing Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.0.html"><strong aria-hidden="true">17.</strong> Porting 2.0 Add-ons</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -140,140 +140,16 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="features-and-debugging"><a class="header" href="#features-and-debugging">Features and Debugging</a></h1>
-<ul>
-<li><a href="#qt">Qt</a></li>
-<li><a href="#standard-modules">Standard Modules</a></li>
-<li><a href="#configuration">Configuration</a></li>
-<li><a href="#user-files">User Files</a></li>
-<li><a href="#card-review-javascript">Card Review Javascript</a></li>
-<li><a href="#debugging">Debugging</a></li>
-<li><a href="#learning-more">Learning More</a></li>
-</ul>
-<h2 id="qt"><a class="header" href="#qt">Qt</a></h2>
-<p>As mentioned in the overview, the Qt documentation is invaluable for
-learning how to display different GUI widgets.</p>
-<p>One particular thing to bear in mind is that objects are garbage
-collected in Python, so if you do something like:</p>
-<pre><code class="language-python">def myfunc():
-    widget = QWidget()
-    widget.show()
-</code></pre>
-<p>…​then the widget will disappear as soon as the function exits. To
-prevent this, assign top level widgets to an existing object, like:</p>
-<pre><code class="language-python">def myfunc():
-    mw.myWidget = widget = QWidget()
-    widget.show()
-</code></pre>
-<p>This is often not required when you create a Qt object and give it an
-existing object as the parent, as the parent will keep a reference to
-the object.</p>
-<h2 id="standard-modules"><a class="header" href="#standard-modules">Standard Modules</a></h2>
-<p>Anki ships with only the standard modules necessary to run the program -
-a full copy of Python is not included. For that reason, if you need to
-use a standard module that is not included with Anki, you’ll need to
-bundle it with your add-on.</p>
-<p>This only works with pure Python modules - modules that require C
-extensions such as numpy are much more difficult to package, as you
-would need to compile them for each of the operating systems Anki
-supports. If you’re doing something sophisticated, it would be easier to
-get your users to install a standalone copy of Python instead.</p>
-<h2 id="configuration"><a class="header" href="#configuration">Configuration</a></h2>
-<p>If you include a config.json file with a JSON dictionary in it, Anki
-will allow users to edit it from the add-on manager.</p>
-<p>A simple example: in config.json:</p>
-<pre><code>{&quot;myvar&quot;: 5}
-</code></pre>
-<p>In config.md:</p>
-<pre><code>This is documentation for this add-on's configuration, in *markdown* format.
-</code></pre>
-<p>In your add-on’s code:</p>
-<pre><code class="language-python">from aqt import mw
-config = mw.addonManager.getConfig(__name__)
-print(&quot;var is&quot;, config['myvar'])
-</code></pre>
-<p>When updating your add-on, you can make changes to config.json. Any
-newly added keys will be merged with the existing configuration.</p>
-<p>If you change the value of existing keys in config.json, users who have
-customized their configuration will continue to see the old values
-unless they use the &quot;restore defaults&quot; button.</p>
-<p>If you need to programmatically modify the config, you can save your
-changes with:</p>
-<pre><code class="language-python">mw.addonManager.writeConfig(__name__, config)
-</code></pre>
-<p>If no config.json file exists, getConfig() will return None - even if
-you have called writeConfig().</p>
-<p>Add-ons that manage options in their own GUI can have that GUI displayed
-when the config button is clicked:</p>
-<pre><code class="language-python">mw.addonManager.setConfigAction(__name__, myOptionsFunc)
-</code></pre>
-<p>Avoid key names starting with an underscore - they are reserved for
-future use by Anki.</p>
-<h2 id="user-files"><a class="header" href="#user-files">User Files</a></h2>
-<p>When your add-on needs configuration data other than simple keys and
-values, it can use a special folder called user_files in the root of
-your add-on’s folder. Any files placed in this folder will be preserved
-when the add-on is upgraded. All other files in the add-on folder are
-removed on upgrade.</p>
-<p>To ensure the user_files folder is created for the user, you can put a
-README.txt or similar file inside it before zipping up your add-on.</p>
-<p>When Anki upgrades an add-on, it will ignore any files in the .zip that
-already exist in the user_files folder.</p>
-<h2 id="card-review-javascript"><a class="header" href="#card-review-javascript">Card Review Javascript</a></h2>
-<p>For a general solution not specific to card review, see
-<a href="hooks-and-filters.html#webview">the webview section</a>.</p>
-<p>Anki provides a hook to modify the question and answer HTML before it is
-displayed in the review screen, preview dialog, and card layout screen.
-This can be useful for adding Javascript to the card.</p>
-<p>An example:</p>
-<pre><code class="language-python">from aqt import gui_hooks
-def prepare(html, card, context):
-    return html + &quot;&quot;&quot;
-&lt;script&gt;
-document.body.style.background = &quot;blue&quot;;
-&lt;/script&gt;&quot;&quot;&quot;
-gui_hooks.card_will_show.append(prepare)
-</code></pre>
-<p>The hook takes three arguments: the HTML of the question or answer, the
-current card object (so you can limit your add-on to specific note types
-for example), and a string representing the context the hook is running
-in.</p>
-<p>Make sure you return the modified HTML.</p>
-<p>Context is one of: &quot;reviewQuestion&quot;, &quot;reviewAnswer&quot;, &quot;clayoutQuestion&quot;,
-&quot;clayoutAnswer&quot;, &quot;previewQuestion&quot; or &quot;previewAnswer&quot;.</p>
-<p>The answer preview in the card layout screen, and the previewer set to
-&quot;show both sides&quot; will only use the &quot;Answer&quot; context. This means
-Javascript you append on the back side of the card should not depend on
-Javascript that is only added on the front.</p>
-<p>Because Anki fades the previous text out before revealing the new text,
-Javascript hooks are required to perform actions like scrolling at the
-correct time. You can use them like so:</p>
-<pre><code class="language-python">from aqt import gui_hooks
-def prepare(html, card, context):
-    return html + &quot;&quot;&quot;
-&lt;script&gt;
-onUpdateHook.push(function () {
-    window.scrollTo(0, 2000);
-})
-&lt;/script&gt;&quot;&quot;&quot;
-gui_hooks.card_will_show.append(prepare)
-</code></pre>
-<ul>
-<li>
-<p>onUpdateHook fires after the new card has been placed in the DOM,
-but before it is shown.</p>
-</li>
-<li>
-<p>onShownHook fires after the card has faded in.</p>
-</li>
-</ul>
-<p>The hooks are reset each time the question or answer is shown.</p>
-<h2 id="debugging"><a class="header" href="#debugging">Debugging</a></h2>
+                        <h1 id="debugging"><a class="header" href="#debugging">Debugging</a></h1>
 <p>If your code throws an exception, it will be caught by Anki’s standard
 exception handler (which catches anything written to stderr). If you
 need to print information for debugging purposes, you can use
 aqt.utils.showInfo, or write it to stderr with
 sys.stderr.write(&quot;text\n&quot;).</p>
+<h2 id="webviews"><a class="header" href="#webviews">Webviews</a></h2>
+<p>If you set the env var QTWEBENGINE_REMOTE_DEBUGGING to 8080 prior to starting Anki,
+you can surf to http://localhost:8080 in Chrome to debug the visible webpages.</p>
+<h2 id="debug-console"><a class="header" href="#debug-console">Debug Console</a></h2>
 <p>Anki also includes a REPL. From within the program, press the <a href="https://docs.ankiweb.net/misc.html#debug-console">shortcut
 key</a> and a
 window will open up. You can enter expressions or statements into the
@@ -328,6 +204,7 @@ what it evaluates to. Anki exports pp() (pretty print) in the scope to
 make it easier to quickly dump the details of objects, and the shortcut
 ctrl+shift+return will wrap the current text in the upper area with pp()
 and execute the result.</p>
+<h2 id="pdb"><a class="header" href="#pdb">PDB</a></h2>
 <p>If you’re on Linux or are running Anki from source, it’s also possible
 to debug your script with pdb. Place the following line somewhere in
 your code, and when Anki reaches that point it will kick into the
@@ -336,27 +213,15 @@ debugger in the terminal:</p>
 </code></pre>
 <p>Alternatively you can export DEBUG=1 in your shell and it will kick into
 the debugger on an uncaught exception.</p>
-<h2 id="learning-more"><a class="header" href="#learning-more">Learning More</a></h2>
-<p>Anki’s source code is available at <a href="http://github.com/ankitects/anki/">http://github.com/ankitects/anki/</a>. The
-colllection object is defined in anki’s collection.py. Other useful
-files to check out are cards.py, notes.py, sched.py, models.py and
-decks.py.</p>
-<p>It can also be helpful to look in the aqt source to see how it’s calling
-anki for a particular operation, or to learn more about the GUI.</p>
-<p>Much of the GUI is defined in designer files. You can use the Qt
-Designer program to open the .ui files and browse the GUI in a
-convenient way.</p>
-<p>And finally, it can also be extremely helpful to browse other add-ons to
-see how they accomplish something.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="monkey-patching.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="reviewer-javascript.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="sharing.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="monkey-patching.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -365,10 +230,10 @@ see how they accomplish something.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="monkey-patching.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="reviewer-javascript.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="sharing.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="monkey-patching.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

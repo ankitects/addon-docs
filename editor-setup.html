@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Sharing Add-ons - Writing Anki Add-ons</title>
+        <title>Editor Setup - Writing Anki Add-ons</title>
         <!-- Custom HTML head -->
         
 
@@ -77,7 +77,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="support.html"><strong aria-hidden="true">2.</strong> Support</a></li><li class="chapter-item expanded "><a href="editor-setup.html"><strong aria-hidden="true">3.</strong> Editor Setup</a></li><li class="chapter-item expanded "><a href="mypy.html"><strong aria-hidden="true">4.</strong> MyPy</a></li><li class="chapter-item expanded "><a href="addon-folders.html"><strong aria-hidden="true">5.</strong> Add-on Folders</a></li><li class="chapter-item expanded "><a href="a-basic-addon.html"><strong aria-hidden="true">6.</strong> A Basic Add-on</a></li><li class="chapter-item expanded "><a href="the-anki-module.html"><strong aria-hidden="true">7.</strong> The 'anki' Module</a></li><li class="chapter-item expanded "><a href="hooks-and-filters.html"><strong aria-hidden="true">8.</strong> Hooks and Filters</a></li><li class="chapter-item expanded "><a href="background-ops.html"><strong aria-hidden="true">9.</strong> Background Operations</a></li><li class="chapter-item expanded "><a href="qt.html"><strong aria-hidden="true">10.</strong> Qt and PyQt</a></li><li class="chapter-item expanded "><a href="python-modules.html"><strong aria-hidden="true">11.</strong> Python Modules</a></li><li class="chapter-item expanded "><a href="addon-config.html"><strong aria-hidden="true">12.</strong> Add-on Config</a></li><li class="chapter-item expanded "><a href="reviewer-javascript.html"><strong aria-hidden="true">13.</strong> Reviewer Javascript</a></li><li class="chapter-item expanded "><a href="debugging.html"><strong aria-hidden="true">14.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="monkey-patching.html"><strong aria-hidden="true">15.</strong> Monkey Patching</a></li><li class="chapter-item expanded "><a href="sharing.html" class="active"><strong aria-hidden="true">16.</strong> Sharing Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.0.html"><strong aria-hidden="true">17.</strong> Porting 2.0 Add-ons</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="support.html"><strong aria-hidden="true">2.</strong> Support</a></li><li class="chapter-item expanded "><a href="editor-setup.html" class="active"><strong aria-hidden="true">3.</strong> Editor Setup</a></li><li class="chapter-item expanded "><a href="mypy.html"><strong aria-hidden="true">4.</strong> MyPy</a></li><li class="chapter-item expanded "><a href="addon-folders.html"><strong aria-hidden="true">5.</strong> Add-on Folders</a></li><li class="chapter-item expanded "><a href="a-basic-addon.html"><strong aria-hidden="true">6.</strong> A Basic Add-on</a></li><li class="chapter-item expanded "><a href="the-anki-module.html"><strong aria-hidden="true">7.</strong> The 'anki' Module</a></li><li class="chapter-item expanded "><a href="hooks-and-filters.html"><strong aria-hidden="true">8.</strong> Hooks and Filters</a></li><li class="chapter-item expanded "><a href="background-ops.html"><strong aria-hidden="true">9.</strong> Background Operations</a></li><li class="chapter-item expanded "><a href="qt.html"><strong aria-hidden="true">10.</strong> Qt and PyQt</a></li><li class="chapter-item expanded "><a href="python-modules.html"><strong aria-hidden="true">11.</strong> Python Modules</a></li><li class="chapter-item expanded "><a href="addon-config.html"><strong aria-hidden="true">12.</strong> Add-on Config</a></li><li class="chapter-item expanded "><a href="reviewer-javascript.html"><strong aria-hidden="true">13.</strong> Reviewer Javascript</a></li><li class="chapter-item expanded "><a href="debugging.html"><strong aria-hidden="true">14.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="monkey-patching.html"><strong aria-hidden="true">15.</strong> Monkey Patching</a></li><li class="chapter-item expanded "><a href="sharing.html"><strong aria-hidden="true">16.</strong> Sharing Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.0.html"><strong aria-hidden="true">17.</strong> Porting 2.0 Add-ons</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -140,56 +140,61 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="sharing-add-ons"><a class="header" href="#sharing-add-ons">Sharing Add-ons</a></h1>
+                        <h1 id="editor-setup"><a class="header" href="#editor-setup">Editor Setup</a></h1>
+<p>While you can write an add-on with a basic text editor such as Notepad,
+setting up a proper Python editor/development environment (IDE) will make
+your life considerably easier.</p>
+<h2 id="pycharm-setup"><a class="header" href="#pycharm-setup">PyCharm setup</a></h2>
+<p>The free community edition of PyCharm has good out of the box support
+for Python: <a href="https://www.jetbrains.com/pycharm/">https://www.jetbrains.com/pycharm/</a>. You can also use other
+editors like Visual Studio Code, but we find PyCharm gives the best results.</p>
+<p>Over the last year, Anki’s codebase has been updated to add type hints to almost
+all of the code. These type hints make development easier, by providing better
+code completion, and by catching errors using tools like mypy. As an add-on
+author, you can take advantage of this type hinting as well.</p>
+<p>To get started with your first add-on:</p>
 <ul>
-<li><a href="#sharing-via-ankiweb">Sharing via AnkiWeb</a></li>
-<li><a href="#sharing-outside-ankiweb">Sharing outside AnkiWeb</a></li>
+<li>
+<p>Open PyCharm and create a new project.</p>
+</li>
+<li>
+<p>Right click/ctrl+click on your project on the left and create a new
+Python package called &quot;myaddon&quot;</p>
+</li>
 </ul>
-<h2 id="sharing-via-ankiweb"><a class="header" href="#sharing-via-ankiweb">Sharing via AnkiWeb</a></h2>
-<p>You can package up an add-on for distribution by zipping it up, and
-giving it a name ending in .ankiaddon.</p>
-<p>The top level folder should not be included in the zip file. For
-example, if you have a module like the following:</p>
-<pre><code>addons21/myaddon/__init__.py
-addons21/myaddon/my.data
+<p>Now you’ll need to fetch Anki’s bundled source code so you can get type
+completion. As of Anki 2.1.24, these are available on PyPI. <strong>You will need to
+be using a 64 bit version of Python, and your Python version must match a
+version the Anki version you are fetching supports.</strong>. To install Anki via
+PyCharm, click on Python Console in the bottom left and type the following in:</p>
+<pre><code class="language-python">import subprocess
+
+subprocess.check_call([&quot;pip3&quot;, &quot;install&quot;, &quot;--upgrade&quot;, &quot;pip&quot;])
+subprocess.check_call([&quot;pip3&quot;, &quot;install&quot;, &quot;mypy&quot;, &quot;aqt&quot;])
 </code></pre>
-<p>Then the zip file contents should be:</p>
-<pre><code>__init__.py
-my.data
+<p>Hit enter and wait. Once it completes, you should now have code completion.</p>
+<p>If you get an error, you are probably not using a 64 bit version of Python, or
+your Python version is not one the latest Anki version supports. Try running the
+commands above with &quot;-vvv&quot; to get more info.</p>
+<p>After installing, try out the code completion by double clicking on the
+<code>__init__.py</code> file. If you see a spinner down the bottom, wait for it to
+complete. Then type in:</p>
+<pre><code class="language-python">from anki import hooks
+hooks.
 </code></pre>
-<p>If you include the folder name in the zip like the following, AnkiWeb
-will not accept the zip file:</p>
-<pre><code>myaddon/__init__.py
-myaddon/my.data
-</code></pre>
-<p>On Unix-based machines, you can create a properly-formed file with the
-following command:</p>
-<pre><code>$ cd myaddon &amp;&amp; zip -r ../myaddon.ankiaddon *
-</code></pre>
-<p>Python automatically creates <code>pycache</code> folders when your add-on is run.
-Please make sure you delete these prior to creating the zip file, as
-AnkiWeb can not accept zip files that contain <code>pycache</code> folders.</p>
-<p>Once you’ve created a .ankiaddon file, you can use the Upload button on
-<a href="https://ankiweb.net/shared/addons/">https://ankiweb.net/shared/addons/</a> to share the add-on with others.</p>
-<h2 id="sharing-outside-ankiweb"><a class="header" href="#sharing-outside-ankiweb">Sharing outside AnkiWeb</a></h2>
-<p>If you wish to distribute .ankiaddon files outside of AnkiWeb, your
-add-on folder needs to contain a 'manifest.json' file. The file should
-contain at least two keys: 'package' specifies the folder name the
-add-on will be stored in, and 'name' specifies the name that will be
-shown to the user. You can optionally include a 'conflicts' key which is
-a list of other packages that conflict with the add-on, and a 'mod' key
-which specifies when the add-on was updated.</p>
-<p>When Anki downloads add-ons from AnkiWeb, only the conflicts key is used
-from the manifest.</p>
+<p>and you should see completions pop up.</p>
+<p><strong>Please note that you can not run your add-on from within PyCharm - you
+will get errors.</strong> Add-ons need to be run from within Anki, which is
+covered in the <a href="a-basic-addon.html">A Basic Add-on</a> section.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="monkey-patching.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="support.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="porting2.0.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="mypy.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -198,10 +203,10 @@ from the manifest.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="monkey-patching.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="support.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="porting2.0.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="mypy.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
