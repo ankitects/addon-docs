@@ -78,7 +78,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="support.html"><strong aria-hidden="true">2.</strong> Support</a></li><li class="chapter-item expanded "><a href="editor-setup.html"><strong aria-hidden="true">3.</strong> Editor Setup</a></li><li class="chapter-item expanded "><a href="mypy.html"><strong aria-hidden="true">4.</strong> MyPy</a></li><li class="chapter-item expanded "><a href="addon-folders.html"><strong aria-hidden="true">5.</strong> Add-on Folders</a></li><li class="chapter-item expanded "><a href="a-basic-addon.html"><strong aria-hidden="true">6.</strong> A Basic Add-on</a></li><li class="chapter-item expanded "><a href="the-anki-module.html"><strong aria-hidden="true">7.</strong> The 'anki' Module</a></li><li class="chapter-item expanded "><a href="hooks-and-filters.html"><strong aria-hidden="true">8.</strong> Hooks and Filters</a></li><li class="chapter-item expanded "><a href="background-ops.html"><strong aria-hidden="true">9.</strong> Background Operations</a></li><li class="chapter-item expanded "><a href="qt.html"><strong aria-hidden="true">10.</strong> Qt and PyQt</a></li><li class="chapter-item expanded "><a href="python-modules.html"><strong aria-hidden="true">11.</strong> Python Modules</a></li><li class="chapter-item expanded "><a href="addon-config.html"><strong aria-hidden="true">12.</strong> Add-on Config</a></li><li class="chapter-item expanded "><a href="reviewer-javascript.html"><strong aria-hidden="true">13.</strong> Reviewer Javascript</a></li><li class="chapter-item expanded "><a href="debugging.html"><strong aria-hidden="true">14.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="monkey-patching.html"><strong aria-hidden="true">15.</strong> Monkey Patching</a></li><li class="chapter-item expanded "><a href="sharing.html"><strong aria-hidden="true">16.</strong> Sharing Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.0.html"><strong aria-hidden="true">17.</strong> Porting 2.0 Add-ons</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="support.html"><strong aria-hidden="true">2.</strong> Support</a></li><li class="chapter-item expanded "><a href="editor-setup.html"><strong aria-hidden="true">3.</strong> Editor Setup</a></li><li class="chapter-item expanded "><a href="mypy.html"><strong aria-hidden="true">4.</strong> MyPy</a></li><li class="chapter-item expanded "><a href="addon-folders.html"><strong aria-hidden="true">5.</strong> Add-on Folders</a></li><li class="chapter-item expanded "><a href="a-basic-addon.html"><strong aria-hidden="true">6.</strong> A Basic Add-on</a></li><li class="chapter-item expanded "><a href="the-anki-module.html"><strong aria-hidden="true">7.</strong> The 'anki' Module</a></li><li class="chapter-item expanded "><a href="command-line-use.html"><strong aria-hidden="true">8.</strong> Command-Line Use</a></li><li class="chapter-item expanded "><a href="hooks-and-filters.html"><strong aria-hidden="true">9.</strong> Hooks and Filters</a></li><li class="chapter-item expanded "><a href="background-ops.html"><strong aria-hidden="true">10.</strong> Background Operations</a></li><li class="chapter-item expanded "><a href="qt.html"><strong aria-hidden="true">11.</strong> Qt and PyQt</a></li><li class="chapter-item expanded "><a href="python-modules.html"><strong aria-hidden="true">12.</strong> Python Modules</a></li><li class="chapter-item expanded "><a href="addon-config.html"><strong aria-hidden="true">13.</strong> Add-on Config</a></li><li class="chapter-item expanded "><a href="reviewer-javascript.html"><strong aria-hidden="true">14.</strong> Reviewer Javascript</a></li><li class="chapter-item expanded "><a href="debugging.html"><strong aria-hidden="true">15.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="monkey-patching.html"><strong aria-hidden="true">16.</strong> Monkey Patching</a></li><li class="chapter-item expanded "><a href="sharing.html"><strong aria-hidden="true">17.</strong> Sharing Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.0.html"><strong aria-hidden="true">18.</strong> Porting 2.0 Add-ons</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -404,14 +404,6 @@ ti.run()
 <p>Almost every GUI operation has an associated function in anki, so any of
 the operations that Anki makes available can also be called in an
 add-on.</p>
-<p>If you want to access the collection outside of the GUI, you can do so
-with the following code:</p>
-<pre><code class="language-python">from anki import Collection
-col = Collection(&quot;/path/to/collection.anki2&quot;)
-</code></pre>
-<p>If you make any modifications to the collection outside of Anki, you
-must make sure to call col.close() when you’re done, or those changes
-will be lost.</p>
 <h2 id="readingwriting-objects"><a class="header" href="#readingwriting-objects">Reading/Writing Objects</a></h2>
 <p>Most objects in Anki can be read and written via methods in pylib.</p>
 <pre><code class="language-python">card = col.getCard(card_id)
@@ -447,7 +439,7 @@ some forms of invalid data from being written to the database.</p>
 col.find_notes() is useful.</p>
 <h2 id="the-database"><a class="header" href="#the-database">The Database</a></h2>
 <p>:warning: You can easily cause problems by writing directly to the database.
-Where possible, please use the methods mentioned above instead.</p>
+Where possible, please use methods such as the ones mentioned above instead.</p>
 <p>Anki’s DB object supports the following functions:</p>
 <p><strong>scalar() returns a single item:</strong></p>
 <pre><code class="language-python">showInfo(&quot;card count: %d&quot; % mw.col.db.scalar(&quot;select count() from cards&quot;))
@@ -484,6 +476,20 @@ break future versions of Anki.</p>
 <p>If you need the data to sync across devices, small options can be stored
 within mw.col.conf. Please don’t store large amounts of data there, as
 it’s currently sent on every sync.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="command-line-use"><a class="header" href="#command-line-use">Command-Line Use</a></h1>
+<p>The <code>anki</code> module can be used separately from Anki's GUI. It is
+strongly recommended you use it instead of attempting to read or
+write a .anki2 file directly.</p>
+<p>Install it with pip:</p>
+<pre><code class="language-shell">$ pip install anki
+</code></pre>
+<p>Then you create use it in a .py file, like so:</p>
+<pre><code class="language-python">from anki.collection import Collection
+col = Collection(&quot;/path/to/collection.anki2&quot;)
+print(col.sched.deck_due_tree())
+col.close()
+</code></pre>
+<p>See <a href="./the-anki-module.html">the Anki module</a> for more.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hooks--filters"><a class="header" href="#hooks--filters">Hooks &amp; Filters</a></h1>
 <ul>
 <li><a href="hooks-and-filters.html#new-style-hooks">New Style Hooks</a></li>
