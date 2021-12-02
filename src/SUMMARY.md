@@ -7,6 +7,7 @@
 - [Add-on Folders](addon-folders.md)
 - [A Basic Add-on](a-basic-addon.md)
 - [The 'anki' Module](the-anki-module.md)
+- [Command-Line Use](command-line-use.md)
 - [Hooks and Filters](hooks-and-filters.md)
 - [Background Operations](background-ops.md)
 - [Qt and PyQt](qt.md)

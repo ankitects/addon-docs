@@ -94,18 +94,6 @@ Almost every GUI operation has an associated function in anki, so any of
 the operations that Anki makes available can also be called in an
 add-on.
 
-If you want to access the collection outside of the GUI, you can do so
-with the following code:
-
-```python
-from anki import Collection
-col = Collection("/path/to/collection.anki2")
-```
-
-If you make any modifications to the collection outside of Anki, you
-must make sure to call col.close() when you’re done, or those changes
-will be lost.
-
 ## Reading/Writing Objects
 
 Most objects in Anki can be read and written via methods in pylib.
@@ -156,7 +144,7 @@ col.find_notes() is useful.
 ## The Database
 
 :warning: You can easily cause problems by writing directly to the database.
-Where possible, please use the methods mentioned above instead.
+Where possible, please use methods such as the ones mentioned above instead.
 
 Anki’s DB object supports the following functions:
 
