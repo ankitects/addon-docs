@@ -153,7 +153,7 @@ run on the main thread. If your add-on only ran in the background, and it attemp
 UI, it would cause Anki to crash. So selectivity is required - UI operations should be run on
 the main thread, and long-running operations like collection and network access should be run in
 the background. Anki provides some tools to make this easier.</p>
-<h2 id="read-only-operations"><a class="header" href="#read-only-operations">Read-Only Operations</a></h2>
+<h2 id="read-onlynon-undoable-operations"><a class="header" href="#read-onlynon-undoable-operations">Read-Only/Non-Undoable Operations</a></h2>
 <p>For long-running operations like gathering a group of notes, or things like network access, 
 <code>QueryOp</code> is recommended.</p>
 <p>In the following example, my_ui_action() will return quickly, and the operation
@@ -187,13 +187,30 @@ def my_ui_action(note_ids: list[int]):
         success=on_success,
     )
 
-    # if with_progress() is not called, no progress window will be shown
-    op.with_progress(&quot;Processing...&quot;).run_in_background()
+    # if with_progress() is not called, no progress window will be shown.
+    # note: QueryOp.with_progress() was broken until Anki 2.1.50
+    op.with_progress().run_in_background()
 </code></pre>
-<p><strong>Be careful not to call any Qt/UI routines inside the background operation!</strong> If
-you need to modify the UI after an operation completes, you should do it from the
-success function. If you need to gather data from the UI (eg from a combo box), that
-data should be gathered prior to executing the operation.</p>
+<p><strong>Be careful not to directly call any Qt/UI routines inside the background operation!</strong></p>
+<ul>
+<li>If you need to modify the UI after an operation completes (eg show a tooltip),
+you should do it from the success function.</li>
+<li>If the operation needs data from the UI (eg a combo box value), that data should be gathered
+prior to executing the operation.</li>
+<li>If you need to update the UI during the background operation (eg to update the text of the
+progress window), your operation needs to perform that update on the main thread. For example,
+in a loop:</li>
+</ul>
+<pre><code class="language-python">if time.time() - last_progress &gt;= 0.1:
+    aqt.mw.taskman.run_on_main(
+        lambda: aqt.mw.progress.update(
+            label=f&quot;Remaining: {remaining}&quot;,
+            value=total - remaining,
+            max=total,
+        )
+    )
+    last_progress = time.time()
+</code></pre>
 <h2 id="collection-operations"><a class="header" href="#collection-operations">Collection Operations</a></h2>
 <p>A separate <code>CollectionOp</code> is provided for undoable operations that modify
 the collection. It functions similarly to QueryOp, but will also update the
