@@ -15,7 +15,7 @@ UI, it would cause Anki to crash. So selectivity is required - UI operations sho
 the main thread, and long-running operations like collection and network access should be run in
 the background. Anki provides some tools to make this easier.
 
-## Read-Only Operations
+## Read-Only/Non-Undoable Operations
 
 For long-running operations like gathering a group of notes, or things like network access, 
 `QueryOp` is recommended.
@@ -53,14 +53,32 @@ def my_ui_action(note_ids: list[int]):
         success=on_success,
     )
 
-    # if with_progress() is not called, no progress window will be shown
-    op.with_progress("Processing...").run_in_background()
+    # if with_progress() is not called, no progress window will be shown.
+    # note: QueryOp.with_progress() was broken until Anki 2.1.50
+    op.with_progress().run_in_background()
 ```
 
-**Be careful not to call any Qt/UI routines inside the background operation!** If
-you need to modify the UI after an operation completes, you should do it from the
-success function. If you need to gather data from the UI (eg from a combo box), that
-data should be gathered prior to executing the operation.
+**Be careful not to directly call any Qt/UI routines inside the background operation!**
+
+- If you need to modify the UI after an operation completes (eg show a tooltip),
+  you should do it from the success function.
+- If the operation needs data from the UI (eg a combo box value), that data should be gathered
+prior to executing the operation.
+- If you need to update the UI during the background operation (eg to update the text of the
+progress window), your operation needs to perform that update on the main thread. For example,
+in a loop:
+
+```python
+if time.time() - last_progress >= 0.1:
+    aqt.mw.taskman.run_on_main(
+        lambda: aqt.mw.progress.update(
+            label=f"Remaining: {remaining}",
+            value=total - remaining,
+            max=total,
+        )
+    )
+    last_progress = time.time()
+```
 
 ## Collection Operations
 
