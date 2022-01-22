@@ -52,7 +52,7 @@ ids = mw.col.find_cards("tag:x")
 
 ```python
 for id in ids:
-    card = mw.col.getCard(id)
+    card = mw.col.get_card(id)
     question = card.question()
     answer = card.answer()
 ```
@@ -75,7 +75,7 @@ file = u"/path/to/text.txt"
 deck_id = mw.col.decks.id("ImportDeck")
 mw.col.decks.select(deck_id)
 # anki defaults to the last note type used in the selected deck
-notetype = mw.col.models.byName("Basic")
+notetype = mw.col.models.by_name("Basic")
 deck = mw.col.decks.get(deck_id)
 deck['mid'] = notetype['id']
 mw.col.decks.save(deck)
@@ -99,13 +99,13 @@ add-on.
 Most objects in Anki can be read and written via methods in pylib.
 
 ```python
-card = col.getCard(card_id)
+card = col.get_card(card_id)
 card.ivl += 1
 col.update_card(card)
 ```
 
 ```python
-note = col.getNote(note_id)
+note = col.get_note(note_id)
 note["Front"] += " hello"
 col.update_note(note)
 ```
@@ -115,7 +115,7 @@ deck = col.decks.get(deck_id)
 deck["name"] += " hello"
 col.decks.save(deck)
 
-deck = col.decks.byName("Default hello")
+deck = col.decks.by_name("Default hello")
 ...
 ```
 
@@ -130,7 +130,7 @@ notetype = col.models.get(notetype_id)
 notetype["css"] += "\nbody { background: grey; }\n"
 col.models.save(note)
 
-notetype = col.models.byName("Basic")
+notetype = col.models.by_name("Basic")
 ...
 ```
 
