@@ -371,7 +371,7 @@ mw.col.update_note(note)
 </code></pre>
 <p><strong>Get question and answer for each of those ids:</strong></p>
 <pre><code class="language-python">for id in ids:
-    card = mw.col.getCard(id)
+    card = mw.col.get_card(id)
     question = card.question()
     answer = card.answer()
 </code></pre>
@@ -387,7 +387,7 @@ file = u&quot;/path/to/text.txt&quot;
 deck_id = mw.col.decks.id(&quot;ImportDeck&quot;)
 mw.col.decks.select(deck_id)
 # anki defaults to the last note type used in the selected deck
-notetype = mw.col.models.byName(&quot;Basic&quot;)
+notetype = mw.col.models.by_name(&quot;Basic&quot;)
 deck = mw.col.decks.get(deck_id)
 deck['mid'] = notetype['id']
 mw.col.decks.save(deck)
@@ -406,11 +406,11 @@ the operations that Anki makes available can also be called in an
 add-on.</p>
 <h2 id="readingwriting-objects"><a class="header" href="#readingwriting-objects">Reading/Writing Objects</a></h2>
 <p>Most objects in Anki can be read and written via methods in pylib.</p>
-<pre><code class="language-python">card = col.getCard(card_id)
+<pre><code class="language-python">card = col.get_card(card_id)
 card.ivl += 1
 col.update_card(card)
 </code></pre>
-<pre><code class="language-python">note = col.getNote(note_id)
+<pre><code class="language-python">note = col.get_note(note_id)
 note[&quot;Front&quot;] += &quot; hello&quot;
 col.update_note(note)
 </code></pre>
@@ -418,7 +418,7 @@ col.update_note(note)
 deck[&quot;name&quot;] += &quot; hello&quot;
 col.decks.save(deck)
 
-deck = col.decks.byName(&quot;Default hello&quot;)
+deck = col.decks.by_name(&quot;Default hello&quot;)
 ...
 </code></pre>
 <pre><code class="language-python">config = col.decks.get_config(config_id)
@@ -429,7 +429,7 @@ col.decks.save(config)
 notetype[&quot;css&quot;] += &quot;\nbody { background: grey; }\n&quot;
 col.models.save(note)
 
-notetype = col.models.byName(&quot;Basic&quot;)
+notetype = col.models.by_name(&quot;Basic&quot;)
 ...
 </code></pre>
 <p>You should prefer these methods over directly accessing the database,
