@@ -2,7 +2,9 @@
 
 ## Translations
 
-- 日本語: <http://rs.luminousspice.com/ankiaddons21/>
+- 日本語: 
+  - <http://rs.luminousspice.com/ankiaddons21/>
+  - <https://t-cool.github.io/anki-addon-docs-ja/>
 
 ## Overview
 
