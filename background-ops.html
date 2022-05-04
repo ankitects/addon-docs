@@ -154,7 +154,7 @@ UI, it would cause Anki to crash. So selectivity is required - UI operations sho
 the main thread, and long-running operations like collection and network access should be run in
 the background. Anki provides some tools to make this easier.</p>
 <h2 id="read-onlynon-undoable-operations"><a class="header" href="#read-onlynon-undoable-operations">Read-Only/Non-Undoable Operations</a></h2>
-<p>For long-running operations like gathering a group of notes, or things like network access, 
+<p>For long-running operations like gathering a group of notes, or things like network access,
 <code>QueryOp</code> is recommended.</p>
 <p>In the following example, my_ui_action() will return quickly, and the operation
 will continue to run in the background until it completes. If it finishes
@@ -181,7 +181,7 @@ def my_ui_action(note_ids: list[int]):
         parent=mw,
         # the operation is passed the collection for convenience; you can
         # ignore it if you wish
-        op=lambda col: my_background_operation(col, note_ids),
+        op=lambda col: my_background_op(col, note_ids),
         # this function will be called if op completes successfully,
         # and it is given the return value of the op
         success=on_success,
