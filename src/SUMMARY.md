@@ -9,6 +9,7 @@
 - [The 'anki' Module](the-anki-module.md)
 - [Command-Line Use](command-line-use.md)
 - [Hooks and Filters](hooks-and-filters.md)
+- [Console Output](console-output.md)
 - [Background Operations](background-ops.md)
 - [Qt and PyQt](qt.md)
 - [Python Modules](python-modules.md)

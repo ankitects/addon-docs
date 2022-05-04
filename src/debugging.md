@@ -1,11 +1,14 @@
 # Debugging
 
-If your code throws an exception, it will be caught by Anki’s standard
-exception handler (which catches anything written to stderr). If you
-need to print information for debugging purposes, you can use
-aqt.utils.showInfo, or write it to stderr with
-sys.stderr.write("text\\n").
+## Exceptions and Stdout/Stderr
 
+If your code throws an uncaught exception, it will be caught by Anki’s standard
+exception handler, and an error will be presented to the user.
+
+The handler catches anything that is printed to stderr, so you should avoid logging text
+to stderr unless you want the user to see it in a popup.
+
+Text printed to standard output is covered in [this section](./console-output.md).
 
 ## Webviews
 
@@ -69,6 +72,7 @@ what it evaluates to. Anki exports pp() (pretty print) in the scope to
 make it easier to quickly dump the details of objects, and the shortcut
 ctrl+shift+return will wrap the current text in the upper area with pp()
 and execute the result.
+
 ## PDB
 
 If you’re on Linux or are running Anki from source, it’s also possible
