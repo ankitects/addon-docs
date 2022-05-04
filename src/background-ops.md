@@ -17,7 +17,7 @@ the background. Anki provides some tools to make this easier.
 
 ## Read-Only/Non-Undoable Operations
 
-For long-running operations like gathering a group of notes, or things like network access, 
+For long-running operations like gathering a group of notes, or things like network access,
 `QueryOp` is recommended.
 
 In the following example, my_ui_action() will return quickly, and the operation
@@ -47,7 +47,7 @@ def my_ui_action(note_ids: list[int]):
         parent=mw,
         # the operation is passed the collection for convenience; you can
         # ignore it if you wish
-        op=lambda col: my_background_operation(col, note_ids),
+        op=lambda col: my_background_op(col, note_ids),
         # this function will be called if op completes successfully,
         # and it is given the return value of the op
         success=on_success,
@@ -63,10 +63,10 @@ def my_ui_action(note_ids: list[int]):
 - If you need to modify the UI after an operation completes (eg show a tooltip),
   you should do it from the success function.
 - If the operation needs data from the UI (eg a combo box value), that data should be gathered
-prior to executing the operation.
+  prior to executing the operation.
 - If you need to update the UI during the background operation (eg to update the text of the
-progress window), your operation needs to perform that update on the main thread. For example,
-in a loop:
+  progress window), your operation needs to perform that update on the main thread. For example,
+  in a loop:
 
 ```python
 if time.time() - last_progress >= 0.1:
@@ -86,7 +86,7 @@ A separate `CollectionOp` is provided for undoable operations that modify
 the collection. It functions similarly to QueryOp, but will also update the
 UI as changes are made (eg refresh the Browse screen if any notes are changed).
 
-Many undoable ops already have a `CollectionOp` defined in aqt/operations/*.py.
+Many undoable ops already have a `CollectionOp` defined in aqt/operations/\*.py.
 You can often use one of them directly rather than having to create your own.
 For example:
 
