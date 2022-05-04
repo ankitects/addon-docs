@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Command-Line Use - Writing Anki Add-ons</title>
+        <title>Console Output - Writing Anki Add-ons</title>
         <!-- Custom HTML head -->
         
 
@@ -77,7 +77,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="support.html"><strong aria-hidden="true">2.</strong> Support</a></li><li class="chapter-item expanded "><a href="editor-setup.html"><strong aria-hidden="true">3.</strong> Editor Setup</a></li><li class="chapter-item expanded "><a href="mypy.html"><strong aria-hidden="true">4.</strong> MyPy</a></li><li class="chapter-item expanded "><a href="addon-folders.html"><strong aria-hidden="true">5.</strong> Add-on Folders</a></li><li class="chapter-item expanded "><a href="a-basic-addon.html"><strong aria-hidden="true">6.</strong> A Basic Add-on</a></li><li class="chapter-item expanded "><a href="the-anki-module.html"><strong aria-hidden="true">7.</strong> The 'anki' Module</a></li><li class="chapter-item expanded "><a href="command-line-use.html" class="active"><strong aria-hidden="true">8.</strong> Command-Line Use</a></li><li class="chapter-item expanded "><a href="hooks-and-filters.html"><strong aria-hidden="true">9.</strong> Hooks and Filters</a></li><li class="chapter-item expanded "><a href="console-output.html"><strong aria-hidden="true">10.</strong> Console Output</a></li><li class="chapter-item expanded "><a href="background-ops.html"><strong aria-hidden="true">11.</strong> Background Operations</a></li><li class="chapter-item expanded "><a href="qt.html"><strong aria-hidden="true">12.</strong> Qt and PyQt</a></li><li class="chapter-item expanded "><a href="python-modules.html"><strong aria-hidden="true">13.</strong> Python Modules</a></li><li class="chapter-item expanded "><a href="addon-config.html"><strong aria-hidden="true">14.</strong> Add-on Config</a></li><li class="chapter-item expanded "><a href="reviewer-javascript.html"><strong aria-hidden="true">15.</strong> Reviewer Javascript</a></li><li class="chapter-item expanded "><a href="debugging.html"><strong aria-hidden="true">16.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="monkey-patching.html"><strong aria-hidden="true">17.</strong> Monkey Patching</a></li><li class="chapter-item expanded "><a href="sharing.html"><strong aria-hidden="true">18.</strong> Sharing Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.0.html"><strong aria-hidden="true">19.</strong> Porting 2.0 Add-ons</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="support.html"><strong aria-hidden="true">2.</strong> Support</a></li><li class="chapter-item expanded "><a href="editor-setup.html"><strong aria-hidden="true">3.</strong> Editor Setup</a></li><li class="chapter-item expanded "><a href="mypy.html"><strong aria-hidden="true">4.</strong> MyPy</a></li><li class="chapter-item expanded "><a href="addon-folders.html"><strong aria-hidden="true">5.</strong> Add-on Folders</a></li><li class="chapter-item expanded "><a href="a-basic-addon.html"><strong aria-hidden="true">6.</strong> A Basic Add-on</a></li><li class="chapter-item expanded "><a href="the-anki-module.html"><strong aria-hidden="true">7.</strong> The 'anki' Module</a></li><li class="chapter-item expanded "><a href="command-line-use.html"><strong aria-hidden="true">8.</strong> Command-Line Use</a></li><li class="chapter-item expanded "><a href="hooks-and-filters.html"><strong aria-hidden="true">9.</strong> Hooks and Filters</a></li><li class="chapter-item expanded "><a href="console-output.html" class="active"><strong aria-hidden="true">10.</strong> Console Output</a></li><li class="chapter-item expanded "><a href="background-ops.html"><strong aria-hidden="true">11.</strong> Background Operations</a></li><li class="chapter-item expanded "><a href="qt.html"><strong aria-hidden="true">12.</strong> Qt and PyQt</a></li><li class="chapter-item expanded "><a href="python-modules.html"><strong aria-hidden="true">13.</strong> Python Modules</a></li><li class="chapter-item expanded "><a href="addon-config.html"><strong aria-hidden="true">14.</strong> Add-on Config</a></li><li class="chapter-item expanded "><a href="reviewer-javascript.html"><strong aria-hidden="true">15.</strong> Reviewer Javascript</a></li><li class="chapter-item expanded "><a href="debugging.html"><strong aria-hidden="true">16.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="monkey-patching.html"><strong aria-hidden="true">17.</strong> Monkey Patching</a></li><li class="chapter-item expanded "><a href="sharing.html"><strong aria-hidden="true">18.</strong> Sharing Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.0.html"><strong aria-hidden="true">19.</strong> Porting 2.0 Add-ons</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -140,29 +140,39 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="command-line-use"><a class="header" href="#command-line-use">Command-Line Use</a></h1>
-<p>The <code>anki</code> module can be used separately from Anki's GUI. It is
-strongly recommended you use it instead of attempting to read or
-write a .anki2 file directly.</p>
-<p>Install it with pip:</p>
-<pre><code class="language-shell">$ pip install anki
+                        <h1 id="console-output"><a class="header" href="#console-output">Console Output</a></h1>
+<p>Because Anki is a GUI app, text output to stdout (eg <code>print(&quot;foo&quot;)</code>) is not
+usually visible to the user. You can optionally reveal text printed to stdout,
+and it is recommended that you do so while developing your add-on.</p>
+<h2 id="warnings"><a class="header" href="#warnings">Warnings</a></h2>
+<p>Anki uses stdout to print warnings about API deprecations, eg:</p>
+<pre><code>addons21/mytest/__init__.py:10:getNote is deprecated: please use 'get_note'
 </code></pre>
-<p>Then you create use it in a .py file, like so:</p>
-<pre><code class="language-python">from anki.collection import Collection
-col = Collection(&quot;/path/to/collection.anki2&quot;)
-print(col.sched.deck_due_tree())
-col.close()
+<p>If these warnings are occurring in a loop, please address them promptly, as they can
+slow Anki down even if the console is not shown.</p>
+<h2 id="printing-text"><a class="header" href="#printing-text">Printing text</a></h2>
+<p>You may find it useful to print text to stdout to aid in debugging your add-on.
+Please avoid printing large amounts of text (eg in a loop that deals with hundreds or
+thousands of items), as that may slow Anki down, even if the console is not shown.</p>
+<h2 id="showing-the-console"><a class="header" href="#showing-the-console">Showing the Console</a></h2>
+<h3 id="windows"><a class="header" href="#windows">Windows</a></h3>
+<p>If you start Anki via the <code>anki-console.bat</code> file in <code>c:\program files\anki</code>, a
+separate console window will appear.</p>
+<h3 id="macos"><a class="header" href="#macos">macOS</a></h3>
+<p>Open Terminal.app, then enter the following text and hit enter:</p>
+<pre><code>/Applications/Anki.app/Contents/MacOS/anki
 </code></pre>
-<p>See <a href="./the-anki-module.html">the Anki module</a> for more.</p>
+<h3 id="linux"><a class="header" href="#linux">Linux</a></h3>
+<p>Open a terminal/xterm, then run Anki with <code>anki</code></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="the-anki-module.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="hooks-and-filters.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="hooks-and-filters.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="background-ops.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -171,10 +181,10 @@ col.close()
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="the-anki-module.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="hooks-and-filters.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="hooks-and-filters.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="background-ops.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
