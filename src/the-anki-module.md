@@ -1,7 +1,9 @@
 # The 'anki' Module
 
 All access to your collection and associated media go through a Python
-module called `anki`, located in `pylib/anki` in Anki's source repo.
+package called `anki`, located in
+[pylib/anki](https://github.com/ankitects/anki/tree/main/pylib/anki)
+in Anki's source repo.
 
 ## The Collection
 

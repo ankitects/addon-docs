@@ -86,7 +86,7 @@ A separate `CollectionOp` is provided for undoable operations that modify
 the collection. It functions similarly to QueryOp, but will also update the
 UI as changes are made (eg refresh the Browse screen if any notes are changed).
 
-Many undoable ops already have a `CollectionOp` defined in aqt/operations/\*.py.
+Many undoable ops already have a `CollectionOp` defined in [aqt/operations/\*.py](https://github.com/ankitects/anki/tree/main/qt/aqt/operations).
 You can often use one of them directly rather than having to create your own.
 For example:
 
