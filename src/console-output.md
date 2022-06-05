@@ -33,7 +33,7 @@ separate console window will appear.
 Open Terminal.app, then enter the following text and hit enter:
 
 ```
-/Applications/Anki.app/Contents/MacOS/anki
+/Applications/Anki.app/Contents/MacOS/AnkiMac
 ```
 
 ### Linux
