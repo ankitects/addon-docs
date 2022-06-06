@@ -14,9 +14,11 @@ Anki where adding new hooks would be impractical. In that case, you may
 unfortunately need to modify your add-on periodically as Anki is
 updated.
 
-In aqt/editor.py there is a function setupButtons() which creates the
-buttons like bold, italics and so on that you see in the editor. Let’s
-imagine you want to add another button in your add-on.
+In
+[aqt/editor.py](https://github.com/ankitects/anki/blob/main/qt/aqt/editor.py)
+there is a function setupButtons() which creates the buttons like
+bold, italics and so on that you see in the editor. Let’s imagine you
+want to add another button in your add-on.
 
 Anki 2.1 no longer uses setupButtons(). The code below is still useful
 to understand how monkey patching works, but for adding buttons to the

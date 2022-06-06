@@ -64,7 +64,7 @@ gui_hooks.reviewer_did_show_question.append(myfunc)
 ```
 
 An easy way to see all hooks at a glance is to look at
-pylib/tools/genhooks.py and qt/tools/genhooks_gui.py.
+[pylib/tools/genhooks.py](https://github.com/ankitects/anki/tree/main/pylib/tools/genhooks.py) and [qt/tools/genhooks_gui.py](https://github.com/ankitects/anki/blob/main/qt/tools/genhooks_gui.py).
 
 If you have set up type completion as described in an earlier section,
 you can also see the hooks in your IDE:
@@ -149,7 +149,7 @@ def onLeech(card):
 addHook("leech", onLeech)
 ```
 
-An example of a filter is in aqt/editor.py. The editor calls the
+An example of a filter is in [aqt/editor.py](https://github.com/ankitects/anki/blob/main/qt/aqt/editor.py). The editor calls the
 "editFocusLost" filter each time a field loses focus, so that add-ons
 can apply changes to the note:
 
@@ -243,8 +243,7 @@ addHook("setupEditorButtons", addMyButton)
 If you want to modify a function that doesn’t already have a hook,
 please submit a pull request that adds the hooks you need.
 
-The hook definitions are located in `pylib/tools/genhooks.py` and
-`qt/tools/genhooks_gui.py`. When building Anki, the build scripts will
+The hook definitions are located in [pylib/tools/genhooks.py](https://github.com/ankitects/anki/tree/main/pylib/tools/genhooks.py) and [qt/tools/genhooks_gui.py](https://github.com/ankitects/anki/blob/main/qt/tools/genhooks_gui.py).  When building Anki, the build scripts will
 automatically update the hook files with the definitions listed there.
 
-Please see the docs/ folder in the source tree for more information.
+Please see the [docs/](https://github.com/ankitects/anki/tree/main/docs) folder in the source tree for more information.
