@@ -344,7 +344,9 @@ Running it will display a dialog with the card count.</p>
 error message on startup indicating where the problem is.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-anki-module"><a class="header" href="#the-anki-module">The 'anki' Module</a></h1>
 <p>All access to your collection and associated media go through a Python
-module called <code>anki</code>, located in <code>pylib/anki</code> in Anki's source repo.</p>
+package called <code>anki</code>, located in
+<a href="https://github.com/ankitects/anki/tree/main/pylib/anki">pylib/anki</a>
+in Anki's source repo.</p>
 <h2 id="the-collection"><a class="header" href="#the-collection">The Collection</a></h2>
 <p>All operations on a collection file are accessed via a <code>Collection</code>
 object. The currently-open Collection is accessible via a global <code>mw.col</code>,
@@ -554,7 +556,7 @@ all be called in turn.</p>
 gui_hooks.reviewer_did_show_question.append(myfunc)
 </code></pre>
 <p>An easy way to see all hooks at a glance is to look at
-pylib/tools/genhooks.py and qt/tools/genhooks_gui.py.</p>
+<a href="https://github.com/ankitects/anki/tree/main/pylib/tools/genhooks.py">pylib/tools/genhooks.py</a> and <a href="https://github.com/ankitects/anki/blob/main/qt/tools/genhooks_gui.py">qt/tools/genhooks_gui.py</a>.</p>
 <p>If you have set up type completion as described in an earlier section,
 you can also see the hooks in your IDE:</p>
 <video controls autoplay loop muted>
@@ -622,7 +624,7 @@ def onLeech(card):
 
 addHook(&quot;leech&quot;, onLeech)
 </code></pre>
-<p>An example of a filter is in aqt/editor.py. The editor calls the
+<p>An example of a filter is in <a href="https://github.com/ankitects/anki/blob/main/qt/aqt/editor.py">aqt/editor.py</a>. The editor calls the
 &quot;editFocusLost&quot; filter each time a field loses focus, so that add-ons
 can apply changes to the note:</p>
 <pre><code class="language-python">if runFilter(
@@ -703,10 +705,9 @@ addHook(&quot;setupEditorButtons&quot;, addMyButton)
 <h2 id="adding-hooks"><a class="header" href="#adding-hooks">Adding Hooks</a></h2>
 <p>If you want to modify a function that doesn’t already have a hook,
 please submit a pull request that adds the hooks you need.</p>
-<p>The hook definitions are located in <code>pylib/tools/genhooks.py</code> and
-<code>qt/tools/genhooks_gui.py</code>. When building Anki, the build scripts will
+<p>The hook definitions are located in <a href="https://github.com/ankitects/anki/tree/main/pylib/tools/genhooks.py">pylib/tools/genhooks.py</a> and <a href="https://github.com/ankitects/anki/blob/main/qt/tools/genhooks_gui.py">qt/tools/genhooks_gui.py</a>.  When building Anki, the build scripts will
 automatically update the hook files with the definitions listed there.</p>
-<p>Please see the docs/ folder in the source tree for more information.</p>
+<p>Please see the <a href="https://github.com/ankitects/anki/tree/main/docs">docs/</a> folder in the source tree for more information.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="console-output"><a class="header" href="#console-output">Console Output</a></h1>
 <p>Because Anki is a GUI app, text output to stdout (eg <code>print(&quot;foo&quot;)</code>) is not
 usually visible to the user. You can optionally reveal text printed to stdout,
@@ -806,7 +807,7 @@ in a loop:</li>
 <p>A separate <code>CollectionOp</code> is provided for undoable operations that modify
 the collection. It functions similarly to QueryOp, but will also update the
 UI as changes are made (eg refresh the Browse screen if any notes are changed).</p>
-<p>Many undoable ops already have a <code>CollectionOp</code> defined in aqt/operations/*.py.
+<p>Many undoable ops already have a <code>CollectionOp</code> defined in <a href="https://github.com/ankitects/anki/tree/main/qt/aqt/operations">aqt/operations/*.py</a>.
 You can often use one of them directly rather than having to create your own.
 For example:</p>
 <pre><code class="language-python">from aqt.operations.note import remove_notes
@@ -1043,9 +1044,11 @@ is updated in the future.</p>
 Anki where adding new hooks would be impractical. In that case, you may
 unfortunately need to modify your add-on periodically as Anki is
 updated.</p>
-<p>In aqt/editor.py there is a function setupButtons() which creates the
-buttons like bold, italics and so on that you see in the editor. Let’s
-imagine you want to add another button in your add-on.</p>
+<p>In
+<a href="https://github.com/ankitects/anki/blob/main/qt/aqt/editor.py">aqt/editor.py</a>
+there is a function setupButtons() which creates the buttons like
+bold, italics and so on that you see in the editor. Let’s imagine you
+want to add another button in your add-on.</p>
 <p>Anki 2.1 no longer uses setupButtons(). The code below is still useful
 to understand how monkey patching works, but for adding buttons to the
 editor please see the setupEditorButtons hook described in the previous

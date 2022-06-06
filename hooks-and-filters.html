@@ -199,7 +199,7 @@ all be called in turn.</p>
 gui_hooks.reviewer_did_show_question.append(myfunc)
 </code></pre>
 <p>An easy way to see all hooks at a glance is to look at
-pylib/tools/genhooks.py and qt/tools/genhooks_gui.py.</p>
+<a href="https://github.com/ankitects/anki/tree/main/pylib/tools/genhooks.py">pylib/tools/genhooks.py</a> and <a href="https://github.com/ankitects/anki/blob/main/qt/tools/genhooks_gui.py">qt/tools/genhooks_gui.py</a>.</p>
 <p>If you have set up type completion as described in an earlier section,
 you can also see the hooks in your IDE:</p>
 <video controls autoplay loop muted>
@@ -267,7 +267,7 @@ def onLeech(card):
 
 addHook(&quot;leech&quot;, onLeech)
 </code></pre>
-<p>An example of a filter is in aqt/editor.py. The editor calls the
+<p>An example of a filter is in <a href="https://github.com/ankitects/anki/blob/main/qt/aqt/editor.py">aqt/editor.py</a>. The editor calls the
 &quot;editFocusLost&quot; filter each time a field loses focus, so that add-ons
 can apply changes to the note:</p>
 <pre><code class="language-python">if runFilter(
@@ -348,10 +348,9 @@ addHook(&quot;setupEditorButtons&quot;, addMyButton)
 <h2 id="adding-hooks"><a class="header" href="#adding-hooks">Adding Hooks</a></h2>
 <p>If you want to modify a function that doesn’t already have a hook,
 please submit a pull request that adds the hooks you need.</p>
-<p>The hook definitions are located in <code>pylib/tools/genhooks.py</code> and
-<code>qt/tools/genhooks_gui.py</code>. When building Anki, the build scripts will
+<p>The hook definitions are located in <a href="https://github.com/ankitects/anki/tree/main/pylib/tools/genhooks.py">pylib/tools/genhooks.py</a> and <a href="https://github.com/ankitects/anki/blob/main/qt/tools/genhooks_gui.py">qt/tools/genhooks_gui.py</a>.  When building Anki, the build scripts will
 automatically update the hook files with the definitions listed there.</p>
-<p>Please see the docs/ folder in the source tree for more information.</p>
+<p>Please see the <a href="https://github.com/ankitects/anki/tree/main/docs">docs/</a> folder in the source tree for more information.</p>
 
                     </main>
 
