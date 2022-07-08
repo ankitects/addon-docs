@@ -32,7 +32,7 @@ PyCharm, click on Python Console in the bottom left and type the following in:
 import subprocess
 
 subprocess.check_call(["pip3", "install", "--upgrade", "pip"])
-subprocess.check_call(["pip3", "install", "mypy", "aqt"])
+subprocess.check_call(["pip3", "install", "mypy", "aqt", "PyQt6"])
 ```
 
 Hit enter and wait. Once it completes, you should now have code completion.

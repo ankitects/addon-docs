@@ -8,7 +8,7 @@ catch some cases where you’ve called Anki functions incorrectly, such as when
 you've typed a function name in incorrectly, or passed a string when an integer
 was expected.
 
-In PyCharm, click on Terminal in the bottom left, and type 'mypy myaddon'. After
+In PyCharm, click on Terminal in the bottom left, and type `mypy myaddon`. After
 some processing, it will show a success or tell you any mistakes you’ve made.
 For example, if you specified a hook incorrectly:
 
