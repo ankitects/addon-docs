@@ -1,6 +1,6 @@
 # A Basic Add-on
 
-Add the following to `my_first_addon/__init__.py` in your add-ons folder:
+Add the following to `myaddon/__init__.py` in your add-ons folder:
 
 ```python
 # import the main window object (mw) from aqt
