@@ -209,7 +209,7 @@ PyCharm, click on Python Console in the bottom left and type the following in:</
 <pre><code class="language-python">import subprocess
 
 subprocess.check_call([&quot;pip3&quot;, &quot;install&quot;, &quot;--upgrade&quot;, &quot;pip&quot;])
-subprocess.check_call([&quot;pip3&quot;, &quot;install&quot;, &quot;mypy&quot;, &quot;aqt&quot;])
+subprocess.check_call([&quot;pip3&quot;, &quot;install&quot;, &quot;mypy&quot;, &quot;aqt&quot;, &quot;PyQt6&quot;])
 </code></pre>
 <p>Hit enter and wait. Once it completes, you should now have code completion.</p>
 <p>If you get an error, you are probably not using a 64 bit version of Python, or
@@ -232,7 +232,7 @@ also be used to check your code is correct, using a tool called MyPy. My Py will
 catch some cases where you’ve called Anki functions incorrectly, such as when
 you've typed a function name in incorrectly, or passed a string when an integer
 was expected.</p>
-<p>In PyCharm, click on Terminal in the bottom left, and type 'mypy myaddon'. After
+<p>In PyCharm, click on Terminal in the bottom left, and type <code>mypy myaddon</code>. After
 some processing, it will show a success or tell you any mistakes you’ve made.
 For example, if you specified a hook incorrectly:</p>
 <pre><code class="language-python">from aqt import gui_hooks
@@ -313,7 +313,7 @@ can either copy your myaddon folder into Anki’s add-on folder to test it, or o
 Mac or Linux, create a symlink from the folder’s original location into your
 add-ons folder.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="a-basic-add-on"><a class="header" href="#a-basic-add-on">A Basic Add-on</a></h1>
-<p>Add the following to <code>my_first_addon/__init__.py</code> in your add-ons folder:</p>
+<p>Add the following to <code>myaddon/__init__.py</code> in your add-ons folder:</p>
 <pre><code class="language-python"># import the main window object (mw) from aqt
 from aqt import mw
 # import the &quot;show info&quot; tool from utils.py
