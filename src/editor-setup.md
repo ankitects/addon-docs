@@ -25,7 +25,7 @@ To get started with your first add-on:
 Now you’ll need to fetch Anki’s bundled source code so you can get type
 completion. As of Anki 2.1.24, these are available on PyPI. **You will need to
 be using a 64 bit version of Python, and your Python version must match a
-version the Anki version you are fetching supports.**. To install Anki via
+version the Anki version you are fetching supports.** To install Anki via
 PyCharm, click on Python Console in the bottom left and type the following in:
 
 ```python
