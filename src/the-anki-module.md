@@ -141,7 +141,7 @@ as they take care of marking items as requiring a sync, and they prevent
 some forms of invalid data from being written to the database.
 
 For locating specific cards and notes, col.find_cards() and
-col.find_notes() is useful.
+col.find_notes() are useful.
 
 ## The Database
 
