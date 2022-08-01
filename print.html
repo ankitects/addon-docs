@@ -209,7 +209,7 @@ PyCharm, click on Python Console in the bottom left and type the following in:</
 <pre><code class="language-python">import subprocess
 
 subprocess.check_call([&quot;pip3&quot;, &quot;install&quot;, &quot;--upgrade&quot;, &quot;pip&quot;])
-subprocess.check_call([&quot;pip3&quot;, &quot;install&quot;, &quot;mypy&quot;, &quot;aqt&quot;, &quot;PyQt6&quot;])
+subprocess.check_call([&quot;pip3&quot;, &quot;install&quot;, &quot;mypy&quot;, &quot;aqt[qt6]&quot;])
 </code></pre>
 <p>Hit enter and wait. Once it completes, you should now have code completion.</p>
 <p>If you get an error, you are probably not using a 64 bit version of Python, or
