@@ -1032,6 +1032,11 @@ debugger in the terminal:</p>
 </code></pre>
 <p>Alternatively you can export DEBUG=1 in your shell and it will kick into
 the debugger on an uncaught exception.</p>
+<h2 id="python-assertions"><a class="header" href="#python-assertions">Python Assertions</a></h2>
+<p>Runtime checks using Python's <code>assert</code> statement are not evaluated in 
+Anki's release builds, even when running in debug mode. If you want to 
+use <code>assert</code> for testing you can use the <a href="betas.ankiweb.net/#via-pypipip">packaged versions from PyPI</a>
+or <a href="github.com/ankitects/anki/blob/main/docs/development.html">run Anki from source</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="monkey-patching-and-method-wrapping"><a class="header" href="#monkey-patching-and-method-wrapping">Monkey Patching and Method Wrapping</a></h1>
 <p>If you want to modify a function that doesn’t already have a hook, it’s
 possible to overwrite that function with a custom version instead. This
