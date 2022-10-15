@@ -89,7 +89,7 @@ the debugger on an uncaught exception.
 
 ## Python Assertions
 
-Runtime checks using Python's `assert` statement are not evaluated in 
-Anki's release builds, even when running in debug mode. If you want to 
-use `assert` for testing you can use the [packaged versions from PyPI](betas.ankiweb.net/#via-pypipip)
-or [run Anki from source](github.com/ankitects/anki/blob/main/docs/development.md).
+Runtime checks using Python's `assert` statement are not evaluated in
+Anki's release builds, even when running in debug mode. If you want to
+use `assert` for testing you can use the [packaged versions from PyPI](https://betas.ankiweb.net/#via-pypipip)
+or [run Anki from source](https://github.com/ankitects/anki/blob/main/docs/development.md).
