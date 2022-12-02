@@ -1,7 +1,7 @@
 # Python Modules
 
-From Anki 2.1.50, the packaged builds include most built-in Python
-modules. Earlier versions ship with only the standard modules necessary to run Anki.
+From Anki 2.1.50, the packaged builds include most built-in [Python
+modules](https://www.scaler.com/topics/python/python-modules/). Earlier versions ship with only the standard modules necessary to run Anki.
 
 If your add-on uses a standard Python module that has not
 been included, or a package from PyPI, then your add-on will need to bundle the module.
