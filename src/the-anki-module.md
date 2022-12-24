@@ -68,28 +68,17 @@ mw.col.sched.set_due_date(ids, "1")
 
 **Import a text file into the collection**
 
-This API is a mess, and will be updated soon.
+Requires Anki 2.1.55+.
 
 ```python
-from anki.importing import TextImporter
-file = u"/path/to/text.txt"
-# select deck
-deck_id = mw.col.decks.id("ImportDeck")
-mw.col.decks.select(deck_id)
-# anki defaults to the last note type used in the selected deck
-notetype = mw.col.models.by_name("Basic")
-deck = mw.col.decks.get(deck_id)
-deck['mid'] = notetype['id']
-mw.col.decks.save(deck)
-# and puts cards in the last deck used by the note type
-mw.col.set_aux_notetype_config(
-    notetype["id"], "lastDeck", deck_id
-)
-mw.col.models.save(m)
-# import into the collection
-ti = TextImporter(mw.col, file)
-ti.initMapping()
-ti.run()
+from anki.collection import ImportCsvRequest
+from aqt import mw
+col = mw.col
+path = "/home/dae/foo.csv"
+metadata = col.get_csv_metadata(path=path, delimiter=None)
+request = ImportCsvRequest(path=path, metadata=metadata)
+response = col.import_csv(request)
+print(response.log.found_notes, list(response.log.updated), list(response.log.new))
 ```
 
 Almost every GUI operation has an associated function in anki, so any of
