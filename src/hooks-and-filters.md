@@ -243,6 +243,11 @@ addHook("setupEditorButtons", addMyButton)
 If you want to modify a function that doesn’t already have a hook,
 please submit a pull request that adds the hooks you need.
 
+In your PR, please describe the use-case you're trying to solve. Hooks that
+are general in nature will typically be approved; hooks that target a very
+specific use case may need to be refactored to be more general first. For an
+example of what this might look like, please see [this PR](https://github.com/ankitects/anki/pull/2340).
+
 The hook definitions are located in [pylib/tools/genhooks.py](https://github.com/ankitects/anki/tree/main/pylib/tools/genhooks.py) and [qt/tools/genhooks_gui.py](https://github.com/ankitects/anki/blob/main/qt/tools/genhooks_gui.py).  When building Anki, the build scripts will
 automatically update the hook files with the definitions listed there.
 
