@@ -23,5 +23,4 @@ architecture](https://github.com/ankitects/anki/blob/main/docs/architecture.md)
 available.
 
 While it is possible to develop Anki add-ons with just a plain text editor, you
-can make your life much easier by using a proper code editor/IDE. Please see the IDE
-& Type Hints section below for more information.
+can make your life much easier by using a proper code editor/IDE. Please see the [Editor Setup](https://addon-docs.ankiweb.net/editor-setup.html) section for more information.
