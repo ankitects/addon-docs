@@ -243,7 +243,7 @@ Where possible, please use methods such as the ones mentioned above instead.</p>
 <p><strong>scalar() returns a single item:</strong></p>
 <pre><code class="language-python">showInfo(&quot;card count: %d&quot; % mw.col.db.scalar(&quot;select count() from cards&quot;))
 </code></pre>
-<p><strong>list() returns a list of the first column in each row, eg [1, 2,
+<p><strong>list() returns a list of the first column in each row, e.g.[1, 2,
 3]:</strong></p>
 <pre><code class="language-python">ids = mw.col.db.list(&quot;select id from cards limit 3&quot;)
 </code></pre>

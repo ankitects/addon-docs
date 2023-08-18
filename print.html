@@ -164,7 +164,7 @@ tutorial</a> is a good place to start.</p>
 <p>Add-ons in Anki are implemented as Python modules, which Anki loads at startup.
 They can register themselves to be notified when certain actions take place (eg,
 a hook that runs when the browse screen is loaded), and can make changes to the
-UI (eg adding a new menu item) when those actions take place.</p>
+UI (e.g.adding a new menu item) when those actions take place.</p>
 <p>There is a <a href="https://github.com/ankitects/anki/blob/main/docs/architecture.md">brief overview of Anki's
 architecture</a>
 available.</p>
@@ -444,7 +444,7 @@ Where possible, please use methods such as the ones mentioned above instead.</p>
 <p><strong>scalar() returns a single item:</strong></p>
 <pre><code class="language-python">showInfo(&quot;card count: %d&quot; % mw.col.db.scalar(&quot;select count() from cards&quot;))
 </code></pre>
-<p><strong>list() returns a list of the first column in each row, eg [1, 2,
+<p><strong>list() returns a list of the first column in each row, e.g.[1, 2,
 3]:</strong></p>
 <pre><code class="language-python">ids = mw.col.db.list(&quot;select id from cards limit 3&quot;)
 </code></pre>
@@ -706,7 +706,7 @@ example of what this might look like, please see <a href="https://github.com/ank
 automatically update the hook files with the definitions listed there.</p>
 <p>Please see the <a href="https://github.com/ankitects/anki/tree/main/docs">docs/</a> folder in the source tree for more information.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="console-output"><a class="header" href="#console-output">Console Output</a></h1>
-<p>Because Anki is a GUI app, text output to stdout (eg <code>print(&quot;foo&quot;)</code>) is not
+<p>Because Anki is a GUI app, text output to stdout (e.g.<code>print(&quot;foo&quot;)</code>) is not
 usually visible to the user. You can optionally reveal text printed to stdout,
 and it is recommended that you do so while developing your add-on.</p>
 <h2 id="warnings"><a class="header" href="#warnings">Warnings</a></h2>
@@ -717,7 +717,7 @@ and it is recommended that you do so while developing your add-on.</p>
 slow Anki down even if the console is not shown.</p>
 <h2 id="printing-text"><a class="header" href="#printing-text">Printing text</a></h2>
 <p>You may find it useful to print text to stdout to aid in debugging your add-on.
-Please avoid printing large amounts of text (eg in a loop that deals with hundreds or
+Please avoid printing large amounts of text (e.g.in a loop that deals with hundreds or
 thousands of items), as that may slow Anki down, even if the console is not shown.</p>
 <h2 id="showing-the-console"><a class="header" href="#showing-the-console">Showing the Console</a></h2>
 <h3 id="windows"><a class="header" href="#windows">Windows</a></h3>
@@ -782,11 +782,11 @@ def my_ui_action(note_ids: list[int]):
 </code></pre>
 <p><strong>Be careful not to directly call any Qt/UI routines inside the background operation!</strong></p>
 <ul>
-<li>If you need to modify the UI after an operation completes (eg show a tooltip),
+<li>If you need to modify the UI after an operation completes (e.g.show a tooltip),
 you should do it from the success function.</li>
-<li>If the operation needs data from the UI (eg a combo box value), that data should be gathered
+<li>If the operation needs data from the UI (e.g.a combo box value), that data should be gathered
 prior to executing the operation.</li>
-<li>If you need to update the UI during the background operation (eg to update the text of the
+<li>If you need to update the UI during the background operation (e.g.to update the text of the
 progress window), your operation needs to perform that update on the main thread. For example,
 in a loop:</li>
 </ul>
@@ -803,7 +803,7 @@ in a loop:</li>
 <h2 id="collection-operations"><a class="header" href="#collection-operations">Collection Operations</a></h2>
 <p>A separate <code>CollectionOp</code> is provided for undoable operations that modify
 the collection. It functions similarly to QueryOp, but will also update the
-UI as changes are made (eg refresh the Browse screen if any notes are changed).</p>
+UI as changes are made (e.g.refresh the Browse screen if any notes are changed).</p>
 <p>Many undoable ops already have a <code>CollectionOp</code> defined in <a href="https://github.com/ankitects/anki/tree/main/qt/aqt/operations">aqt/operations/*.py</a>.
 You can often use one of them directly rather than having to create your own.
 For example:</p>
