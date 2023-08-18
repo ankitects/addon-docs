@@ -60,11 +60,11 @@ def my_ui_action(note_ids: list[int]):
 
 **Be careful not to directly call any Qt/UI routines inside the background operation!**
 
-- If you need to modify the UI after an operation completes (eg show a tooltip),
+- If you need to modify the UI after an operation completes (e.g.show a tooltip),
   you should do it from the success function.
-- If the operation needs data from the UI (eg a combo box value), that data should be gathered
+- If the operation needs data from the UI (e.g.a combo box value), that data should be gathered
   prior to executing the operation.
-- If you need to update the UI during the background operation (eg to update the text of the
+- If you need to update the UI during the background operation (e.g.to update the text of the
   progress window), your operation needs to perform that update on the main thread. For example,
   in a loop:
 
@@ -84,7 +84,7 @@ if time.time() - last_progress >= 0.1:
 
 A separate `CollectionOp` is provided for undoable operations that modify
 the collection. It functions similarly to QueryOp, but will also update the
-UI as changes are made (eg refresh the Browse screen if any notes are changed).
+UI as changes are made (e.g.refresh the Browse screen if any notes are changed).
 
 Many undoable ops already have a `CollectionOp` defined in [aqt/operations/\*.py](https://github.com/ankitects/anki/tree/main/qt/aqt/operations).
 You can often use one of them directly rather than having to create your own.

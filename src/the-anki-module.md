@@ -145,7 +145,7 @@ Anki’s DB object supports the following functions:
 showInfo("card count: %d" % mw.col.db.scalar("select count() from cards"))
 ```
 
-**list() returns a list of the first column in each row, eg \[1, 2,
+**list() returns a list of the first column in each row, e.g.\[1, 2,
 3\]:**
 
 ```python

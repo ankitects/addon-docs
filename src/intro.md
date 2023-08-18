@@ -16,7 +16,7 @@ tutorial](http://docs.python.org/tutorial/) is a good place to start.
 Add-ons in Anki are implemented as Python modules, which Anki loads at startup.
 They can register themselves to be notified when certain actions take place (eg,
 a hook that runs when the browse screen is loaded), and can make changes to the
-UI (eg adding a new menu item) when those actions take place.
+UI (e.g.adding a new menu item) when those actions take place.
 
 There is a [brief overview of Anki's
 architecture](https://github.com/ankitects/anki/blob/main/docs/architecture.md)
