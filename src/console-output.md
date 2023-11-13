@@ -25,7 +25,7 @@ thousands of items), as that may slow Anki down, even if the console is not show
 
 ### Windows
 
-If you start Anki via the `anki-console.bat` file in `c:\program files\anki`, a
+If you start Anki via the `anki-console.bat` file in `C:\Users\user\AppData\Local\Programs\Anki` (or `C:\Program Files\Anki`), a
 separate console window will appear.
 
 ### macOS
