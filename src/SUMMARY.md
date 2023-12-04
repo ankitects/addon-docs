@@ -18,4 +18,5 @@
 - [Debugging](debugging.md)
 - [Monkey Patching](monkey-patching.md)
 - [Sharing Add-ons](sharing.md)
+- [Porting 2.1.x Add-ons](porting2.1.x.md)
 - [Porting 2.0 Add-ons](porting2.0.md)
