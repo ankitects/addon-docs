@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>MyPy - Writing Anki Add-ons</title>
+        <title>Porting 2.1.x Add-ons - Writing Anki Add-ons</title>
 
 
         <!-- Custom HTML head -->
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="support.html"><strong aria-hidden="true">2.</strong> Support</a></li><li class="chapter-item expanded "><a href="editor-setup.html"><strong aria-hidden="true">3.</strong> Editor Setup</a></li><li class="chapter-item expanded "><a href="mypy.html" class="active"><strong aria-hidden="true">4.</strong> MyPy</a></li><li class="chapter-item expanded "><a href="addon-folders.html"><strong aria-hidden="true">5.</strong> Add-on Folders</a></li><li class="chapter-item expanded "><a href="a-basic-addon.html"><strong aria-hidden="true">6.</strong> A Basic Add-on</a></li><li class="chapter-item expanded "><a href="the-anki-module.html"><strong aria-hidden="true">7.</strong> The 'anki' Module</a></li><li class="chapter-item expanded "><a href="command-line-use.html"><strong aria-hidden="true">8.</strong> Command-Line Use</a></li><li class="chapter-item expanded "><a href="hooks-and-filters.html"><strong aria-hidden="true">9.</strong> Hooks and Filters</a></li><li class="chapter-item expanded "><a href="console-output.html"><strong aria-hidden="true">10.</strong> Console Output</a></li><li class="chapter-item expanded "><a href="background-ops.html"><strong aria-hidden="true">11.</strong> Background Operations</a></li><li class="chapter-item expanded "><a href="qt.html"><strong aria-hidden="true">12.</strong> Qt and PyQt</a></li><li class="chapter-item expanded "><a href="python-modules.html"><strong aria-hidden="true">13.</strong> Python Modules</a></li><li class="chapter-item expanded "><a href="addon-config.html"><strong aria-hidden="true">14.</strong> Add-on Config</a></li><li class="chapter-item expanded "><a href="reviewer-javascript.html"><strong aria-hidden="true">15.</strong> Reviewer Javascript</a></li><li class="chapter-item expanded "><a href="debugging.html"><strong aria-hidden="true">16.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="monkey-patching.html"><strong aria-hidden="true">17.</strong> Monkey Patching</a></li><li class="chapter-item expanded "><a href="sharing.html"><strong aria-hidden="true">18.</strong> Sharing Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.1.x.html"><strong aria-hidden="true">19.</strong> Porting 2.1.x Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.0.html"><strong aria-hidden="true">20.</strong> Porting 2.0 Add-ons</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="support.html"><strong aria-hidden="true">2.</strong> Support</a></li><li class="chapter-item expanded "><a href="editor-setup.html"><strong aria-hidden="true">3.</strong> Editor Setup</a></li><li class="chapter-item expanded "><a href="mypy.html"><strong aria-hidden="true">4.</strong> MyPy</a></li><li class="chapter-item expanded "><a href="addon-folders.html"><strong aria-hidden="true">5.</strong> Add-on Folders</a></li><li class="chapter-item expanded "><a href="a-basic-addon.html"><strong aria-hidden="true">6.</strong> A Basic Add-on</a></li><li class="chapter-item expanded "><a href="the-anki-module.html"><strong aria-hidden="true">7.</strong> The 'anki' Module</a></li><li class="chapter-item expanded "><a href="command-line-use.html"><strong aria-hidden="true">8.</strong> Command-Line Use</a></li><li class="chapter-item expanded "><a href="hooks-and-filters.html"><strong aria-hidden="true">9.</strong> Hooks and Filters</a></li><li class="chapter-item expanded "><a href="console-output.html"><strong aria-hidden="true">10.</strong> Console Output</a></li><li class="chapter-item expanded "><a href="background-ops.html"><strong aria-hidden="true">11.</strong> Background Operations</a></li><li class="chapter-item expanded "><a href="qt.html"><strong aria-hidden="true">12.</strong> Qt and PyQt</a></li><li class="chapter-item expanded "><a href="python-modules.html"><strong aria-hidden="true">13.</strong> Python Modules</a></li><li class="chapter-item expanded "><a href="addon-config.html"><strong aria-hidden="true">14.</strong> Add-on Config</a></li><li class="chapter-item expanded "><a href="reviewer-javascript.html"><strong aria-hidden="true">15.</strong> Reviewer Javascript</a></li><li class="chapter-item expanded "><a href="debugging.html"><strong aria-hidden="true">16.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="monkey-patching.html"><strong aria-hidden="true">17.</strong> Monkey Patching</a></li><li class="chapter-item expanded "><a href="sharing.html"><strong aria-hidden="true">18.</strong> Sharing Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.1.x.html" class="active"><strong aria-hidden="true">19.</strong> Porting 2.1.x Add-ons</a></li><li class="chapter-item expanded "><a href="porting2.0.html"><strong aria-hidden="true">20.</strong> Porting 2.0 Add-ons</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -145,72 +145,18 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="mypy"><a class="header" href="#mypy">MyPy</a></h1>
-<h2 id="using-mypy"><a class="header" href="#using-mypy">Using MyPy</a></h2>
-<p>The type hints you installed when <a href="./editor-setup.html">setting up PyCharm</a> can
-also be used to check your code is correct, using a tool called MyPy. My Py will
-catch some cases where you’ve called Anki functions incorrectly, such as when
-you've typed a function name in incorrectly, or passed a string when an integer
-was expected.</p>
-<p>In PyCharm, click on Terminal in the bottom left, and type <code>mypy myaddon</code>. After
-some processing, it will show a success or tell you any mistakes you’ve made.
-For example, if you specified a hook incorrectly:</p>
-<pre><code class="language-python">from aqt import gui_hooks
-
-def myfunc() -&gt; None:
-  print(&quot;myfunc&quot;)
-
-gui_hooks.reviewer_did_show_answer.append(myfunc)
-</code></pre>
-<p>Then mypy will report:</p>
-<pre><code>myaddon/__init__.py:5: error: Argument 1 to &quot;append&quot; of &quot;list&quot; has incompatible type &quot;Callable[[], Any]&quot;; expected &quot;Callable[[Card], None]&quot;
-Found 1 error in 1 file (checked 1 source file)
-</code></pre>
-<p>..which is telling you that the hook expects a function which takes a card as
-the first argument, eg</p>
-<pre><code class="language-python">from anki.cards import Card
-
-def myfunc(card: Card) -&gt; None:
-  print(&quot;myfunc&quot;)
-</code></pre>
-<h2 id="checking-existing-add-ons"><a class="header" href="#checking-existing-add-ons">Checking Existing Add-Ons</a></h2>
-<p>Mypy has a &quot;check_untyped_defs&quot; option that will give you some type checking
-even if your own code lacks type hints, but to get the most out of it, you will
-need to add type hints to your own code. This can take some initial time, but
-pays off in the long term, as it becomes easier to navigate your own code, and
-allows you to catch errors in parts of the code you might not regularly exercise
-yourself. It is also makes it easier to check for any problems caused by updating
-to a newer Anki version.</p>
-<p>If you have a large existing add-on, you may wish to look into tools like monkeytype
-to automatically add types to your code.</p>
-<details>
-<summary>Monkeytype</summary>
-To use monkeytype with an add-on called 'test', you could do something like the following:
-<pre><code class="language-shell">% /usr/local/bin/python3.8 -m venv pyenv
-% cd pyenv &amp;&amp; . bin/activate
-(pyenv) % pip install aqt monkeytype
-(pyenv) % monkeytype run bin/anki
-</code></pre>
-<p>Then click around in your add-on to gather the runtime type information, and close
-Anki when you're done.</p>
-<p>After doing so, you'll need to comment out any top-level actions (such as code modifying
-menus outside of a function), as that will trip up monkeytype. Finally, you can
-generate the modified files with:</p>
-<pre><code class="language-shell">(pyenv) % PYTHONPATH=~/Library/Application\ Support/Anki2/addons21 monkeytype apply test
-</code></pre>
-</details>
-<p>Here are some example add-ons that use type hints:</p>
-<p><a href="https://github.com/ankitects/anki-addons/blob/master/demos/">https://github.com/ankitects/anki-addons/blob/master/demos/</a></p>
+                        <h1 id="porting-21x-add-ons"><a class="header" href="#porting-21x-add-ons">Porting 2.1.x Add-ons</a></h1>
+<p>Please see <a href="https://forums.ankiweb.net/t/porting-tips-for-anki-23-10/35916">https://forums.ankiweb.net/t/porting-tips-for-anki-23-10/35916</a></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="editor-setup.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="sharing.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="addon-folders.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="porting2.0.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -220,11 +166,11 @@ generate the modified files with:</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="editor-setup.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="sharing.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="addon-folders.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="porting2.0.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
