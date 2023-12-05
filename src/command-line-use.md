@@ -10,7 +10,7 @@ Install it with pip:
 $ pip install anki
 ```
 
-Then you create use it in a .py file, like so:
+Then you can use it in a .py file, like so:
 
 ```python
 from anki.collection import Collection
