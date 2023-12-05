@@ -16,9 +16,6 @@ Then you can use it in a .py file, like so:
 from anki.collection import Collection
 col = Collection("/path/to/collection.anki2")
 print(col.sched.deck_due_tree())
-col.close()
 ```
-
-Make sure you call `col.close()` at the end to save any changes.
 
 See [the Anki module](./the-anki-module.md) for more.
