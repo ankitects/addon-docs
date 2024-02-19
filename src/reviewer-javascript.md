@@ -5,7 +5,7 @@ For a general solution not specific to card review, see
 
 Anki provides a hook to modify the question and answer HTML before it is
 displayed in the review screen, preview dialog, and card layout screen.
-This can be useful for adding Javascript to the card.
+This can be useful for adding Javascript to the card. If you wish to load external resources in your card, please see [managing external resources in webviews](hooks-and-filters.md#managing-external-resources-in-webviews)
 
 An example:
 

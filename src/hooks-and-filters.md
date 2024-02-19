@@ -116,6 +116,27 @@ From Anki 2.1.36:
   styling or content into external pages like the graphs screen and congratulations
   page that are loaded with load_ts_page().
 
+
+#### Managing External Resources in Webviews
+Add-ons may expose their own web assets by utilizing `aqt.addons.AddonManager.setWebExports()`. Web exports registered in this manner may then be accessed under the `/_addons` subpath
+
+For example, to allow access to a `my-addon.js` and `my-addon.css` residing
+in a "web" subfolder in your add-on package, first register the corresponding web export: 
+```python
+from aqt import mw
+mw.addonManager.setWebExports(__name__, r"web/.*(css|js)")
+```
+Then, append the subpaths to the corresponding web_content fields within a function subscribing to `gui_hooks.webview_will_set_content`:
+```python
+def on_webview_will_set_content(web_content: WebContent, context) -> None:
+    addon_package = mw.addonManager.addonFromModule(__name__)
+    web_content.css.append(f"/_addons/{addon_package}/web/my-addon.css")
+    web_content.js.append(f"/_addons/{addon_package}/web/my-addon.js")
+```
+Note that '/' will also match the os specific path separator.
+
+
+
 ## Legacy Hook Handling
 
 Older versions of Anki used a different hook system, using the functions
