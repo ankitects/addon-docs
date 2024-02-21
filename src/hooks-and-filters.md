@@ -118,7 +118,7 @@ From Anki 2.1.36:
 
 
 #### Managing External Resources in Webviews
-Add-ons may expose their own web assets by utilizing `aqt.addons.AddonManager.setWebExports()`. Web exports registered in this manner may then be accessed under the `/_addons` subpath
+Add-ons may expose their own web assets by utilizing `aqt.addons.AddonManager.setWebExports()`. Web exports registered in this manner may then be accessed under the `/_addons` subpath.
 
 For example, to allow access to a `my-addon.js` and `my-addon.css` residing
 in a "web" subfolder in your add-on package, first register the corresponding web export: 
