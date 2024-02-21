@@ -150,7 +150,11 @@
 <li><a href="#new-style-hooks">New Style Hooks</a></li>
 <li><a href="#notable-hooks">Notable Hooks</a>
 <ul>
-<li><a href="#webview">Webview</a></li>
+<li><a href="#webview">Webview</a>
+<ul>
+<li><a href="#managing-external-resources-in-webviews">Managing External Resources in Webviews</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#legacy-hook-handling">Legacy Hook Handling</a></li>
@@ -247,6 +251,20 @@ to your own messages as well.</li>
 styling or content into external pages like the graphs screen and congratulations
 page that are loaded with load_ts_page().</li>
 </ul>
+<h4 id="managing-external-resources-in-webviews"><a class="header" href="#managing-external-resources-in-webviews">Managing External Resources in Webviews</a></h4>
+<p>Add-ons may expose their own web assets by utilizing <code>aqt.addons.AddonManager.setWebExports()</code>. Web exports registered in this manner may then be accessed under the <code>/_addons</code> subpath.</p>
+<p>For example, to allow access to a <code>my-addon.js</code> and <code>my-addon.css</code> residing
+in a &quot;web&quot; subfolder in your add-on package, first register the corresponding web export: </p>
+<pre><code class="language-python">from aqt import mw
+mw.addonManager.setWebExports(__name__, r&quot;web/.*(css|js)&quot;)
+</code></pre>
+<p>Then, append the subpaths to the corresponding web_content fields within a function subscribing to <code>gui_hooks.webview_will_set_content</code>:</p>
+<pre><code class="language-python">def on_webview_will_set_content(web_content: WebContent, context) -&gt; None:
+    addon_package = mw.addonManager.addonFromModule(__name__)
+    web_content.css.append(f&quot;/_addons/{addon_package}/web/my-addon.css&quot;)
+    web_content.js.append(f&quot;/_addons/{addon_package}/web/my-addon.js&quot;)
+</code></pre>
+<p>Note that '/' will also match the os specific path separator.</p>
 <h2 id="legacy-hook-handling"><a class="header" href="#legacy-hook-handling">Legacy Hook Handling</a></h2>
 <p>Older versions of Anki used a different hook system, using the functions
 runHook(), addHook() and runFilter().</p>
