@@ -15,6 +15,9 @@ Text printed to standard output is covered in [this section](./console-output.md
 If you set the env var QTWEBENGINE_REMOTE_DEBUGGING to 8080 prior to starting Anki,
 you can surf to http://localhost:8080 in Chrome to debug the visible webpages.
 
+Alternatively, you can use [this add-on](https://ankiweb.net/shared/info/31746032)
+to open the inspector inside Anki.
+
 ## Debug Console
 
 Anki also includes a REPL. From within the program, press the [shortcut
