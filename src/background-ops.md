@@ -18,7 +18,7 @@ the background. Anki provides some tools to make this easier.
 ## Read-Only/Non-Undoable Operations
 
 For long-running operations like gathering a group of notes, or things like network access,
-`QueryOp` is recommended.
+`QueryOp` is recommended. For the latter, make sure to read about serialization further below.
 
 In the following example, my_ui_action() will return quickly, and the operation
 will continue to run in the background until it completes. If it finishes
@@ -78,6 +78,18 @@ if time.time() - last_progress >= 0.1:
         )
     )
     last_progress = time.time()
+```
+
+**Operations are serialized by default**
+
+By default, only a single operation can run at once, to ensure multiple read operations on the
+collection don't interleave with another write operation.
+
+If your operation does not touch the collection (e.g., it is a network request), then you can
+opt out of this serialization so that the operation runs concurrently to other ops:
+
+```python
+op.without_collection().run_in_background()
 ```
 
 ## Collection Operations
