@@ -5,22 +5,20 @@ Add the following to `myaddon/__init__.py` in your add-ons folder:
 ```python
 # import the main window object (mw) from aqt
 from aqt import mw
-
+# import the "show info" tool from utils.py
+from aqt.utils import showInfo, qconnect
 # import all of the Qt GUI library
 from aqt.qt import *
-
-# import showInfo from Anki utilities
-from aqt.utils import showInfo
 
 # We're going to add a menu item below. First we want to create a function to
 # be called when the menu item is activated.
 
 def testFunction() -> None:
-  # get the number of cards in the current collection, 
-  # which is stored in the main window
-  cardCount = mw.col.card_count()
-  # show a message box
-  showInfo("Card count: %d" % cardCount)
+    # get the number of cards in the current collection, which is stored in
+    # the main window
+    cardCount = mw.col.card_count()
+    # show a message box
+    showInfo("Card count: %d" % cardCount)
 
 # create a new menu item, "test"
 action = QAction("test", mw)
