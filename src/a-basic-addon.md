@@ -16,7 +16,7 @@ from aqt.qt import *
 def testFunction() -> None:
     # get the number of cards in the current collection, which is stored in
     # the main window
-    cardCount = mw.col.cardCount()
+    cardCount = mw.col.card_count()
     # show a message box
     showInfo("Card count: %d" % cardCount)
 
