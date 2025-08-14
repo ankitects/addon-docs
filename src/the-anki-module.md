@@ -9,11 +9,35 @@ in Anki's source repo.
 
 All operations on a collection file are accessed via a `Collection`
 object. The currently-open Collection is accessible via a global `mw.col`,
-where `mw` stands for `main window`. When using the `anki` module outside
-of Anki, you will need to create your own Collection object.
+where `mw` stands for `main window`. 
 
-Some basic examples of what you can do follow. Please note that you should put
-these in something like [testFunction()](./a-basic-addon.md). You can’t run them
+**Initiate collection from mw:**
+```python
+from anki.collection import ImportCsvRequest
+from aqt import mw
+
+
+col = mw.col
+```
+When using the `anki` module outside of Anki, the `mw` object will not exist.
+You will need to create your own `Collection` object 
+from `collection.anki2` ([see docs ]( https://docs.ankiweb.net/files.html) 
+or [use our helper function](#get-collection-path-helper-function)).
+
+**Initiate collection from file:**
+```python
+from anki.collection import Collection
+
+
+profile_name = 'insert_your_profile_name'     # hint: default is 'User 1'
+# col_path = 'insert_manually'    # manual insertion
+col_path = get_collection_path(profile_name)  # using helper function 
+col = Collection(col_path)
+```
+
+Some basic examples of what you can do with a collection follow. 
+With `mw` usage, please note that you should put
+these in something like [testFunction()](./a-basic-addon.md); you can’t run them
 directly in an add-on, as add-ons are initialized during Anki startup, before
 any collection or profile has been loaded.
 
@@ -73,7 +97,8 @@ Requires Anki 2.1.55+.
 ```python
 from anki.collection import ImportCsvRequest
 from aqt import mw
-col = mw.col
+
+
 path = "/home/dae/foo.csv"
 metadata = col.get_csv_metadata(path=path, delimiter=None)
 request = ImportCsvRequest(path=path, metadata=metadata)
@@ -196,3 +221,43 @@ If you need to store addon-specific data, consider using Anki’s
 If you need the data to sync across devices, small options can be stored
 within mw.col.conf. Please don’t store large amounts of data there, as
 it’s currently sent on every sync.
+
+**Get collection path helper function**
+```python
+import os
+import platform
+
+def get_collection_path(profile_name, attempts=0):
+    def get_anki_dir(attempts, *anki_dir_tuple):
+        anki_dir_tuple = anki_dir_tuple[attempts:]  # try progressively older locations
+        for path in anki_dir_tuple:
+            if os.path.exists(path):
+                return path
+        raise FileNotFoundError('No anki collection file not found in any of the searched directories.')
+
+    collection_anki2_filename = 'collection.anki2'
+    system = platform.system()
+    profile_dir = ''
+
+    # get dir - locations may be found at https://docs.ankiweb.net/files.html
+    if system == 'Windows':
+        modern_dir =        f'{USER_PATH}/AppData/Roaming/%APPDATA%/Anki2/{profile_name}'
+        old_dir =           f'{USER_PATH}/Documents/{profile_name}'
+        profile_dir =       get_anki_dir(attempts, modern_dir, old_dir)
+    elif system == 'Linux':
+        modern_collection = f'{USER_PATH}/.local/share/Anki2/{profile_name}'
+        old_collection =    f'{USER_PATH}/Documents/Anki/{profile_name}'
+        older_collection =  f'{USER_PATH}/Anki/{profile_name}'
+        profile_dir =       get_anki_dir(attempts, modern_collection, old_collection, older_collection)
+    elif system == 'Darwin':
+        modern_collection = f'{USER_PATH}/Library/Application Support/Anki2/{profile_name}'
+        old_collection =    f'{USER_PATH}/Documents/Anki/{profile_name}'
+        profile_dir =       get_anki_dir(attempts, modern_collection, old_collection)
+
+    # ensure file exists
+    path = f'{profile_dir}/{collection_anki2_filename}'
+    if not os.path.exists(path):
+        return get_collection_path(profile_name, attempts+1)
+
+    return path
+```
