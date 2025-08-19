@@ -2,10 +2,8 @@
 
 ## Config JSON
 
-If you include a config.json file with a JSON dictionary in it, Anki
-will allow users to edit it from the add-on manager.
-
-A simple example: in config.json:
+Add-ons can store config data in a JSON dictionary. You provide the
+default values by shipping a file called `config.json`. A simple example:
 
     {"myvar": 5}
 
@@ -21,12 +19,7 @@ config = mw.addonManager.getConfig(__name__)
 print("var is", config['myvar'])
 ```
 
-When updating your add-on, you can make changes to config.json. Any
-newly added keys will be merged with the existing configuration.
-
-If you change the value of existing keys in config.json, users who have
-customized their configuration will continue to see the old values
-unless they use the "restore defaults" button.
+If the config hasn't been customized, the default values from that file will be used.
 
 If you need to programmatically modify the config, you can save your
 changes with:
@@ -34,6 +27,17 @@ changes with:
 ```python
 mw.addonManager.writeConfig(__name__, config)
 ```
+
+Users are also able to edit the config inside the GUI.
+
+The edited config is stored in `meta.json`.
+
+When `getConfig()` is used after edits, meta.json is used preferentially. If a key
+is missing from meta.json's config, Anki will fall back on the default config.
+
+If you change the value of existing keys in config.json, users who have
+customized their configuration will continue to see the old values
+unless they use the "restore defaults" button.
 
 If no config.json file exists, getConfig() will return None - even if
 you have called writeConfig().
