@@ -171,9 +171,8 @@
                     <main>
                         <h1 id="add-on-config"><a class="header" href="#add-on-config">Add-on Config</a></h1>
 <h2 id="config-json"><a class="header" href="#config-json">Config JSON</a></h2>
-<p>If you include a config.json file with a JSON dictionary in it, Anki
-will allow users to edit it from the add-on manager.</p>
-<p>A simple example: in config.json:</p>
+<p>Add-ons can store config data in a JSON dictionary. You provide the
+default values by shipping a file called <code>config.json</code>. A simple example:</p>
 <pre><code>{"myvar": 5}
 </code></pre>
 <p>In config.md:</p>
@@ -184,15 +183,18 @@ will allow users to edit it from the add-on manager.</p>
 config = mw.addonManager.getConfig(__name__)
 print("var is", config['myvar'])
 </code></pre>
-<p>When updating your add-on, you can make changes to config.json. Any
-newly added keys will be merged with the existing configuration.</p>
-<p>If you change the value of existing keys in config.json, users who have
-customized their configuration will continue to see the old values
-unless they use the "restore defaults" button.</p>
+<p>If the config hasn't been customized, the default values from that file will be used.</p>
 <p>If you need to programmatically modify the config, you can save your
 changes with:</p>
 <pre><code class="language-python">mw.addonManager.writeConfig(__name__, config)
 </code></pre>
+<p>Users are also able to edit the config inside the GUI.</p>
+<p>The edited config is stored in <code>meta.json</code>.</p>
+<p>When <code>getConfig()</code> is used after edits, meta.json is used preferentially. If a key
+is missing from meta.json's config, Anki will fall back on the default config.</p>
+<p>If you change the value of existing keys in config.json, users who have
+customized their configuration will continue to see the old values
+unless they use the "restore defaults" button.</p>
 <p>If no config.json file exists, getConfig() will return None - even if
 you have called writeConfig().</p>
 <p>Add-ons that manage options in their own GUI can have that GUI displayed
