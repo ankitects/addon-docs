@@ -241,7 +241,7 @@ def get_collection_path(profile_name, attempts=0):
 
     # get dir - locations may be found at https://docs.ankiweb.net/files.html
     if system == 'Windows':
-        modern_dir =        f'{USER_PATH}/AppData/Roaming/%APPDATA%/Anki2/{profile_name}'
+        modern_dir =        f'{USER_PATH}/AppData/Roaming/Anki2/{profile_name}'
         old_dir =           f'{USER_PATH}/Documents/{profile_name}'
         profile_dir =       get_anki_dir(attempts, modern_dir, old_dir)
     elif system == 'Linux':
