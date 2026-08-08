@@ -8,12 +8,35 @@ in Anki's source repo.
 ## The Collection
 
 All operations on a collection file are accessed via a `Collection`
-object. The currently-open Collection is accessible via a global `mw.col`,
-where `mw` stands for `main window`. When using the `anki` module outside
-of Anki, you will need to create your own Collection object.
+object. 
 
-Some basic examples of what you can do follow. Please note that you should put
-these in something like [testFunction()](./a-basic-addon.md). You can’t run them
+If running code inside an add-on, the Anki collection will be 
+accessible via the Anki main window, called `mw`, as shown below.
+
+**Access collection from mw:**
+```python
+from aqt import mw
+
+
+col = mw.col
+```
+When using the `anki` module outside of Anki, the `mw` object will not exist.
+You will need to create your own `Collection` object 
+from the `collection.anki2` file. The file can located via the [the docs](https://docs.ankiweb.net/files.html)
+or as shown below.
+
+**Initiate collection from file:**
+```python
+from anki.collection import Collection
+from aqt.profiles import ProfileManager
+
+col_path =  ProfileManager.get_created_base_folder(None)
+col = Collection(col_path)
+```
+
+Some basic examples of what you can do with a collection follow. 
+With `mw` usage, please note that you should put its calls 
+in something like [testFunction()](./a-basic-addon.md); you can’t run them
 directly in an add-on, as add-ons are initialized during Anki startup, before
 any collection or profile has been loaded.
 
@@ -73,7 +96,8 @@ Requires Anki 2.1.55+.
 ```python
 from anki.collection import ImportCsvRequest
 from aqt import mw
-col = mw.col
+
+
 path = "/home/dae/foo.csv"
 metadata = col.get_csv_metadata(path=path, delimiter=None)
 request = ImportCsvRequest(path=path, metadata=metadata)
