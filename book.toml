@@ -21,3 +21,28 @@ optional = true
 warning-policy = "warn"
 follow-web-links = true
 exclude = [ 'forums.ankiweb.net' ]
+
+[output.html.redirect]
+"/index.html" = "https://docs.ankiweb.net/addons/intro"
+"/python-modules.html" = "https://docs.ankiweb.net/addons/python-modules" 
+"/editing-and-mypy.html" = "https://docs.ankiweb.net/addons/editor-setup"
+"/editor-setup.html" = "https://docs.ankiweb.net/addons/editor-setup" 
+"/a-basic-addon.html" = "https://docs.ankiweb.net/addons/a-basic-addon" 
+"/command-line-use.html" = "https://docs.ankiweb.net/addons/command-line-use" 
+"/support.html" = "https://docs.ankiweb.net/addons/support" 
+"/hooks-and-filters.html" = "https://docs.ankiweb.net/addons/hooks-and-filters" 
+"/monkey-patching.html" = "https://docs.ankiweb.net/addons/monkey-patching" 
+"/porting2.1.x.html" = "https://docs.ankiweb.net/addons/porting2.1.x" 
+"/the-anki-module.html" = "https://docs.ankiweb.net/addons/the-anki-module" 
+"/qt.html" = "https://docs.ankiweb.net/addons/qt" 
+"/background-ops.html" = "https://docs.ankiweb.net/addons/background-ops" 
+"/intro.html" = "https://docs.ankiweb.net/addons/intro" 
+"/reviewer-javascript.html" = "https://docs.ankiweb.net/addons/reviewer-javascript" 
+"/addon-config.html" = "https://docs.ankiweb.net/addons/addon-config" 
+"/sharing.html" = "https://docs.ankiweb.net/addons/sharing" 
+"/debugging.html" = "https://docs.ankiweb.net/addons/debugging" 
+"/mypy.html" = "https://docs.ankiweb.net/addons/mypy" 
+"/porting2.0.html" = "https://docs.ankiweb.net/addons/porting2.0" 
+"/console-output.html" = "https://docs.ankiweb.net/addons/console-output" 
+"/addon-folders.html" = "https://docs.ankiweb.net/addons/addon-folders" 
+
